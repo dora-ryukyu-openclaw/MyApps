@@ -15,7 +15,7 @@ env.allowLocalModels = false;
 /* ==========================================================
    定数
    ========================================================== */
-const MODEL_ID = 'keitokei1994/ruri-v3-310m-onnx';
+const MODEL_ID = 'keisuke-miyako/ruri-v3-130m-onnx-int8';
 
 const WORD_CATEGORIES = {
   '果物':   ['りんご', 'バナナ', 'ぶどう', 'いちご', '桃', 'みかん', '梨', '柿', 'さくらんぼ', 'メロン'],
@@ -98,11 +98,12 @@ let categoriesVisible = {};
 async function loadModel() {
   $status.textContent = 'AIモデルをロードしています…';
 
+  // dtype はファイル名のサフィックス制御に使われる（'fp32' = サフィックスなし）
+  // モデル自体は INT8 量子化済みで、ONNX Runtime が内部のデータ型に従い正しく推論する
   extractor = await pipeline('feature-extraction', MODEL_ID, {
     dtype: 'fp32',
-    revision: 'main',
     subfolder: '',
-    model_file_name: 'model',
+    model_file_name: 'model_quantized',
     progress_callback: (p) => {
       if (p.status === 'progress' && p.total) {
         const pct = Math.round((p.loaded / p.total) * 100);
@@ -666,5 +667,14 @@ function setupInteractions() {
   document.querySelector('.legend-header')?.addEventListener('click', (e) => {
     if (e.target.closest('.legend-toggle')) return;
     document.getElementById('legend-panel').classList.toggle('collapsed');
+  });
+
+  // About パネル
+  const $aboutPanel = document.getElementById('about-panel');
+  document.getElementById('about-btn')?.addEventListener('click', () => {
+    $aboutPanel.style.display = $aboutPanel.style.display === 'none' ? '' : 'none';
+  });
+  document.getElementById('about-close')?.addEventListener('click', () => {
+    $aboutPanel.style.display = 'none';
   });
 }

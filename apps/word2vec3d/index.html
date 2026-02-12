@@ -36,7 +36,7 @@
             <div class="progress-track">
                 <div class="progress-fill" id="progress-fill"></div>
             </div>
-            <p class="loading-hint" id="loading-hint">初回はモデルのダウンロードに時間がかかります（約1.2GB）</p>
+            <p class="loading-hint" id="loading-hint">初回はモデルのダウンロードに時間がかかります</p>
         </div>
     </div>
 
@@ -89,15 +89,58 @@
         <!-- ツールチップ -->
         <div class="tooltip" id="tooltip"></div>
 
+        <!-- About パネル -->
+        <div class="about-panel" id="about-panel" style="display:none;">
+            <div class="about-header">
+                <h3 class="about-title">このアプリについて</h3>
+                <button class="btn-icon about-close" id="about-close" type="button" aria-label="閉じる">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                </button>
+            </div>
+            <div class="about-body">
+                <section class="about-section">
+                    <h4>使用モデル</h4>
+                    <p><strong>Ruri v3 130M</strong>（INT8量子化版）<br>
+                        名古屋大学が開発した日本語文埋め込みモデルです。文や単語を数値ベクトル（768次元）に変換し、意味的な類似度を計算できます。</p>
+                </section>
+                <section class="about-section">
+                    <h4>仕組み</h4>
+                    <ol class="about-steps">
+                        <li><strong>ベクトル化</strong> — 各単語をAIモデル（Transformer）に通し、768次元のベクトルに変換</li>
+                        <li><strong>次元削減（PCA）</strong> — 主成分分析で768次元→3次元に圧縮。最も分散の大きい3方向を軸として選択</li>
+                        <li><strong>3D可視化</strong> — Three.js で3D空間にプロット。意味が近い単語は空間内で近くに配置される</li>
+                    </ol>
+                </section>
+                <section class="about-section">
+                    <h4>読み方</h4>
+                    <p>空間内で<strong>近い単語は意味が似ている</strong>ことを表します。同じカテゴリの単語がクラスタを形成する傾向があります。</p>
+                </section>
+                <section class="about-section about-tech">
+                    <h4>技術スタック</h4>
+                    <p>推論: <a href="https://huggingface.co/docs/transformers.js" target="_blank"
+                            rel="noopener">Transformers.js</a>（ONNX Runtime Web）<br>
+                        描画: <a href="https://threejs.org/" target="_blank" rel="noopener">Three.js</a><br>
+                        すべての処理はブラウザ上で完結しています。</p>
+                </section>
+            </div>
+        </div>
+
         <!-- 情報パネル -->
         <div class="info-badge" id="info-badge">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <circle cx="12" cy="12" r="10" />
-                <path d="M12 16v-4" />
-                <path d="M12 8h.01" />
-            </svg>
-            ドラッグで回転 / スクロールでズーム
+            <span class="info-hint">ドラッグで回転 / スクロールでズーム</span>
+            <button class="btn-about" id="about-btn" type="button" aria-label="このアプリについて">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 16v-4" />
+                    <path d="M12 8h.01" />
+                </svg>
+                About
+            </button>
         </div>
     </main>
 

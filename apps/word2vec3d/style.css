@@ -406,6 +406,144 @@
     to   { opacity: 1; transform: translateY(0); }
 }
 
+/* --- About ボタン --- */
+.btn-about {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    font-family: var(--font);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--c-accent);
+    background: none;
+    border: 1px solid var(--c-accent);
+    border-radius: var(--r);
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.btn-about:hover {
+    background: var(--c-accent);
+    color: #fff;
+}
+
+.btn-about:focus-visible {
+    outline: 2px solid var(--c-accent);
+    outline-offset: 2px;
+}
+
+/* --- About パネル --- */
+.about-panel {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 480px;
+    max-width: calc(100vw - 32px);
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+    background: var(--c-surface-glass, rgba(255, 255, 255, 0.92));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-lg);
+    z-index: 50;
+    animation: fade-in-up 0.3s var(--ease-default);
+}
+
+[data-theme="dark"] .about-panel {
+    background: rgba(25, 25, 29, 0.95);
+}
+
+.about-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--sp-4) var(--sp-5);
+    border-bottom: 1px solid var(--c-border);
+}
+
+.about-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--c-text);
+    margin: 0;
+}
+
+.about-close {
+    background: none;
+    border: none;
+    color: var(--c-text-3);
+    padding: 4px;
+    cursor: pointer;
+    border-radius: var(--r-sm);
+    transition: color 0.2s;
+}
+
+.about-close:hover {
+    color: var(--c-text);
+}
+
+.about-body {
+    padding: var(--sp-4) var(--sp-5);
+}
+
+.about-section {
+    margin-bottom: var(--sp-5);
+}
+
+.about-section:last-child {
+    margin-bottom: 0;
+}
+
+.about-section h4 {
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--c-accent);
+    margin: 0 0 var(--sp-2);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.about-section p {
+    font-size: var(--text-sm);
+    color: var(--c-text-2);
+    margin: 0;
+    line-height: 1.7;
+}
+
+.about-section a {
+    color: var(--c-accent);
+    text-decoration: none;
+}
+
+.about-section a:hover {
+    text-decoration: underline;
+}
+
+.about-steps {
+    margin: 0;
+    padding-left: 20px;
+    font-size: var(--text-sm);
+    color: var(--c-text-2);
+    line-height: 1.7;
+}
+
+.about-steps li {
+    margin-bottom: var(--sp-2);
+}
+
+.about-steps li:last-child {
+    margin-bottom: 0;
+}
+
+.about-tech {
+    padding-top: var(--sp-4);
+    border-top: 1px solid var(--c-border);
+}
+
 /* --- モバイル対応 --- */
 @media (max-width: 640px) {
     .input-panel {
