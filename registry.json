@@ -2,9 +2,10 @@
   "apps": [
     "char-counter",
     "pdf-laundry",
+    "pdf-toolkit",
     "secure-diff",
     "table-converter",
     "width-converter"
   ],
-  "generatedAt": "2026-02-12T05:03:03.468Z"
+  "generatedAt": "2026-02-12T05:25:29.269Z"
 }
