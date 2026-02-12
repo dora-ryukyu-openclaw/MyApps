@@ -226,30 +226,37 @@ function toggleTheme() {
 
 ---
 
-## 共通ナビゲーション要素
+## 共通ヘッダー (`shared/header.css` + `shared/header.js`)
 
-### ハブへ戻るリンク
+各アプリには Hub と視覚的に統一されたヘッダーが自動注入される。
 
-各アプリのヘッダーに以下のパターンで「戻る」リンクを設置することを推奨:
+### 使い方
 
 ```html
-<a href="../../" class="back-to-hub" aria-label="ハブに戻る">
-  <svg
-    width="16"
-    height="16"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    aria-hidden="true"
-  >
-    <path d="m15 18-6-6 6-6" />
-  </svg>
-  MyApps
-</a>
+<link rel="stylesheet" href="../../shared/header.css" />
+<!-- body末尾で読み込む -->
+<script
+  src="../../shared/header.js"
+  data-app-name="アプリ名"
+  data-app-icon="lucide-icon-name"
+  data-app-color="#hex"
+></script>
 ```
+
+| 属性             | 必須 | 説明                                      |
+| ---------------- | ---- | ----------------------------------------- |
+| `data-app-name`  | ❌   | アプリ名（省略時 `<title>` から自動取得） |
+| `data-app-icon`  | ❌   | Lucide アイコン名（省略時 `zap`）         |
+| `data-app-color` | ❌   | テーマカラー HEX（省略時 `--c-accent`）   |
+
+### ヘッダーの構成
+
+```
+[Hub ロゴ + MyApps] | [アプリアイコン + アプリ名]     [🌙 テーマ切替]
+```
+
+- **モバイル (≤480px)**: 「MyApps」テキストが非表示になりアイコンだけ残る
+- **テーマ切替**: Hub と同じ `localStorage` キーを使用し、全ページで同期
 
 ---
 
@@ -286,7 +293,9 @@ MyApps/
 │   ├── style.css               # Hub 固有スタイル
 │   └── script.js
 ├── shared/
-│   └── base.css                # ← 全アプリ共通トークン
+│   ├── base.css                # 全アプリ共通トークン
+│   ├── header.css              # 共通ヘッダースタイル
+│   └── header.js               # ヘッダー動的注入 + テーマ切替
 ├── apps/
 │   ├── my-app/
 │   │   ├── index.html          # base.css を読み込む
