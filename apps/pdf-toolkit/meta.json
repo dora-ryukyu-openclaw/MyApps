@@ -1,0 +1,8 @@
+{
+  "id": "pdf-toolkit",
+  "name": "PDF Toolkit",
+  "description": "完全ローカルでPDFの結合・ページ抽出・回転ができるユーティリティ。アップロード不要、情報漏洩リスクゼロ。",
+  "icon": "file-stack",
+  "color": "#e11d48",
+  "tags": ["ツール", "PDF"]
+}

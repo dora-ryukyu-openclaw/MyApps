@@ -1,4 +1,4 @@
 {
-  "apps": ["pdf-laundry", "secure-diff", "width-converter", "char-counter", "table-converter"],
+  "apps": ["pdf-laundry", "secure-diff", "width-converter", "char-counter", "table-converter", "pdf-toolkit"],
   "generatedAt": "2026-02-12T13:53:00Z"
 }
