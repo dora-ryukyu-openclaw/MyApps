@@ -15,4 +15,5 @@ node_modules/
 
 # Auto-generated（CI/CD で生成）
 registry.json
-registry.json
+
+.agent/

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="system">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word2Vec3D — MyApps</title>
+    <meta name="description" content="日本語の単語をAIでベクトル化し、意味の近さを3D空間で可視化するツール">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../../shared/base.css">
+    <link rel="stylesheet" href="../../shared/header.css">
+    <link rel="stylesheet" href="style.css">
+    <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('myapps-theme') || 'system');</script>
+</head>
+
+<body>
+    <!-- ローディング画面 -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="3" />
+                    <circle cx="19" cy="12" r="2" />
+                    <circle cx="5" cy="12" r="2" />
+                    <circle cx="12" cy="19" r="2" />
+                    <circle cx="12" cy="5" r="2" />
+                    <line x1="14.83" y1="10.17" x2="17.17" y2="12" />
+                    <line x1="6.83" y1="12" x2="9.17" y2="13.83" />
+                    <line x1="12" y1="14.83" x2="12" y2="17" />
+                    <line x1="12" y1="7" x2="12" y2="9.17" />
+                </svg>
+            </div>
+            <h2 class="loading-title">Word2Vec3D</h2>
+            <p class="loading-subtitle" id="loading-status">AIモデルを準備しています…</p>
+            <div class="progress-track">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <p class="loading-hint" id="loading-hint">初回はモデルのダウンロードに時間がかかります（約1.2GB）</p>
+        </div>
+    </div>
+
+    <!-- メインコンテンツ -->
+    <main class="app-main" id="app-main" style="display:none;">
+        <!-- 3Dキャンバス -->
+        <div id="canvas-container"></div>
+
+        <!-- 単語入力パネル -->
+        <div class="input-panel" id="input-panel">
+            <div class="input-panel-header">
+                <h3 class="input-panel-title">単語を追加</h3>
+                <button class="btn-icon panel-toggle" id="panel-toggle" type="button" aria-label="パネルを閉じる">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                </button>
+            </div>
+            <div class="input-panel-body" id="input-panel-body">
+                <form id="word-form" class="word-form">
+                    <input type="text" id="word-input" placeholder="日本語の単語を入力…" autocomplete="off" aria-label="追加する単語">
+                    <button type="submit" class="btn btn-primary" id="add-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <line x1="12" y1="5" x2="12" y2="19" />
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                        </svg>
+                        追加
+                    </button>
+                </form>
+                <div class="added-words" id="added-words"></div>
+            </div>
+        </div>
+
+        <!-- 凡例パネル -->
+        <div class="legend-panel" id="legend-panel">
+            <div class="legend-header">
+                <h3 class="legend-title">カテゴリ</h3>
+                <button class="btn-icon legend-toggle" id="legend-toggle" type="button" aria-label="凡例を閉じる">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                </button>
+            </div>
+            <div class="legend-body" id="legend-body"></div>
+        </div>
+
+        <!-- ツールチップ -->
+        <div class="tooltip" id="tooltip"></div>
+
+        <!-- 情報パネル -->
+        <div class="info-badge" id="info-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 16v-4" />
+                <path d="M12 8h.01" />
+            </svg>
+            ドラッグで回転 / スクロールでズーム
+        </div>
+    </main>
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/",
+            "@huggingface/transformers": "https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.4.1"
+        }
+    }
+    </script>
+
+    <script src="../../shared/header.js" data-app-name="Word2Vec3D" data-app-icon="orbit"
+        data-app-color="#8b5cf6"></script>
+    <script type="module" src="script.js"></script>
+</body>
+
+</html>
