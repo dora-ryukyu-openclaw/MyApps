@@ -281,6 +281,7 @@ function toggleTheme() {
 - **emoji をアイコンとして使わない**（SVG アイコンを使う。Lucide Icons 推奨）
 - **`transition: all` を安易に使わない**（変化するプロパティのみ指定推奨）
 - **base.css のトークン定義を直接編集しない**（オーバーライドで対応）
+- **アイコンの登録漏れに注意**（新しい Lucide アイコンを使う場合、**`hub/script.js` の `ICON` と `shared/header.js` の `ICONS` の両方**に SVG パスを追加すること。片方だけだと Hub カードかヘッダーのどちらかがフォールバックアイコン `zap` になる）
 
 ---
 

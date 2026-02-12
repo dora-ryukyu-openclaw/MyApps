@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="system">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>セキュア・テキストDiff — MyApps</title>
+    <meta name="description" content="機密テキストをオフラインで安全に比較できるDiffツール。文字/行単位の切替、同期スクロール、ミニマップ付き。">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../../shared/base.css">
+    <link rel="stylesheet" href="../../shared/header.css">
+    <link rel="stylesheet" href="style.css">
+    <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('myapps-theme') || 'system');</script>
+</head>
+
+<body>
+    <main class="app-main">
+        <!-- ツールバー -->
+        <div class="toolbar">
+            <div class="toolbar-left">
+                <!-- Diff モード切替 -->
+                <div class="mode-switch" role="radiogroup" aria-label="Diff モード">
+                    <button class="mode-btn active" data-mode="char" role="radio" aria-checked="true">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <polyline points="4 7 4 4 20 4 20 7" />
+                            <line x1="9" x2="15" y1="20" y2="20" />
+                            <line x1="12" x2="12" y1="4" y2="20" />
+                        </svg>
+                        文字単位
+                    </button>
+                    <button class="mode-btn" data-mode="line" role="radio" aria-checked="false">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <line x1="21" x2="3" y1="6" y2="6" />
+                            <line x1="15" x2="3" y1="12" y2="12" />
+                            <line x1="17" x2="3" y1="18" y2="18" />
+                        </svg>
+                        行単位
+                    </button>
+                </div>
+                <!-- セパレータ -->
+                <div class="toolbar-sep" aria-hidden="true"></div>
+                <!-- 無視オプション -->
+                <div class="ignore-opts">
+                    <label class="opt-toggle">
+                        <input type="checkbox" id="opt-whitespace">
+                        <span class="opt-label">空白を無視</span>
+                    </label>
+                    <label class="opt-toggle">
+                        <input type="checkbox" id="opt-newline" checked>
+                        <span class="opt-label">改行コード無視</span>
+                    </label>
+                </div>
+            </div>
+            <div class="toolbar-right">
+                <span class="stats" id="stats" aria-live="polite">差分なし</span>
+                <button class="btn-action" id="btn-swap" type="button" aria-label="左右を入れ替え">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="m7 15 5 5 5-5" />
+                        <path d="m7 9 5-5 5 5" />
+                    </svg>
+                    入替
+                </button>
+                <button class="btn-action" id="btn-clear" type="button" aria-label="クリア">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M3 6h18" />
+                        <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+                        <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+                    </svg>
+                    クリア
+                </button>
+            </div>
+        </div>
+
+        <!-- エディタ領域 -->
+        <div class="editor-area">
+            <!-- 左: Original -->
+            <section class="editor-panel">
+                <div class="editor-header">
+                    <h2 class="editor-title">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+                            <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+                        </svg>
+                        Original
+                    </h2>
+                    <span class="char-count" id="left-count">0 chars</span>
+                </div>
+                <textarea id="left-input" class="editor-input" placeholder="元のテキストをここに…" spellcheck="false"></textarea>
+            </section>
+
+            <!-- 右: Modified -->
+            <section class="editor-panel">
+                <div class="editor-header">
+                    <h2 class="editor-title">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+                            <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+                            <path d="M12 18v-6" />
+                            <path d="m9 15 3 3 3-3" />
+                        </svg>
+                        Modified
+                    </h2>
+                    <span class="char-count" id="right-count">0 chars</span>
+                </div>
+                <textarea id="right-input" class="editor-input" placeholder="変更後のテキストをここに…"
+                    spellcheck="false"></textarea>
+            </section>
+        </div>
+
+        <!-- Diff 結果エリア -->
+        <div class="diff-container" id="diff-container">
+            <div class="diff-header">
+                <h2 class="diff-title">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 3v14" />
+                        <path d="M5 10h14" />
+                        <path d="M5 21h14" />
+                    </svg>
+                    Diff Result
+                </h2>
+            </div>
+            <div class="diff-wrapper">
+                <div class="diff-body" id="diff-body">
+                    <div class="diff-empty">テキストを入力するとDiffが表示されます</div>
+                </div>
+                <!-- ミニマップ -->
+                <div class="minimap" id="minimap" aria-hidden="true">
+                    <div class="minimap-viewport" id="minimap-viewport"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../../shared/header.js" data-app-name="セキュア・テキストDiff" data-app-icon="diff"
+        data-app-color="#8b5cf6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/diff@5.2.0/dist/diff.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
