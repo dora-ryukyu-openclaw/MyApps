@@ -12,3 +12,6 @@ Desktop.ini
 
 # Node (if local dev tools are added)
 node_modules/
+
+# Auto-generated（CI/CD で生成）
+registry.json

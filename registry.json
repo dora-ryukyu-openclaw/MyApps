@@ -1,10 +1,12 @@
 {
   "apps": [
     "char-counter",
+    "image-masker",
     "pdf-laundry",
+    "pdf-toolkit",
     "secure-diff",
     "table-converter",
     "width-converter"
   ],
-  "generatedAt": "2026-02-12T05:03:03.468Z"
+  "generatedAt": "2026-02-12T05:40:22.930Z"
 }
