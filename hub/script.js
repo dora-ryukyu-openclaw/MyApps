@@ -14,7 +14,7 @@
   const $empty     = $('empty-state');
   const $search    = $('search-input');
   const $tags      = $('tags-container');
-  const $theme     = $('theme-toggle');
+  // Theme toggle is now handled by shared/header.js
 
   /* ---------- State ---------- */
   let apps = [];
@@ -227,7 +227,6 @@
   /* ---------- Init ---------- */
   async function init() {
     initTheme();
-    $theme.addEventListener('click', toggleTheme);
 
     await loadApps();
     $loading.classList.add('hidden');

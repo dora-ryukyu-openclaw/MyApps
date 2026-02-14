@@ -15,6 +15,7 @@
 
   /* --- 設定読み取り --- */
   const script = document.currentScript;
+  const isHub    = script?.getAttribute('data-is-hub') === 'true';
   const appName  = script?.getAttribute('data-app-name')  || document.title.split('—')[0]?.trim() || 'App';
   const appIcon  = script?.getAttribute('data-app-icon')  || 'zap';
   const appColor = script?.getAttribute('data-app-color') || '';
@@ -45,6 +46,9 @@
     'eye-off':     '<path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"/><path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"/><path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"/><path d="m2 2 20 20"/>',
     'orbit':       '<circle cx="12" cy="12" r="3"/><circle cx="19" cy="12" r="2"/><circle cx="5" cy="12" r="2"/><circle cx="12" cy="19" r="2"/><circle cx="12" cy="5" r="2"/><line x1="14.83" y1="10.17" x2="17.17" y2="12"/><line x1="6.83" y1="12" x2="9.17" y2="13.83"/><line x1="12" y1="14.83" x2="12" y2="17"/><line x1="12" y1="7" x2="12" y2="9.17"/>',
     'languages':   '<path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/>',
+    'settings':    '<path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.38a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.47a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/>',
+    'trash-2':     '<path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/>',
+    'x':           '<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
   };
 
   /** SVGアイコンを生成 */
@@ -65,10 +69,20 @@
   /* --- ヘッダーHTML注入 --- */
   const header = document.createElement('header');
   header.className = 'app-header';
+  
+  // Hubページの場合はアプリ部分（アプリアイコン+名前）を表示しない
+  const appSectionHtml = isHub ? '' : `
+        <div class="app-header-sep" aria-hidden="true"></div>
+        <div class="app-header-app">
+          <div class="app-header-icon">${makeSvg(appIcon, 18)}</div>
+          <span class="app-header-name">${appName}</span>
+        </div>
+  `;
+
   header.innerHTML = `
     <div class="app-header-inner">
       <div class="app-header-nav">
-        <a href="../../" class="app-header-hub" aria-label="MyApps ハブに戻る">
+        <a href="${isHub ? './' : '../../'}" class="app-header-hub" aria-label="MyApps ハブに戻る">
           <svg class="app-header-hub-logo" width="22" height="22" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <rect x="3" y="3" width="7" height="7"/>
@@ -78,13 +92,14 @@
           </svg>
           <span class="app-header-hub-label">MyApps</span>
         </a>
-        <div class="app-header-sep" aria-hidden="true"></div>
-        <div class="app-header-app">
-          <div class="app-header-icon">${makeSvg(appIcon, 18)}</div>
-          <span class="app-header-name">${appName}</span>
-        </div>
+        ${appSectionHtml}
       </div>
       <div class="app-header-actions">
+        <!-- Settings Button -->
+        <button class="btn-icon" id="app-settings-toggle" type="button" aria-label="設定を開く">
+          ${makeSvg('settings', 18)}
+        </button>
+        <!-- Theme Toggle -->
         <button class="btn-icon" id="app-theme-toggle" type="button" aria-label="テーマを切り替える">
           <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -112,5 +127,79 @@
     var next = isDark ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', next);
     localStorage.setItem('myapps-theme', next);
+  });
+
+  /* --- 設定モーダル --- */
+  const modal = document.createElement('div');
+  modal.className = 'app-settings-overlay';
+  modal.id = 'app-settings-modal';
+  modal.ariaHidden = 'true';
+  modal.innerHTML = `
+    <div class="app-settings-content">
+      <div class="app-settings-header">
+        <h2 class="app-settings-title">設定</h2>
+        <button class="app-settings-close-btn" id="app-settings-close" aria-label="閉じる">
+          ${makeSvg('x', 20)}
+        </button>
+      </div>
+      <div class="app-settings-body">
+        <div class="app-settings-section">
+          <h3 class="app-settings-subtitle">キャッシュ管理</h3>
+          <p class="app-settings-desc">
+            アプリが使用するAIモデルや重いリソースの一時データを削除します。不具合が起きた際やディスク容量を空けたい時に実行してください。
+          </p>
+          <button class="btn-danger" id="app-settings-clear-cache">
+            ${makeSvg('trash-2', 18)}
+            キャッシュをすべて削除
+          </button>
+        </div>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(modal);
+
+  const btnSettings = document.getElementById('app-settings-toggle');
+  const btnClose = document.getElementById('app-settings-close');
+  const btnClearCache = document.getElementById('app-settings-clear-cache');
+
+  // Open
+  btnSettings?.addEventListener('click', () => {
+    modal.classList.add('show');
+    modal.ariaHidden = 'false';
+  });
+
+  // Close
+  function closeModal() {
+    modal.classList.remove('show');
+    setTimeout(() => {
+      // confirm hidden state after transition if needed, simple toggle is fine
+      modal.ariaHidden = 'true';
+    }, 300);
+  }
+  btnClose?.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  // Clear Cache
+  btnClearCache?.addEventListener('click', async () => {
+    if (!confirm('本当にキャッシュを削除しますか？\n次回起動時にモデルの再ダウンロードが必要になります。')) return;
+
+    try {
+      const keys = await caches.keys();
+      const aiCaches = keys.filter(k => k.startsWith('transformers-cache'));
+      
+      if (aiCaches.length === 0) {
+        alert('削除対象のキャッシュが見つかりませんでした。');
+        return;
+      }
+
+      await Promise.all(aiCaches.map(k => caches.delete(k)));
+      alert(`完了: ${aiCaches.length} 個のキャッシュを削除しました。`);
+      closeModal();
+    } catch (e) {
+      console.error(e);
+      alert('エラー: キャッシュの削除に失敗しました。');
+    }
   });
 })();
