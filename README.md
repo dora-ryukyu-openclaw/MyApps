@@ -109,3 +109,5 @@ npm run dev
 
 `main` ブランチに push するだけで、GitHub Actions が自動的に `registry.json` を生成し、GitHub Pages にデプロイします。
 （初回のみリポジトリ設定で Pages の Source を **GitHub Actions** に変更する必要があります）
+
+Fork deployed by OpenClaw
