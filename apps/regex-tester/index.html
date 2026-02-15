@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regex Tester — MyApps</title>
+    <meta name="description" content="正規表現のパターンマッチングをリアルタイムで検証・ハイライト表示。">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>re</text></svg>">
+    <link rel="stylesheet" href="../../shared/base.css">
+    <link rel="stylesheet" href="../../shared/header.css">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        document.documentElement.setAttribute('data-theme', localStorage.getItem('myapps-theme') || 'system');
+    </script>
+</head>
+<body>
+    <main class="app-container">
+        <!-- Regex Input -->
+        <div class="regex-container card">
+            <div class="regex-input-wrapper">
+                <span class="regex-slash">/</span>
+                <input type="text" id="regex-pattern" class="regex-field" placeholder="Pattern (e.g. \d+)" spellcheck="false" autocomplete="off">
+                <span class="regex-slash">/</span>
+                <input type="text" id="regex-flags" class="flags-field" placeholder="g" value="gm" spellcheck="false" autocomplete="off">
+            </div>
+            <div class="regex-error" id="regex-error"></div>
+        </div>
+
+        <div class="editor-grid">
+            <!-- Test String Input -->
+            <div class="editor-pane input-pane">
+                <div class="pane-header">Test String</div>
+                <textarea id="test-string" placeholder="Paste test text here..." spellcheck="false">Hello 123 World 456!</textarea>
+            </div>
+
+            <!-- Highlight Output -->
+            <div class="editor-pane output-pane">
+                <div class="pane-header">
+                    <span>Match Result</span>
+                    <span id="match-count" class="match-badge">0 matches</span>
+                </div>
+                <div id="result-display" class="result-display"></div>
+            </div>
+        </div>
+        
+        <!-- Cheat Sheet (Optional) -->
+        <div class="cheatsheet card">
+            <h3>Quick Reference</h3>
+            <div class="cheatsheet-grid">
+                <div><code>.</code> Any char</div>
+                <div><code>\d</code> Digit</div>
+                <div><code>\w</code> Word char</div>
+                <div><code>^</code> Start</div>
+                <div><code>$</code> End</div>
+                <div><code>*</code> 0 or more</div>
+                <div><code>+</code> 1 or more</div>
+                <div><code>?</code> 0 or 1</div>
+                <div><code>[]</code> Range</div>
+                <div><code>()</code> Group</div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../../shared/header.js" 
+        data-app-name="Regex Tester" 
+        data-app-icon="regex" 
+        data-app-color="#e11d48"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "id": "regex-tester",
+  "name": "Regex Tester",
+  "description": "正規表現のパターンマッチングをリアルタイムで検証・ハイライト表示。",
+  "icon": "regex",
+  "color": "#e11d48",
+  "tags": ["Dev", "Text", "Utility"]
+}
