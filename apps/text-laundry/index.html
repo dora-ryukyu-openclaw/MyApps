@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF改行除去ランドリー — MyApps</title>
-    <meta name="description" content="論文PDFからコピペしたテキストの不要な改行・ハイフネーションを自動除去し、自然な文章に整形するツール">
+    <title>文章整形ランドリー — MyApps</title>
+    <meta name="description" content="PDFやOCR、メール引用などで発生する不要な改行やスペースを自動除去し、自然な文章に整形するツール">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="../../shared/base.css">
     <link rel="stylesheet" href="../../shared/header.css">
@@ -63,7 +63,7 @@
                     </h2>
                     <span class="char-count" id="input-count">0 chars</span>
                 </div>
-                <textarea id="input-area" placeholder="PDFからコピーしたテキストをここに貼り付け…&#10;&#10;Autoモード ON → Ctrl+V で自動処理＆コピー"
+                <textarea id="input-area" placeholder="テキストをここに貼り付け…&#10;&#10;Autoモード ON → Ctrl+V で自動処理＆コピー"
                     spellcheck="false"></textarea>
             </section>
 
@@ -113,7 +113,7 @@
         <div class="toast" id="toast" role="status" aria-live="polite"></div>
     </main>
 
-    <script src="../../shared/header.js" data-app-name="PDF改行除去ランドリー" data-app-icon="scissors"
+    <script src="../../shared/header.js" data-app-name="文章整形ランドリー" data-app-icon="scissors"
         data-app-color="#0ea5e9"></script>
     <script src="script.js"></script>
 </body>
