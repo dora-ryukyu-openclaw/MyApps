@@ -1,0 +1,8 @@
+{
+  "id": "base64-converter",
+  "name": "Base64 Converter",
+  "description": "テキストとBase64文字列の相互変換ツール（UTF-8対応）。",
+  "icon": "binary",
+  "color": "#6366f1",
+  "tags": ["Dev", "Utility", "Encode"]
+}
