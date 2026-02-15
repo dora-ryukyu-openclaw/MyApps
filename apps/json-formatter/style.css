@@ -1,0 +1,126 @@
+.app-container {
+    max-width: var(--w-page);
+    margin: 0 auto;
+    padding: var(--sp-4);
+    height: calc(100vh - 80px); /* Adjust for header */
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-4);
+}
+
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--c-surface-solid);
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-md);
+    padding: var(--sp-3);
+    box-shadow: var(--shadow-sm);
+}
+
+.toolbar-group {
+    display: flex;
+    gap: var(--sp-2);
+    align-items: center;
+}
+
+.btn {
+    background: var(--c-bg);
+    border: 1px solid var(--c-border);
+    color: var(--c-text);
+    padding: var(--sp-2) var(--sp-4);
+    border-radius: var(--r-sm);
+    cursor: pointer;
+    font-size: var(--text-sm);
+    transition: all 0.2s ease;
+}
+
+.btn:hover {
+    background: var(--c-surface-solid);
+    border-color: var(--c-accent);
+}
+
+.btn-primary {
+    background: var(--c-accent);
+    color: #fff;
+    border-color: var(--c-accent);
+}
+
+.btn-primary:hover {
+    filter: brightness(1.1);
+}
+
+.btn-danger {
+    color: #ef4444;
+}
+
+.btn-danger:hover {
+    border-color: #ef4444;
+    background: #fee2e2;
+}
+
+.editor-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sp-4);
+    min-height: 0;
+}
+
+.editor-pane {
+    display: flex;
+    flex-direction: column;
+    background: var(--c-surface-solid);
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-md);
+    overflow: hidden;
+}
+
+.pane-header {
+    padding: var(--sp-2) var(--sp-4);
+    background: var(--c-bg);
+    border-bottom: 1px solid var(--c-border);
+    font-weight: bold;
+    font-size: var(--text-sm);
+    color: var(--c-text-2);
+}
+
+textarea {
+    flex: 1;
+    width: 100%;
+    resize: none;
+    padding: var(--sp-3);
+    border: none;
+    outline: none;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: var(--text-sm);
+    line-height: 1.5;
+    background: var(--c-surface-solid);
+    color: var(--c-text);
+}
+
+textarea:focus {
+    background: var(--c-surface-solid);
+}
+
+.status-text {
+    font-size: var(--text-sm);
+    color: var(--c-text-3);
+}
+
+.status-error {
+    color: #ef4444;
+    font-weight: bold;
+}
+
+.status-success {
+    color: #10b981;
+}
+
+@media (max-width: 768px) {
+    .editor-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+}
