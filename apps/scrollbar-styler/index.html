@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrollbar Styler — MyApps</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../../shared/base.css">
+    <link rel="stylesheet" href="../../shared/header.css">
+    <link rel="stylesheet" href="style.css">
+    <style id="dynamic-style"></style>
+</head>
+<body>
+    <main class="app-main">
+        <div class="styler-grid">
+            <div class="controls-area card glass">
+                <div class="control-group">
+                    <label>Width (px)</label>
+                    <input type="number" id="sb-width" value="12" min="1" max="30">
+                </div>
+                <div class="control-group">
+                    <label>Thumb Color</label>
+                    <input type="color" id="sb-thumb-color" value="#6366f1">
+                </div>
+                <div class="control-group">
+                    <label>Track Color</label>
+                    <input type="color" id="sb-track-color" value="#f1f5f9">
+                </div>
+                <div class="control-group">
+                    <label>Border Radius (px)</label>
+                    <input type="number" id="sb-radius" value="6" min="0" max="15">
+                </div>
+                
+                <div class="code-output card">
+                    <pre><code id="css-code"></code></pre>
+                    <button id="copy-code" class="btn btn-primary btn-sm">Copy</button>
+                </div>
+            </div>
+
+            <div class="preview-area card glass">
+                <h3>Scroll Preview</h3>
+                <div class="scroll-target" id="scroll-target">
+                    <div class="scroll-content">
+                        <p>このエリアのスクロールバーが変化します。</p>
+                        <p>Scroll down to see the effect.</p>
+                        <div style="height: 1000px; background: linear-gradient(to bottom, var(--c-accent-soft), transparent);"></div>
+                        <p>End of content.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../../shared/header.js" data-app-name="Scrollbar Styler" data-app-icon="align-left" data-app-color="#6366f1"></script>
+    <script src="script.js"></script>
+</body>
+</html>

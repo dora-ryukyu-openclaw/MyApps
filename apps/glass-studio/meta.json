@@ -1,8 +1,12 @@
 {
-    "id": "glass-studio",
-    "name": "Glass Studio",
-    "description": "モダンなグラスモーフィズム CSS を作成・プレビュー。",
-    "icon": "glass-water",
-    "color": "#f472b6",
-    "tags": ["Design", "CSS", "UI"]
+  "id": "glass-studio",
+  "name": "Glass Studio",
+  "description": "モダンなグラスモーフィズム CSS を作成・プレビュー。",
+  "icon": "glass-water",
+  "color": "#f472b6",
+  "tags": [
+    "Design",
+    "CSS",
+    "UI"
+  ]
 }

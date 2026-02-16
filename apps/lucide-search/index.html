@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Icon Search — MyApps</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../../shared/base.css">
+    <link rel="stylesheet" href="../../shared/header.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="app-main">
+        <div class="search-container">
+            <div class="search-bar card glass">
+                <input type="text" id="search-input" placeholder="アイコンを検索 (例: image, lock, home)...">
+                <span id="result-count" class="result-count">0 icons found</span>
+            </div>
+
+            <div id="icon-grid" class="icon-grid">
+                <!-- Icons -->
+            </div>
+        </div>
+    </main>
+
+    <!-- We'll import the ICONS object from header.js by fetching it or similar -->
+    <script src="../../shared/header.js" data-app-name="Icon Search" data-app-icon="sparkles" data-app-color="#facc15"></script>
+    <script src="script.js"></script>
+</body>
+</html>

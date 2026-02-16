@@ -1,0 +1,8 @@
+{
+    "id": "unit-converter",
+    "name": "Dev Unit Studio",
+    "description": "Px, Rem, Em, Vh, Vw などの CSS 単位をリアルタイム相互変換。",
+    "icon": "calculator",
+    "color": "#10b981",
+    "tags": ["Dev", "Design", "CSS"]
+}

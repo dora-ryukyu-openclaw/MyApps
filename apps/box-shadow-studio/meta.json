@@ -1,0 +1,8 @@
+{
+    "id": "box-shadow-studio",
+    "name": "Box Shadow Studio",
+    "description": "複数のレイヤーを重ねて、深みのある美しいボックスシャドウを作成。",
+    "icon": "layers",
+    "color": "#6366f1",
+    "tags": ["Design", "CSS", "UI"]
+}

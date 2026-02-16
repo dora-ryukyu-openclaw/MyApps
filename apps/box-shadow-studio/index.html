@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box Shadow Studio — MyApps</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../../shared/base.css">
+    <link rel="stylesheet" href="../../shared/header.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="app-main">
+        <div class="studio-grid">
+            <!-- Preview -->
+            <div class="preview-pane">
+                <div class="preview-canvas">
+                    <div id="target-box" class="target-box"></div>
+                </div>
+                <div class="preview-actions">
+                    <button id="change-bg" class="btn btn-secondary">背景色を切替</button>
+                    <button id="change-box" class="btn btn-secondary">ボックス色を切替</button>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="controls-pane card glass">
+                <div class="pane-header">
+                    <h3>Shadow Layers</h3>
+                    <button id="add-layer" class="btn btn-primary btn-sm">+ レイヤー追加</button>
+                </div>
+                
+                <div id="layers-list" class="layers-list">
+                    <!-- Layer rows -->
+                </div>
+
+                <div class="code-output card">
+                    <div class="code-header">
+                        <span>CSS Code</span>
+                        <button id="copy-code" class="btn btn-soft btn-sm">コピー</button>
+                    </div>
+                    <pre><code id="css-code"></code></pre>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../../shared/header.js" data-app-name="Box Shadow Studio" data-app-icon="layers" data-app-color="#6366f1"></script>
+    <script src="script.js"></script>
+</body>
+</html>

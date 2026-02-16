@@ -1,20 +1,27 @@
+:root {
+    --app-color: #f472b6;
+}
+
 .studio-container {
     display: grid;
     grid-template-columns: 1fr 380px;
-    gap: 2rem;
+    gap: var(--sp-8);
     height: calc(100vh - 120px);
+    max-width: var(--w-page);
+    margin: 0 auto;
+    padding: var(--sp-4);
 }
 
 .preview-area {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: var(--sp-4);
     height: 100%;
 }
 
 .preview-bg {
     flex: 1;
-    border-radius: 1.5rem;
+    border-radius: var(--r-xl);
     background: linear-gradient(135deg, #f472b6 0%, #3b82f6 100%);
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
@@ -23,6 +30,7 @@
     justify-content: center;
     overflow: hidden;
     position: relative;
+    border: 1px solid var(--c-border);
 }
 
 @keyframes gradientBG {
@@ -37,71 +45,79 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.2s ease;
+    transition: all var(--duration) var(--ease-default);
 }
 
 .preview-text {
-    font-size: 1.5rem;
+    font-size: var(--text-xl);
     font-weight: 700;
-    color: var(--fg);
+    color: var(--c-text);
     text-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .controls-area {
-    padding: 1.5rem;
+    padding: var(--sp-6);
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: var(--sp-6);
     overflow-y: auto;
+    background: var(--c-surface-card);
+    backdrop-filter: var(--glass);
+    -webkit-backdrop-filter: var(--glass);
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-lg);
 }
 
 .control-group {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: var(--sp-2);
 }
 
 .control-group label {
-    font-size: 0.85rem;
+    font-size: var(--text-sm);
     font-weight: 600;
-    color: var(--fg-dim);
+    color: var(--c-text-2);
 }
 
 input[type="range"] {
     width: 100%;
+    cursor: pointer;
 }
 
 input[type="color"] {
     width: 100%;
     height: 32px;
-    border: none;
-    border-radius: 4px;
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-sm);
     background: none;
     cursor: pointer;
 }
 
 .code-output {
     margin-top: auto;
-    background: var(--bg-dim);
-    padding: 1rem;
-    border-radius: 0.75rem;
+    background: var(--c-bg);
+    padding: var(--sp-4);
+    border-radius: var(--r-lg);
     position: relative;
+    border: 1px solid var(--c-border);
 }
 
 #css-code {
     font-family: var(--font-mono);
-    font-size: 0.8rem;
+    font-size: var(--text-sm);
     white-space: pre-wrap;
     word-break: break-all;
-    color: var(--accent);
+    color: var(--c-accent);
 }
 
 .btn-sm {
     position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    padding: 0.25rem 0.5rem;
-    font-size: 0.75rem;
+    top: var(--sp-2);
+    right: var(--sp-2);
+    padding: var(--sp-1) var(--sp-3);
+    font-size: var(--text-xs);
 }
 
 @media (max-width: 900px) {

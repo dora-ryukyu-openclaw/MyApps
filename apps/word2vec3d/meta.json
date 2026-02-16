@@ -4,5 +4,9 @@
   "description": "日本語の単語をAIでベクトル化し、意味の近さを3D空間で可視化。",
   "icon": "orbit",
   "color": "#8b5cf6",
-  "tags": ["AI", "可視化", "NLP"]
+  "tags": [
+    "AI",
+    "可視化",
+    "NLP"
+  ]
 }

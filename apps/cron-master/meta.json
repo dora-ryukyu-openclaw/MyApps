@@ -1,8 +1,12 @@
 {
-    "id": "cron-master",
-    "name": "Cron Master",
-    "description": "Cron 式を分かりやすい言葉に翻訳し、スケジュールを確認。",
-    "icon": "calendar-clock",
-    "color": "#10b981",
-    "tags": ["Dev", "Utility", "Server"]
+  "id": "cron-master",
+  "name": "Cron Master",
+  "description": "Cron 式を分かりやすい言葉に翻訳し、スケジュールを確認。",
+  "icon": "calendar-clock",
+  "color": "#10b981",
+  "tags": [
+    "Dev",
+    "Utility",
+    "Server"
+  ]
 }

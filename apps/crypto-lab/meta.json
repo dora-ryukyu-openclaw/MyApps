@@ -4,5 +4,9 @@
   "description": "各種ハッシュ関数（SHA-256, MD5等）の計算や、HMACによる署名生成。開発時のデータ検証に最適。",
   "icon": "key",
   "color": "#ef4444",
-  "tags": ["ツール", "開発", "セキュリティ"]
+  "tags": [
+    "Utility",
+    "Dev",
+    "Security"
+  ]
 }

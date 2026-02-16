@@ -1,8 +1,11 @@
 {
-    "id": "keyboard-explorer",
-    "name": "Keyboard Explorer",
-    "description": "キーボードイベントのプロパティ（keyCode, code, key 等）をリアルタイム表示。",
-    "icon": "keyboard",
-    "color": "#6366f1",
-    "tags": ["Dev", "Utility"]
+  "id": "keyboard-explorer",
+  "name": "Keyboard Explorer",
+  "description": "キーボードイベントのプロパティ（keyCode, code, key 等）をリアルタイム表示。",
+  "icon": "keyboard",
+  "color": "#6366f1",
+  "tags": [
+    "Dev",
+    "Utility"
+  ]
 }

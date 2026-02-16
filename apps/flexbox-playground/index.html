@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox Playground — MyApps</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../../shared/base.css">
+    <link rel="stylesheet" href="../../shared/header.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="app-main">
+        <div class="playground-grid">
+            <!-- Controls -->
+            <div class="controls-pane card glass">
+                <div class="control-section">
+                    <h3>Container Properties</h3>
+                    <div class="control-group">
+                        <label>flex-direction</label>
+                        <select id="flex-direction">
+                            <option value="row">row</option>
+                            <option value="row-reverse">row-reverse</option>
+                            <option value="column">column</option>
+                            <option value="column-reverse">column-reverse</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label>justify-content</label>
+                        <select id="justify-content">
+                            <option value="flex-start">flex-start</option>
+                            <option value="flex-end">flex-end</option>
+                            <option value="center">center</option>
+                            <option value="space-between">space-between</option>
+                            <option value="space-around">space-around</option>
+                            <option value="space-evenly">space-evenly</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label>align-items</label>
+                        <select id="align-items">
+                            <option value="stretch">stretch</option>
+                            <option value="flex-start">flex-start</option>
+                            <option value="flex-end">flex-end</option>
+                            <option value="center">center</option>
+                            <option value="baseline">baseline</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label>flex-wrap</label>
+                        <select id="flex-wrap">
+                            <option value="nowrap">nowrap</option>
+                            <option value="wrap">wrap</option>
+                            <option value="wrap-reverse">wrap-reverse</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label>gap (px)</label>
+                        <input type="number" id="gap" value="16" min="0" max="100">
+                    </div>
+                </div>
+
+                <div class="control-section">
+                    <h3>Items</h3>
+                    <div class="item-controls">
+                        <button id="add-item" class="btn btn-secondary btn-sm">+ Add Item</button>
+                        <button id="remove-item" class="btn btn-danger btn-sm">- Remove</button>
+                    </div>
+                </div>
+
+                <div class="code-output card">
+                    <pre><code id="css-code"></code></pre>
+                </div>
+            </div>
+
+            <!-- Preview -->
+            <div class="preview-pane">
+                <div id="flex-container" class="flex-container">
+                    <!-- Items -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../../shared/header.js" data-app-name="Flexbox Playground" data-app-icon="columns-2" data-app-color="#10b981"></script>
+    <script src="script.js"></script>
+</body>
+</html>
