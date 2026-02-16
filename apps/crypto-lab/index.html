@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>暗号・ハッシュ・ラボ — MyApps</title>
+    <meta name="description" content="各種ハッシュ関数（SHA-256, MD5等）の計算。">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../../shared/base.css">
+    <link rel="stylesheet" href="../../shared/header.css">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        document.documentElement.setAttribute('data-theme', localStorage.getItem('myapps-theme') || 'system');
+    </script>
+</head>
+<body>
+    <main class="app-main">
+        <div class="editor-grid">
+            <div class="editor-pane card">
+                <div class="pane-header">入力データ</div>
+                <textarea id="input-data" placeholder="ここにハッシュ化したい文字列を入力してください..." spellcheck="false">Hello World</textarea>
+                
+                <div class="hmac-toggle-section">
+                    <label class="checkbox-wrapper">
+                        <input type="checkbox" id="hmac-enabled">
+                        <span>HMAC を使用する</span>
+                    </label>
+                    <div id="hmac-key-container" style="display: none; margin-top: var(--sp-2);">
+                        <input type="text" id="hmac-key" placeholder="秘密鍵 (Secret Key)" class="input-field">
+                    </div>
+                </div>
+            </div>
+
+            <div class="editor-pane card result-pane">
+                <div class="pane-header">計算結果</div>
+                <div class="hash-list">
+                    <div class="hash-item">
+                        <label>SHA-256</label>
+                        <div class="hash-value-wrapper">
+                            <input type="text" id="hash-sha256" readonly class="hash-field">
+                            <button class="btn-copy-small" data-target="hash-sha256">Copy</button>
+                        </div>
+                    </div>
+                    <div class="hash-item">
+                        <label>SHA-512</label>
+                        <div class="hash-value-wrapper">
+                            <input type="text" id="hash-sha512" readonly class="hash-field">
+                            <button class="btn-copy-small" data-target="hash-sha512">Copy</button>
+                        </div>
+                    </div>
+                    <div class="hash-item">
+                        <label>MD5</label>
+                        <div class="hash-value-wrapper">
+                            <input type="text" id="hash-md5" readonly class="hash-field">
+                            <button class="btn-copy-small" data-target="hash-md5">Copy</button>
+                        </div>
+                    </div>
+                    <div class="hash-item">
+                        <label>SHA-1</label>
+                        <div class="hash-value-wrapper">
+                            <input type="text" id="hash-sha1" readonly class="hash-field">
+                            <button class="btn-copy-small" data-target="hash-sha1">Copy</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="../../shared/header.js" 
+        data-app-name="暗号・ハッシュ・ラボ" 
+        data-app-icon="key" 
+        data-app-color="#ef4444"></script>
+    <script src="script.js"></script>
+</body>
+</html>

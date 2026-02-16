@@ -1,0 +1,8 @@
+{
+  "id": "data-converter",
+  "name": "データ構造コンバーター",
+  "description": "JSON, YAML, XML の相互変換ツール。ネストした構造も正しく処理し、シンタックスエラーを検出します。",
+  "icon": "file-code",
+  "color": "#a855f7",
+  "tags": ["ツール", "開発", "変換"]
+}

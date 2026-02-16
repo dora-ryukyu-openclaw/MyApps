@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QRコード・マスター — MyApps</title>
+    <meta name="description" content="QRコードの作成と読み取り（スキャン）に対応。">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../../shared/base.css">
+    <link rel="stylesheet" href="../../shared/header.css">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        document.documentElement.setAttribute('data-theme', localStorage.getItem('myapps-theme') || 'system');
+    </script>
+</head>
+<body>
+    <main class="app-main">
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="create">作成する</button>
+            <button class="tab-btn" data-tab="scan">読み取る</button>
+        </div>
+
+        <div id="tab-create" class="tab-content active">
+            <div class="editor-grid">
+                <div class="editor-pane card">
+                    <div class="pane-header">入力テキスト</div>
+                    <textarea id="qr-input" placeholder="URLやテキストを入力してください..." spellcheck="false">https://myapps.example.com</textarea>
+                </div>
+                <div class="editor-pane card preview-pane">
+                    <div class="pane-header">プレビュー</div>
+                    <div id="qr-result" class="qr-container"></div>
+                    <button id="btn-download" class="btn btn-primary" style="margin-top: var(--sp-4);">画像を保存</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-scan" class="tab-content">
+            <div class="editor-grid">
+                <div class="editor-pane card">
+                    <div class="pane-header">スキャナー</div>
+                    <div class="scanner-container">
+                        <video id="scan-video" playsinline style="display: none;"></video>
+                        <canvas id="scan-canvas"></canvas>
+                        <div id="scan-placeholder" class="drop-zone">
+                            <span>カメラを起動、または画像をドラッグ＆ドロップ</span>
+                        </div>
+                    </div>
+                    <div class="toolbar-actions" style="margin-top: var(--sp-4);">
+                        <button id="btn-start-camera" class="btn btn-primary">カメラを起動</button>
+                        <input type="file" id="input-file" accept="image/*" style="display: none;">
+                        <button id="btn-open-file" class="btn btn-secondary">画像ファイルを開く</button>
+                    </div>
+                </div>
+                <div class="editor-pane card">
+                    <div class="pane-header">読み取り結果</div>
+                    <textarea id="scan-result" readonly placeholder="ここにスキャン結果が表示されます..."></textarea>
+                    <button id="btn-copy" class="btn btn-secondary" style="margin-top: var(--sp-4);">結果をコピー</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+    <script src="../../shared/header.js" 
+        data-app-name="QRコード・マスター" 
+        data-app-icon="qr-code" 
+        data-app-color="#10b981"></script>
+    <script src="script.js"></script>
+</body>
+</html>

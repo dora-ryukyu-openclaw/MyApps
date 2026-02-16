@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>パスワード・スタジオ — MyApps</title>
+    <meta name="description" content="強力で安全なパスワードを生成。">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../../shared/base.css">
+    <link rel="stylesheet" href="../../shared/header.css">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        document.documentElement.setAttribute('data-theme', localStorage.getItem('myapps-theme') || 'system');
+    </script>
+</head>
+<body>
+    <main class="app-main">
+        <div class="result-card card">
+            <div id="password-display" class="password-display">Generating...</div>
+            <div class="result-actions">
+                <button id="btn-copy" class="btn btn-primary">コピー</button>
+                <button id="btn-regen" class="btn btn-secondary">再生成</button>
+            </div>
+        </div>
+
+        <div class="strength-card card">
+            <div class="strength-header">
+                <span class="strength-label">推定強度: <strong id="strength-text">中</strong></span>
+                <span id="entropy-text" class="entropy-text">0 bits</span>
+            </div>
+            <div class="progress-track">
+                <div id="strength-bar" class="progress-fill"></div>
+            </div>
+        </div>
+
+        <div class="config-grid">
+            <div class="config-pane card">
+                <h3 class="pane-title">長さ</h3>
+                <div class="range-wrapper">
+                    <input type="range" id="length-range" min="4" max="128" value="24">
+                    <input type="number" id="length-num" min="4" max="128" value="24">
+                </div>
+            </div>
+
+            <div class="config-pane card">
+                <h3 class="pane-title">使用する文字</h3>
+                <div class="checkbox-grid">
+                    <label class="checkbox-wrapper">
+                        <input type="checkbox" id="check-upper" checked>
+                        <span>英大文字 (A-Z)</span>
+                    </label>
+                    <label class="checkbox-wrapper">
+                        <input type="checkbox" id="check-lower" checked>
+                        <span>英小文字 (a-z)</span>
+                    </label>
+                    <label class="checkbox-wrapper">
+                        <input type="checkbox" id="check-numbers" checked>
+                        <span>数字 (0-9)</span>
+                    </label>
+                    <label class="checkbox-wrapper">
+                        <input type="checkbox" id="check-symbols" checked>
+                        <span>記号 (!@#$%^&*)</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../../shared/header.js" 
+        data-app-name="パスワード・スタジオ" 
+        data-app-icon="shield-check" 
+        data-app-color="#6366f1"></script>
+    <script src="script.js"></script>
+</body>
+</html>

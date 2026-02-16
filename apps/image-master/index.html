@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>画像加工マスター — MyApps</title>
+    <meta name="description" content="ブラウザ完結で画像のリサイズ、クロップ、形式変換ができる高機能ツール。">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../../shared/base.css">
+    <link rel="stylesheet" href="../../shared/header.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css">
+    <script>
+        document.documentElement.setAttribute('data-theme', localStorage.getItem('myapps-theme') || 'system');
+    </script>
+</head>
+<body>
+    <main class="app-main">
+        <div class="toolbar">
+            <div class="toolbar-group">
+                <input type="file" id="input-image" accept="image/*" style="display: none;">
+                <button id="btn-open" class="btn btn-primary">画像を開く</button>
+            </div>
+            <div class="toolbar-group">
+                <button id="btn-save" class="btn btn-primary" disabled>保存する</button>
+            </div>
+        </div>
+
+        <div class="editor-layout">
+            <div class="canvas-area card">
+                <div id="image-container">
+                    <img id="preview-image" src="" alt="">
+                    <div id="drop-zone" class="drop-zone">
+                        <span>画像をここにドラッグ＆ドロップ、または「画像を開く」をクリック</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar card">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">クロップ比率</h3>
+                    <div class="ratio-grid">
+                        <button class="btn-ratio active" data-ratio="NaN">自由</button>
+                        <button class="btn-ratio" data-ratio="1">1:1</button>
+                        <button class="btn-ratio" data-ratio="1.3333333333333333">4:3</button>
+                        <button class="btn-ratio" data-ratio="1.7777777777777777">16:9</button>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">サイズ変更 (出力)</h3>
+                    <div class="input-grid">
+                        <div class="input-wrapper">
+                            <label for="out-width">幅 (px)</label>
+                            <input type="number" id="out-width" placeholder="Auto">
+                        </div>
+                        <div class="input-wrapper">
+                            <label for="out-height">高さ (px)</label>
+                            <input type="number" id="out-height" placeholder="Auto">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">保存形式</h3>
+                    <div class="input-wrapper">
+                        <select id="out-format">
+                            <option value="image/png">PNG</option>
+                            <option value="image/jpeg">JPEG (High Quality)</option>
+                            <option value="image/webp">WebP</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
+    <script src="../../shared/header.js" 
+        data-app-name="画像加工マスター" 
+        data-app-icon="crop" 
+        data-app-color="#ec4899"></script>
+    <script src="script.js"></script>
+</body>
+</html>
