@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base64 Converter — MyApps</title>
+    <meta name="description" content="テキストとBase64形式を相互に変換するツール。UTF-8対応。">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../../shared/base.css">
+    <link rel="stylesheet" href="../../shared/header.css">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        document.documentElement.setAttribute('data-theme', localStorage.getItem('myapps-theme') || 'system');
+    </script>
+</head>
+<body>
+    <main class="app-container">
+        <div class="toolbar">
+            <div class="toolbar-group">
+                <button id="btn-encode" class="btn btn-primary">Encode</button>
+                <button id="btn-decode" class="btn btn-primary">Decode</button>
+                <button id="btn-swap" class="btn" title="Swap Input & Output">Swap</button>
+            </div>
+            <div class="toolbar-group">
+                <button id="btn-copy" class="btn">Copy</button>
+                <button id="btn-clear" class="btn btn-danger">Clear</button>
+            </div>
+        </div>
+
+        <div class="editor-grid">
+            <div class="editor-pane">
+                <div class="pane-header">Input</div>
+                <textarea id="input-text" placeholder="Type or paste text here..." spellcheck="false"></textarea>
+            </div>
+            <div class="editor-pane">
+                <div class="pane-header">Output</div>
+                <textarea id="output-text" readonly placeholder="Result will appear here..." spellcheck="false"></textarea>
+            </div>
+        </div>
+    </main>
+
+    <script src="../../shared/header.js" 
+        data-app-name="Base64 Converter" 
+        data-app-icon="binary" 
+        data-app-color="#3b82f6"></script>
+    <script src="script.js"></script>
+</body>
+</html>
