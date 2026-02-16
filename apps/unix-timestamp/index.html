@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unix タイムスタンプ変換 — MyApps</title>
+    <meta name="description" content="Unix エポック秒と日時の相互変換。">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../../shared/base.css">
+    <link rel="stylesheet" href="../../shared/header.css">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        document.documentElement.setAttribute('data-theme', localStorage.getItem('myapps-theme') || 'system');
+    </script>
+</head>
+<body>
+    <main class="app-main">
+        <div class="current-time-card card">
+            <div class="current-header">
+                <span class="label">現在の Unix タイムスタンプ</span>
+                <span id="current-unit" class="unit-badge">seconds</span>
+            </div>
+            <div id="current-ts" class="current-ts">0000000000</div>
+            <div id="current-date" class="current-date">----/--/-- --:--:--</div>
+        </div>
+
+        <div class="converter-grid">
+            <!-- TS to Date -->
+            <div class="converter-pane card">
+                <h3 class="pane-title">Timestamp → Date</h3>
+                <div class="input-group">
+                    <input type="number" id="input-ts" placeholder="Epoch (e.g. 1700000000)">
+                    <select id="input-unit">
+                        <option value="s">Seconds (s)</option>
+                        <option value="ms">Milliseconds (ms)</option>
+                    </select>
+                </div>
+                <div class="result-box">
+                    <div class="result-item">
+                        <label>Local Time</label>
+                        <div id="res-local" class="val">----/--/-- --:--:--</div>
+                    </div>
+                    <div class="result-item">
+                        <label>UTC / GMT</label>
+                        <div id="res-utc" class="val">----/--/-- --:--:--</div>
+                    </div>
+                    <div class="result-item">
+                        <label>Relative</label>
+                        <div id="res-rel" class="val">--</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Date to TS -->
+            <div class="converter-pane card">
+                <h3 class="pane-title">Date → Timestamp</h3>
+                <div class="input-group">
+                    <input type="datetime-local" id="input-date" step="1">
+                </div>
+                <div class="result-box">
+                    <div class="result-item">
+                        <label>Unix Timestamp (s)</label>
+                        <div class="copy-val-wrapper">
+                            <span id="res-ts-s" class="val">0</span>
+                            <button class="btn-copy" data-target="res-ts-s">Copy</button>
+                        </div>
+                    </div>
+                    <div class="result-item">
+                        <label>Unix Timestamp (ms)</label>
+                        <div class="copy-val-wrapper">
+                            <span id="res-ts-ms" class="val">0</span>
+                            <button class="btn-copy" data-target="res-ts-ms">Copy</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../../shared/header.js" 
+        data-app-name="Unix タイムスタンプ変換" 
+        data-app-icon="clock" 
+        data-app-color="#06b6d4"></script>
+    <script src="script.js"></script>
+</body>
+</html>

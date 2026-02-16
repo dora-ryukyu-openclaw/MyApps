@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL 整形・美化 — MyApps</title>
+    <meta name="description" content="SQL クエリを読みやすく整形。">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../../shared/base.css">
+    <link rel="stylesheet" href="../../shared/header.css">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        document.documentElement.setAttribute('data-theme', localStorage.getItem('myapps-theme') || 'system');
+    </script>
+</head>
+<body>
+    <main class="app-main">
+        <div class="toolbar">
+            <div class="toolbar-group">
+                <div class="select-wrapper">
+                    <label for="dialect">方言 (Dialect):</label>
+                    <select id="dialect">
+                        <option value="sql">Standard SQL</option>
+                        <option value="mysql">MySQL</option>
+                        <option value="postgresql">PostgreSQL</option>
+                        <option value="bigquery">BigQuery</option>
+                        <option value="sqlite">SQLite</option>
+                        <option value="tsql">T-SQL (SQL Server)</option>
+                    </select>
+                </div>
+                <div class="select-wrapper">
+                    <label for="indent">インデント:</label>
+                    <select id="indent">
+                        <option value="2">2 spaces</option>
+                        <option value="4">4 spaces</option>
+                        <option value="tab">Tab</option>
+                    </select>
+                </div>
+            </div>
+            <div class="toolbar-group">
+                <button id="btn-copy" class="btn btn-secondary">結果をコピー</button>
+                <button id="btn-clear" class="btn btn-danger">クリア</button>
+            </div>
+        </div>
+
+        <div class="editor-grid">
+            <div class="editor-pane card">
+                <div class="pane-header">Input SQL</div>
+                <textarea id="input-sql" placeholder="SELECT * FROM users WHERE active = 1..." spellcheck="false"></textarea>
+            </div>
+            <div class="editor-pane card">
+                <div class="pane-header">Formatted Output</div>
+                <textarea id="output-sql" readonly placeholder="結果がここに表示されます..." spellcheck="false"></textarea>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/sql-formatter@12.2.4/dist/sql-formatter.min.js"></script>
+    <script src="../../shared/header.js" 
+        data-app-name="SQL 整形・美化" 
+        data-app-icon="database" 
+        data-app-color="#3b82f6"></script>
+    <script src="script.js"></script>
+</body>
+</html>

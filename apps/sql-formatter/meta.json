@@ -1,0 +1,8 @@
+{
+  "id": "sql-formatter",
+  "name": "SQL 整形・美化",
+  "description": "SQL クエリを読みやすく整形。MySQL, PostgreSQL, BigQuery 等の主要な方言に対応しています。",
+  "icon": "database",
+  "color": "#3b82f6",
+  "tags": ["ツール", "開発", "データベース"]
+}

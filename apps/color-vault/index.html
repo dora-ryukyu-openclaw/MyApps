@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>カラー・ヴォルト — MyApps</title>
+    <meta name="description" content="色の選択、パレット生成、アクセシビリティチェック。">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../../shared/base.css">
+    <link rel="stylesheet" href="../../shared/header.css">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        document.documentElement.setAttribute('data-theme', localStorage.getItem('myapps-theme') || 'system');
+    </script>
+</head>
+<body>
+    <main class="app-main">
+        <div class="color-selection-grid">
+            <div class="card main-picker">
+                <div class="pane-header">Color Picker</div>
+                <div class="picker-body">
+                    <input type="color" id="color-picker" value="#8b5cf6">
+                    <div class="color-inputs">
+                        <div class="input-field">
+                            <label>HEX</label>
+                            <input type="text" id="hex-val" value="#8b5cf6">
+                        </div>
+                        <div class="input-field">
+                            <label>RGB</label>
+                            <input type="text" id="rgb-val" readonly>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card contrast-checker">
+                <div class="pane-header">Contrast Checker (Accessibility)</div>
+                <div class="contrast-body" id="contrast-preview">
+                    <div class="preview-text">Sample Text</div>
+                </div>
+                <div class="contrast-stats">
+                    <div class="stat-item">
+                        <label>Ratio</label>
+                        <span id="contrast-ratio" class="stat-val">0.0:1</span>
+                    </div>
+                    <div class="stat-item">
+                        <label>WCAG AA</label>
+                        <span id="wcag-aa" class="status-badge">Pass</span>
+                    </div>
+                    <div class="stat-item">
+                        <label>WCAG AAA</label>
+                        <span id="wcag-aaa" class="status-badge">Pass</span>
+                    </div>
+                </div>
+                <div class="bg-selector">
+                    <label>Background Color:</label>
+                    <input type="color" id="bg-picker" value="#ffffff">
+                </div>
+            </div>
+        </div>
+
+        <div class="card palette-section">
+            <div class="pane-header">Generated Palette</div>
+            <div id="palette-grid" class="palette-grid">
+                <!-- Colors will be added here -->
+            </div>
+            <button id="btn-regen" class="btn btn-secondary" style="margin-top: var(--sp-4);">ランダム生成</button>
+        </div>
+    </main>
+
+    <script src="../../shared/header.js" 
+        data-app-name="カラー・ヴォルト" 
+        data-app-icon="palette" 
+        data-app-color="#8b5cf6"></script>
+    <script src="script.js"></script>
+</body>
+</html>
