@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cron Master — MyApps</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../../shared/base.css">
+    <link rel="stylesheet" href="../../shared/header.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="app-main">
+        <div class="cron-container card">
+            <div class="input-section">
+                <label for="cron-input">Cron 式を入力</label>
+                <div class="input-group">
+                    <input type="text" id="cron-input" value="0 12 * * *" placeholder="* * * * *">
+                    <button id="btn-parse" class="btn btn-primary">解析</button>
+                </div>
+                <div class="presets">
+                    <button class="preset-btn" data-val="* * * * *">毎分</button>
+                    <button class="preset-btn" data-val="0 * * * *">毎時</button>
+                    <button class="preset-btn" data-val="0 0 * * *">毎日 (深夜)</button>
+                    <button class="preset-btn" data-val="0 0 * * 0">毎週日曜</button>
+                    <button class="preset-btn" data-val="0 0 1 * *">毎月1日</button>
+                </div>
+            </div>
+
+            <div class="result-section">
+                <div class="explanation-box">
+                    <h3>実行スケジュールの説明</h3>
+                    <p id="cron-explanation">解析中...</p>
+                </div>
+
+                <div class="next-runs">
+                    <h3>次の実行予定</h3>
+                    <ul id="next-run-list">
+                        <!-- Next runs will be listed here -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/cronstrue@2.50.0/dist/cronstrue-i18n.min.js"></script>
+    <!-- We'll use a simple next run calculator in JS -->
+    <script src="../../shared/header.js" data-app-name="Cron Master" data-app-icon="calendar-clock" data-app-color="#10b981"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+    "id": "code-typer",
+    "name": "Code Typer",
+    "description": "コードを美しくフォーマットしてタイピングアニメーションとして再生・録画用。",
+    "icon": "code",
+    "color": "#ec4899",
+    "tags": ["Dev", "Video", "Presentation"]
+}

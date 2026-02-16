@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NumBase Station — MyApps</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../../shared/base.css">
+    <link rel="stylesheet" href="../../shared/header.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="app-main">
+        <div class="base-container card">
+            <div class="input-row">
+                <div class="input-group">
+                    <label>Binary (2進数)</label>
+                    <input type="text" id="v-bin" placeholder="0101">
+                </div>
+                <div class="input-group">
+                    <label>Octal (8進数)</label>
+                    <input type="text" id="v-oct" placeholder="123">
+                </div>
+            </div>
+            <div class="input-row">
+                <div class="input-group">
+                    <label>Decimal (10進数)</label>
+                    <input type="text" id="v-dec" placeholder="255">
+                </div>
+                <div class="input-group">
+                    <label>Hex (16進数)</label>
+                    <input type="text" id="v-hex" placeholder="ff">
+                </div>
+            </div>
+
+            <div class="ascii-section">
+                <label>ASCII / Text</label>
+                <input type="text" id="v-ascii" placeholder="A">
+            </div>
+        </div>
+    </main>
+
+    <script src="../../shared/header.js" data-app-name="NumBase Station" data-app-icon="binary" data-app-color="#8b5cf6"></script>
+    <script src="script.js"></script>
+</body>
+</html>

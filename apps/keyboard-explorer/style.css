@@ -1,0 +1,107 @@
+.explorer-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.key-card {
+    height: 240px;
+    background: var(--bg-card);
+    border: 2px solid var(--accent);
+    border-radius: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px var(--accent-soft);
+    position: relative;
+    overflow: hidden;
+}
+
+.instruction {
+    position: absolute;
+    top: 1rem;
+    font-size: 0.8rem;
+    color: var(--fg-dim);
+    letter-spacing: 0.1em;
+}
+
+.big-key {
+    font-size: 5rem;
+    font-weight: 800;
+    color: var(--fg);
+}
+
+.code-label {
+    font-family: var(--font-mono);
+    font-size: 1.25rem;
+    color: var(--accent);
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.detail-item {
+    padding: 1rem;
+    text-align: center;
+}
+
+.detail-item .label {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--fg-dim);
+    margin-bottom: 0.5rem;
+}
+
+.detail-item .value {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--fg);
+}
+
+.modifiers-list {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.mod-badge {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    background: var(--bg-soft);
+    color: var(--fg-dim);
+}
+
+.mod-badge.active {
+    background: var(--accent);
+    color: white;
+}
+
+.history-card h3 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+#history-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+#history-list li {
+    padding: 0.3rem 0.6rem;
+    background: var(--bg-soft);
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    border: 1px solid var(--border);
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Typer — MyApps</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../../shared/base.css">
+    <link rel="stylesheet" href="../../shared/header.css">
+    <link rel="stylesheet" href="style.css">
+    <!-- Prism.js for syntax highlighting -->
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+</head>
+<body>
+    <main class="app-main">
+        <div class="typer-container">
+            <div class="editor-pane card">
+                <h3>Source Code</h3>
+                <textarea id="source-code" placeholder="ここにコードを貼り付けてください..."></textarea>
+                <div class="controls">
+                    <div class="ctrl-group">
+                        <label>Speed (ms)</label>
+                        <input type="number" id="type-speed" value="50" min="1" max="500">
+                    </div>
+                    <button id="btn-start" class="btn btn-primary">再生開始</button>
+                    <button id="btn-reset" class="btn btn-danger">リセット</button>
+                </div>
+            </div>
+
+            <div class="preview-pane">
+                <div class="window-frame card">
+                    <div class="window-header">
+                        <div class="dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <div class="window-title">script.js</div>
+                    </div>
+                    <div class="window-body">
+                        <pre id="output-pre" class="language-javascript"><code id="output-code"></code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="../../shared/header.js" data-app-name="Code Typer" data-app-icon="code" data-app-color="#ec4899"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+.lab-container {
+    max-width: 900px;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+#url-input {
+    width: 100%;
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--border);
+    background: var(--bg-dim);
+    resize: vertical;
+}
+
+.btn-group {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.detail-item {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.detail-item .label {
+    font-size: 0.75rem;
+    color: var(--fg-dim);
+    font-weight: 600;
+}
+
+.detail-item .value {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    word-break: break-all;
+}
+
+.params-card {
+    padding: 1.5rem;
+}
+
+.params-card h3 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.params-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.param-row {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.param-row input {
+    flex: 1;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    padding: 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    background: var(--bg-soft);
+}
+
+.btn-remove {
+    padding: 0.5rem;
+    color: var(--fg-dim);
+    cursor: pointer;
+}
+
+.btn-remove:hover {
+    color: var(--danger);
+}

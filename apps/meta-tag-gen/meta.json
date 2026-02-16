@@ -1,0 +1,8 @@
+{
+    "id": "meta-tag-gen",
+    "name": "Meta Master",
+    "description": "SEO 用のメタタグ、OGP タグを生成し、SNS でのプレビューをシミュレート。",
+    "icon": "globe",
+    "color": "#14b8a6",
+    "tags": ["Dev", "Web", "SEO"]
+}

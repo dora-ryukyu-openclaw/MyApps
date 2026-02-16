@@ -1,0 +1,8 @@
+{
+    "id": "url-lab",
+    "name": "URL Lab",
+    "description": "URL を分解し、クエリパラメータやパスを個別に編集・エンコード。",
+    "icon": "link",
+    "color": "#3b82f6",
+    "tags": ["Dev", "Web", "Utility"]
+}

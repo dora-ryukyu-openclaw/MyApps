@@ -1,0 +1,8 @@
+{
+    "id": "numbase-converter",
+    "name": "NumBase Station",
+    "description": "2進数、8進数、10進数、16進数をリアルタイム相互変換。",
+    "icon": "binary",
+    "color": "#8b5cf6",
+    "tags": ["Dev", "Utility", "CS"]
+}

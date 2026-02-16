@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Preview — MyApps</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../../shared/base.css">
+    <link rel="stylesheet" href="../../shared/header.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="app-main">
+        <div class="preview-container">
+            <div class="toolbar card">
+                <div class="url-bar">
+                    <input type="text" id="url-input" placeholder="https://example.com" value="https://example.com">
+                    <button id="btn-load" class="btn btn-primary">読込</button>
+                </div>
+                <div class="device-selectors">
+                    <button class="device-btn active" data-w="375" data-h="667">Mobile</button>
+                    <button class="device-btn" data-w="768" data-h="1024">Tablet</button>
+                    <button class="device-btn" data-w="1280" data-h="800">Desktop</button>
+                    <div class="custom-size">
+                        <input type="number" id="custom-w" value="375"> × <input type="number" id="custom-h" value="667">
+                    </div>
+                </div>
+            </div>
+
+            <div class="viewport-area">
+                <div id="device-frame" class="device-frame">
+                    <div class="frame-header">
+                        <span id="frame-info">375 × 667 (Mobile)</span>
+                    </div>
+                    <iframe id="target-frame" src="about:blank"></iframe>
+                </div>
+            </div>
+            <p class="warning">※ サイトによっては X-Frame-Options により表示できない場合があります。</p>
+        </div>
+    </main>
+
+    <script src="../../shared/header.js" data-app-name="Responsive Preview" data-app-icon="monitor-smartphone" data-app-color="#64748b"></script>
+    <script src="script.js"></script>
+</body>
+</html>

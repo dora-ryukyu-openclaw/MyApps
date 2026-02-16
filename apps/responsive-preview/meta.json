@@ -1,0 +1,8 @@
+{
+    "id": "responsive-preview",
+    "name": "Responsive Preview",
+    "description": "異なるデバイスサイズ（Mobile, Tablet, Desktop）でサイトの表示を確認。",
+    "icon": "monitor-smartphone",
+    "color": "#64748b",
+    "tags": ["Dev", "Web", "Design"]
+}

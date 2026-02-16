@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Lab — MyApps</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../../shared/base.css">
+    <link rel="stylesheet" href="../../shared/header.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="app-main">
+        <div class="lab-container">
+            <div class="input-card card">
+                <label>URLを入力</label>
+                <textarea id="url-input" rows="3" placeholder="https://example.com/path?key=value#hash"></textarea>
+                <div class="btn-group">
+                    <button id="btn-decode" class="btn btn-secondary btn-sm">デコード</button>
+                    <button id="btn-encode" class="btn btn-secondary btn-sm">エンコード</button>
+                    <button id="btn-clear" class="btn btn-danger btn-sm">クリア</button>
+                </div>
+            </div>
+
+            <div class="details-grid">
+                <div class="card detail-item">
+                    <span class="label">Protocol</span>
+                    <span id="p-protocol" class="value">—</span>
+                </div>
+                <div class="card detail-item">
+                    <span class="label">Host</span>
+                    <span id="p-host" class="value">—</span>
+                </div>
+                <div class="card detail-item">
+                    <span class="label">Path</span>
+                    <span id="p-path" class="value">—</span>
+                </div>
+                <div class="card detail-item">
+                    <span class="label">Hash</span>
+                    <span id="p-hash" class="value">—</span>
+                </div>
+            </div>
+
+            <div class="params-card card">
+                <h3>Query Parameters</h3>
+                <div id="params-list" class="params-list">
+                    <!-- List of key-value pairs -->
+                </div>
+                <button id="add-param" class="btn btn-soft btn-sm">+ パラメータを追加</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="../../shared/header.js" data-app-name="URL Lab" data-app-icon="link" data-app-color="#3b82f6"></script>
+    <script src="script.js"></script>
+</body>
+</html>
