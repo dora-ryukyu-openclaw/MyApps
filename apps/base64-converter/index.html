@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Base64 Converter — MyApps</title>
-    <meta name="description" content="テキストとBase64形式を相互に変換するツール。UTF-8対応。">
+    <title>Base64 変換 — MyApps</title>
+    <meta name="description" content="テキストと Base64 形式を相互に変換するツール。UTF-8 対応。">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="../../shared/base.css">
     <link rel="stylesheet" href="../../shared/header.css">
@@ -14,33 +14,33 @@
     </script>
 </head>
 <body>
-    <main class="app-container">
+    <main class="app-main">
         <div class="toolbar">
             <div class="toolbar-group">
-                <button id="btn-encode" class="btn btn-primary">Encode</button>
-                <button id="btn-decode" class="btn btn-primary">Decode</button>
-                <button id="btn-swap" class="btn" title="Swap Input & Output">Swap</button>
+                <button id="btn-encode" class="btn btn-primary">エンコード</button>
+                <button id="btn-decode" class="btn btn-primary">デコード</button>
+                <button id="btn-swap" class="btn btn-secondary" title="入力を入れ替え">入れ替え</button>
             </div>
             <div class="toolbar-group">
-                <button id="btn-copy" class="btn">Copy</button>
-                <button id="btn-clear" class="btn btn-danger">Clear</button>
+                <button id="btn-copy" class="btn btn-secondary">コピー</button>
+                <button id="btn-clear" class="btn btn-danger">クリア</button>
             </div>
         </div>
 
         <div class="editor-grid">
             <div class="editor-pane">
-                <div class="pane-header">Input</div>
-                <textarea id="input-text" placeholder="Type or paste text here..." spellcheck="false"></textarea>
+                <div class="pane-header">Input (テキスト)</div>
+                <textarea id="input-text" placeholder="ここに変換したいテキストを入力してください..." spellcheck="false"></textarea>
             </div>
             <div class="editor-pane">
-                <div class="pane-header">Output</div>
-                <textarea id="output-text" readonly placeholder="Result will appear here..." spellcheck="false"></textarea>
+                <div class="pane-header">Output (結果)</div>
+                <textarea id="output-text" readonly placeholder="結果がここに表示されます..." spellcheck="false"></textarea>
             </div>
         </div>
     </main>
 
     <script src="../../shared/header.js" 
-        data-app-name="Base64 Converter" 
+        data-app-name="Base64 変換" 
         data-app-icon="binary" 
         data-app-color="#3b82f6"></script>
     <script src="script.js"></script>

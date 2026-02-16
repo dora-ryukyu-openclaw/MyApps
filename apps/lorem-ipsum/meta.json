@@ -1,8 +1,8 @@
 {
   "id": "lorem-ipsum",
-  "name": "Lorem Ipsum Generator",
-  "description": "デザイン用のダミーテキスト生成ツール。パラグラフ・文章単位で指定可能。",
+  "name": "Lorem Ipsum 生成",
+  "description": "デザイン用のダミーテキスト生成ツール。パラグラフ・文章・単語単位で指定可能。",
   "icon": "file-text",
   "color": "#8b5cf6",
-  "tags": ["Design", "Text", "Content"]
+  "tags": ["ツール", "デザイン", "テキスト"]
 }

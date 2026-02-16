@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JSON Formatter — MyApps</title>
-    <meta name="description" content="JSONデータの検証、整形、圧縮ツール。エラー箇所の特定も可能。">
-    <!-- faviconは後で個別に追加する -->
+    <title>JSON 整形 — MyApps</title>
+    <meta name="description" content="JSON データの検証、整形、圧縮ツール。エラー箇所の特定も可能。">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="../../shared/base.css">
     <link rel="stylesheet" href="../../shared/header.css">
@@ -15,36 +14,35 @@
     </script>
 </head>
 <body>
-    <main class="app-container">
+    <main class="app-main">
         <div class="toolbar">
             <div class="toolbar-group">
-                <button id="btn-format" class="btn btn-primary">Format (2sp)</button>
-                <button id="btn-minify" class="btn">Minify</button>
+                <button id="btn-format" class="btn btn-primary">整形 (2sp)</button>
+                <button id="btn-minify" class="btn btn-secondary">圧縮</button>
             </div>
             <div class="toolbar-group">
                 <span class="status-text" id="status">Ready</span>
             </div>
             <div class="toolbar-group">
-                <button id="btn-copy" class="btn" title="クリップボードにコピー">Copy</button>
-                <button id="btn-clear" class="btn btn-danger" title="クリア">Clear</button>
+                <button id="btn-copy" class="btn btn-secondary">コピー</button>
+                <button id="btn-clear" class="btn btn-danger">クリア</button>
             </div>
         </div>
 
         <div class="editor-grid">
-            <div class="editor-pane input-pane">
+            <div class="editor-pane">
                 <div class="pane-header">Input JSON</div>
-                <textarea id="input-json" placeholder='Paste JSON here...' spellcheck="false"></textarea>
+                <textarea id="input-json" placeholder='ここに JSON を貼り付けてください...' spellcheck="false"></textarea>
             </div>
-            <div class="editor-pane output-pane">
+            <div class="editor-pane">
                 <div class="pane-header">Output</div>
-                <textarea id="output-json" readonly placeholder='Result will appear here...' spellcheck="false"></textarea>
+                <textarea id="output-json" readonly placeholder='結果がここに表示されます...' spellcheck="false"></textarea>
             </div>
         </div>
     </main>
 
-    <!-- Header Injection -->
     <script src="../../shared/header.js" 
-        data-app-name="JSON Formatter" 
+        data-app-name="JSON 整形" 
         data-app-icon="braces" 
         data-app-color="#f59e0b"></script>
     <script src="script.js"></script>
