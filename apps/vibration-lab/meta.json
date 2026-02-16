@@ -1,8 +1,12 @@
 {
-    "id": "vibration-lab",
-    "name": "Haptic Lab",
-    "description": "ブラウザのバイブレーション API をテスト。スマホでの触覚フィードバックを設計。",
-    "icon": "zap",
-    "color": "#fb923c",
-    "tags": ["Dev", "Mobile", "UI"]
+  "id": "vibration-lab",
+  "name": "Haptic Lab",
+  "description": "ブラウザのバイブレーション API をテスト。スマホでの触覚フィードバックを設計。",
+  "icon": "zap",
+  "color": "#fb923c",
+  "tags": [
+    "開発",
+    "Mobile",
+    "UI"
+  ]
 }

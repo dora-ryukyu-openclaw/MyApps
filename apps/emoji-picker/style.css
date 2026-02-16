@@ -1,0 +1,47 @@
+.picker-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: var(--sp-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-6);
+    height: 600px;
+}
+
+.picker-header input {
+    width: 100%;
+    font-size: var(--text-lg);
+}
+
+.emoji-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(48px, 1fr));
+    gap: var(--sp-2);
+    overflow-y: auto;
+    padding-right: var(--sp-2);
+}
+
+.emoji-item {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: var(--r);
+    transition: all var(--duration-fast);
+}
+
+.emoji-item:hover {
+    background: var(--c-accent-soft);
+    transform: scale(1.1);
+}
+
+.picker-footer {
+    text-align: center;
+    font-size: var(--text-xs);
+    color: var(--c-text-3);
+    padding-top: var(--sp-4);
+    border-top: 1px solid var(--c-border);
+}

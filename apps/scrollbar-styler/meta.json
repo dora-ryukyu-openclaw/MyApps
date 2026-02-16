@@ -1,8 +1,12 @@
 {
-    "id": "scrollbar-styler",
-    "name": "Scrollbar Styler",
-    "description": "ブラウザのスクロールバーをカスタマイズ。CSS を生成してプレビュー。",
-    "icon": "align-left",
-    "color": "#6366f1",
-    "tags": ["Design", "CSS", "UI"]
+  "id": "scrollbar-styler",
+  "name": "Scrollbar Styler",
+  "description": "ブラウザのスクロールバーをカスタマイズ。CSS を生成してプレビュー。",
+  "icon": "align-left",
+  "color": "#6366f1",
+  "tags": [
+    "デザイン",
+    "CSS",
+    "UI"
+  ]
 }

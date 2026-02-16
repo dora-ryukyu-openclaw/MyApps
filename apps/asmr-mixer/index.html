@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASMRサウンドミキサー — MyApps</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../../shared/base.css">
+    <link rel="stylesheet" href="../../shared/header.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="app-main">
+        <div class="mixer-container card glass">
+            <div class="mixer-header">
+                <h2>Sound Mixer</h2>
+                <button id="master-toggle" class="btn btn-primary">Start Audio</button>
+            </div>
+
+            <div class="channels-grid">
+                <!-- Channel: Rain -->
+                <div class="channel card">
+                    <div class="channel-info">
+                        <span class="icon">🌧️</span>
+                        <span class="name">雨音</span>
+                    </div>
+                    <input type="range" class="vol-slider" data-sound="rain" min="0" max="1" step="0.01" value="0">
+                </div>
+
+                <!-- Channel: Wind -->
+                <div class="channel card">
+                    <div class="channel-info">
+                        <span class="icon">🌬️</span>
+                        <span class="name">風の音</span>
+                    </div>
+                    <input type="range" class="vol-slider" data-sound="wind" min="0" max="1" step="0.01" value="0">
+                </div>
+
+                <!-- Channel: Fire -->
+                <div class="channel card">
+                    <div class="channel-info">
+                        <span class="icon">🔥</span>
+                        <span class="name">焚き火</span>
+                    </div>
+                    <input type="range" class="vol-slider" data-sound="fire" min="0" max="1" step="0.01" value="0">
+                </div>
+
+                <!-- Channel: White Noise -->
+                <div class="channel card">
+                    <div class="channel-info">
+                        <span class="icon">📺</span>
+                        <span class="name">ホワイトノイズ</span>
+                    </div>
+                    <input type="range" class="vol-slider" data-sound="white" min="0" max="1" step="0.01" value="0">
+                </div>
+            </div>
+
+            <div class="mixer-footer">
+                <p class="desc">ブラウザの Web Audio API を使用して音を合成・再生します。</p>
+            </div>
+        </div>
+    </main>
+    <script src="../../shared/header.js" data-app-name="ASMRサウンドミキサー" data-app-icon="volume-2" data-app-color="#3b82f6"></script>
+    <script src="script.js"></script>
+</body>
+</html>

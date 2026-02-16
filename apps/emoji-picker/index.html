@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>絵文字ピッカー — MyApps</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../../shared/base.css">
+    <link rel="stylesheet" href="../../shared/header.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="app-main">
+        <div class="picker-container card glass">
+            <div class="picker-header">
+                <input type="text" id="emoji-search" placeholder="絵文字を検索...">
+            </div>
+            
+            <div id="emoji-grid" class="emoji-grid">
+                <!-- Emojis -->
+            </div>
+
+            <div class="picker-footer">
+                <span id="copy-status">クリックしてコピー</span>
+            </div>
+        </div>
+    </main>
+    <script src="../../shared/header.js" data-app-name="絵文字ピッカー" data-app-icon="smile" data-app-color="#fbbf24"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -66,6 +66,11 @@
     'link':        '<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>',
     'file-type-2': '<path d="M4 22h14a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v4"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M2 13v-1h6V7"/><path d="M2 13h6"/><path d="M2 13v4h6"/>',
     'monitor-smartphone': '<path d="M18 8V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h8"/><path d="M10 19v-4"/><path d="M6 19v-4"/><path d="M2 19h12"/><rect width="6" height="10" x="16" y="12" rx="2"/>',
+    'volume-2':    '<path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>',
+    'smile':       '<circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" x2="9.01" y1="9" y2="9"/><line x1="15" x2="15.01" y1="9" y2="9"/>',
+    'fingerprint': '<path d="M2 12a10 10 0 0 1 20 0"/><path d="M7 12a5 5 0 0 1 10 0"/><path d="M12 12h.01"/><path d="M11 12a1 1 0 0 1 2 0v5a1 1 0 0 1-2 0v-5Z"/><path d="M8 12a4 4 0 0 1 8 0v7"/><path d="M5 12a7 7 0 0 1 14 0v10"/>',
+    'monitor':     '<rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/>',
+    'triangle':    '<path d="M13.73 21a2 2 0 0 1-3.46 0L1.17 6.04a2 2 0 0 1 1.73-3h18.2a2 2 0 0 1 1.73 3L13.73 21Z"/>',
   };
 
   /** SVGアイコンを生成 */

@@ -1,8 +1,12 @@
 {
-    "id": "svg-optimizer",
-    "name": "SVG Optimizer",
-    "description": "SVG ファイルを最適化・軽量化。不要なメタデータや属性を削除します。",
-    "icon": "zap",
-    "color": "#facc15",
-    "tags": ["Image", "Design", "Dev"]
+  "id": "svg-optimizer",
+  "name": "SVG Optimizer",
+  "description": "SVG ファイルを最適化・軽量化。不要なメタデータや属性を削除します。",
+  "icon": "zap",
+  "color": "#facc15",
+  "tags": [
+    "画像",
+    "デザイン",
+    "開発"
+  ]
 }

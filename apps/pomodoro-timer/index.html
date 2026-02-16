@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ポモドーロタイマー — MyApps</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../../shared/base.css">
+    <link rel="stylesheet" href="../../shared/header.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="app-main">
+        <div class="pomodoro-container card glass">
+            <div class="mode-tabs">
+                <button id="mode-work" class="mode-btn active" data-time="1500">集中 (25:00)</button>
+                <button id="mode-break" class="mode-btn" data-time="300">休憩 (05:00)</button>
+            </div>
+
+            <div class="timer-circle">
+                <svg viewBox="0 0 100 100">
+                    <circle class="bg" cx="50" cy="50" r="45"></circle>
+                    <circle id="progress" class="fg" cx="50" cy="50" r="45"></circle>
+                </svg>
+                <div id="display" class="time-display">25:00</div>
+            </div>
+
+            <div class="controls">
+                <button id="start-btn" class="btn btn-primary btn-lg">スタート</button>
+                <button id="reset-btn" class="btn btn-soft">リセット</button>
+            </div>
+        </div>
+    </main>
+    <script src="../../shared/header.js" data-app-name="ポモドーロタイマー" data-app-icon="clock" data-app-color="#ef4444"></script>
+    <script src="script.js"></script>
+</body>
+</html>

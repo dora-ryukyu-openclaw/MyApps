@@ -1,0 +1,12 @@
+{
+  "id": "css-filter-studio",
+  "name": "CSSフィルタースタジオ",
+  "description": "画像にCSSフィルターを適用し、リアルタイムで効果を確認。コードを即座に生成。",
+  "icon": "wand-2",
+  "color": "#8b5cf6",
+  "tags": [
+    "デザイン",
+    "開発",
+    "画像"
+  ]
+}

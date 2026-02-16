@@ -1,8 +1,12 @@
 {
-    "id": "image-placeholder",
-    "name": "Quick Placeholder",
-    "description": "開発中に必要なダミー画像を、指定サイズや条件で即座に生成。",
-    "icon": "image",
-    "color": "#fb923c",
-    "tags": ["Dev", "Design", "Web"]
+  "id": "image-placeholder",
+  "name": "Quick Placeholder",
+  "description": "開発中に必要なダミー画像を、指定サイズや条件で即座に生成。",
+  "icon": "image",
+  "color": "#fb923c",
+  "tags": [
+    "開発",
+    "デザイン",
+    "Web"
+  ]
 }

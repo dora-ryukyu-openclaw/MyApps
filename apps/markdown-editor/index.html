@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdownエディタ — MyApps</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../../shared/base.css">
+    <link rel="stylesheet" href="../../shared/header.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="app-main">
+        <div class="editor-grid">
+            <div class="pane editor-pane card glass">
+                <textarea id="markdown-input" placeholder="# ここに Markdown を入力..."></textarea>
+            </div>
+            <div class="pane preview-pane card glass">
+                <div id="markdown-output" class="markdown-body"></div>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="../../shared/header.js" data-app-name="Markdownエディタ" data-app-icon="file-text" data-app-color="#0ea5e9"></script>
+    <script src="script.js"></script>
+</body>
+</html>

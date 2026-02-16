@@ -1,8 +1,12 @@
 {
-    "id": "flexbox-playground",
-    "name": "Flexbox Playground",
-    "description": "Flexbox の各プロパティをリアルタイムで操作して、レイアウトをシミュレート。",
-    "icon": "columns-2",
-    "color": "#10b981",
-    "tags": ["Design", "CSS", "UI"]
+  "id": "flexbox-playground",
+  "name": "Flexbox Playground",
+  "description": "Flexbox の各プロパティをリアルタイムで操作して、レイアウトをシミュレート。",
+  "icon": "columns-2",
+  "color": "#10b981",
+  "tags": [
+    "デザイン",
+    "CSS",
+    "UI"
+  ]
 }

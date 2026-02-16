@@ -1,0 +1,12 @@
+{
+  "id": "triangle-generator",
+  "name": "CSS三角形ジェネレーター",
+  "description": "border プロパティを使用した CSS 三角形を直感的に作成。コードを即座に生成。",
+  "icon": "triangle",
+  "color": "#f59e0b",
+  "tags": [
+    "デザイン",
+    "CSS",
+    "開発"
+  ]
+}

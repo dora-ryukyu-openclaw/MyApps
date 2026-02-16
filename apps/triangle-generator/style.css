@@ -1,0 +1,93 @@
+.studio-grid {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: var(--sp-8);
+    height: calc(100vh - 120px);
+    max-width: var(--w-page);
+    margin: 0 auto;
+    padding: var(--sp-4);
+}
+
+.preview-pane {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--c-bg);
+}
+
+.triangle-canvas {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: radial-gradient(var(--c-border) 1px, transparent 1px);
+    background-size: 20px 20px;
+    border-radius: var(--r-lg);
+}
+
+.controls-pane {
+    padding: var(--sp-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-6);
+    overflow-y: auto;
+}
+
+.control-section h3 {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    color: var(--c-text-3);
+    margin-bottom: var(--sp-2);
+}
+
+.dir-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--sp-2);
+}
+
+.dir-btn {
+    aspect-ratio: 1;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--c-bg-alt);
+    border: 1px solid var(--c-border);
+    border-radius: var(--r);
+    cursor: pointer;
+}
+
+.dir-btn.active {
+    background: var(--c-accent);
+    color: white;
+    border-color: var(--c-accent);
+}
+
+.code-output {
+    margin-top: auto;
+    padding: var(--sp-4);
+    background: var(--c-bg);
+    position: relative;
+}
+
+pre {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--c-accent);
+    white-space: pre-wrap;
+}
+
+.btn-sm {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+}
+
+@media (max-width: 900px) {
+    .studio-grid {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+}

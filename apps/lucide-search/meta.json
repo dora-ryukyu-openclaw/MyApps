@@ -1,8 +1,12 @@
 {
-    "id": "lucide-search",
-    "name": "Icon Search",
-    "description": "MyApps で使用可能な Lucide アイコンを検索し、SVG パスをコピー。",
-    "icon": "sparkles",
-    "color": "#facc15",
-    "tags": ["Dev", "Design", "Project"]
+  "id": "lucide-search",
+  "name": "Icon Search",
+  "description": "MyApps で使用可能な Lucide アイコンを検索し、SVG パスをコピー。",
+  "icon": "sparkles",
+  "color": "#facc15",
+  "tags": [
+    "開発",
+    "デザイン",
+    "プロジェクト"
+  ]
 }

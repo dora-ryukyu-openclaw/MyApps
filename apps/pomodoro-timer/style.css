@@ -1,0 +1,69 @@
+.pomodoro-container {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: var(--sp-8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--sp-8);
+}
+
+.mode-tabs {
+    display: flex;
+    gap: var(--sp-2);
+}
+
+.mode-btn {
+    padding: var(--sp-2) var(--sp-4);
+    border-radius: var(--r-full);
+    font-size: var(--text-sm);
+    font-weight: 600;
+}
+
+.mode-btn.active {
+    background: var(--c-accent);
+    color: white;
+}
+
+.timer-circle {
+    position: relative;
+    width: 300px;
+    height: 300px;
+}
+
+svg {
+    transform: rotate(-90deg);
+}
+
+circle {
+    fill: none;
+    stroke-width: 6;
+}
+
+.bg { stroke: var(--c-border); }
+.fg {
+    stroke: var(--c-accent);
+    stroke-linecap: round;
+    transition: stroke-dashoffset 1s linear;
+}
+
+.time-display {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 64px;
+    font-weight: 700;
+    font-family: var(--font-mono);
+    color: var(--c-text);
+}
+
+.controls {
+    display: flex;
+    gap: var(--sp-4);
+}
+
+.btn-lg {
+    padding: var(--sp-4) var(--sp-8);
+    font-size: var(--text-lg);
+}
