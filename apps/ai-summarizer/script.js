@@ -1,4 +1,4 @@
-import { pipeline, env } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.1';
+import { pipeline, env } from '@huggingface/transformers';
 
 // Configuration
 env.allowLocalModels = false;
@@ -24,6 +24,7 @@ async function initSummarizer() {
 
     try {
         summarizer = await pipeline('summarization', 'Xenova/distilbart-cnn-6-6', {
+            device: 'auto',
             progress_callback: (data) => {
                 if (data.status === 'progress') {
                     statusText.textContent = `モデルをダウンロード中... ${Math.round(data.progress)}%`;
@@ -41,7 +42,7 @@ async function initSummarizer() {
         }, 500);
     } catch (err) {
         console.error(err);
-        statusText.textContent = 'エラーが発生しました。ページを再読み込みしてください。';
+        statusText.textContent = `エラー: ${err.message}`;
         statusText.style.color = '#ef4444';
     }
 }
@@ -59,14 +60,13 @@ btnSummarize.addEventListener('click', async () => {
     try {
         const result = await summarizer(text, {
             max_new_tokens: 100,
-            chunk_length: 1024,
-            iteration_timeout: 10000,
+            // chunk_length: 1024, // Removed for stability
         });
         
         outputText.textContent = result[0].summary_text;
     } catch (err) {
         console.error(err);
-        outputText.innerHTML = '<div class="empty-hint" style="color: #ef4444;">エラーが発生しました。文章が長すぎる可能性があります。</div>';
+        outputText.innerHTML = `<div class="empty-hint" style="color: #ef4444;">エラー: ${err.message}</div>`;
     } finally {
         btnSummarize.disabled = false;
         btnSummarize.textContent = '要約する';
