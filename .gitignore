@@ -16,4 +16,8 @@ node_modules/
 # Auto-generated（CI/CD で生成）
 registry.json
 
+# Public Hidden (公開不要な管理ファイル)
+CLEANUP_PLAN.md
+TODO.md
+
 .agent/

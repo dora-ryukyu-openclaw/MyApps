@@ -15,74 +15,73 @@
 </head>
 <body>
     <main class="app-main">
-        <div class="timer-card card glass">
-            <div class="mode-selector">
-                <button class="mode-btn active" data-mode="work">集中</button>
-                <button class="mode-btn" data-mode="break">休憩</button>
-                <button class="mode-btn" data-mode="long">長い休憩</button>
-            </div>
+        <div class="timer-card card">
+            <nav class="mode-selector">
+                <button class="mode-btn active" data-mode="work">Focus</button>
+                <button class="mode-btn" data-mode="break">Short Break</button>
+                <button class="mode-btn" data-mode="long">Long Break</button>
+            </nav>
 
             <div class="timer-display-wrap">
-                <svg class="progress-ring" width="280" height="280">
-                    <circle class="progress-ring__circle-bg" stroke="var(--c-border)" stroke-width="8" fill="transparent" r="130" cx="140" cy="140"/>
-                    <circle id="progress-bar" class="progress-ring__circle" stroke="var(--c-accent)" stroke-width="8" stroke-linecap="round" fill="transparent" r="130" cx="140" cy="140"/>
+                <svg class="progress-ring" width="320" height="320">
+                    <circle class="progress-ring__circle-bg" stroke="var(--c-border)" stroke-width="10" fill="transparent" r="130" cx="160" cy="160"/>
+                    <circle id="progress-bar" class="progress-ring__circle" stroke="var(--c-accent)" stroke-width="10" stroke-linecap="round" fill="transparent" r="130" cx="160" cy="160"/>
                 </svg>
                 <div class="time-content">
-                    <span id="display-time" class="time-digits">25:00</span>
-                    <span id="display-status" class="status-label">READY</span>
+                    <div id="display-time" class="time-digits">25:00</div>
+                    <div id="display-status" class="status-label">READY</div>
                 </div>
             </div>
 
             <div class="controls">
                 <button id="btn-start" class="btn btn-primary main-action">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
                     START
                 </button>
-                <button id="btn-reset" class="btn btn-secondary btn-icon-only">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                <button id="btn-reset" class="btn btn-secondary btn-icon-only" title="Reset">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
                 </button>
-                <button id="btn-settings" class="btn btn-secondary btn-icon-only">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+                <button id="btn-settings" class="btn btn-secondary btn-icon-only" title="Settings">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
                 </button>
             </div>
         </div>
 
-        <!-- Settings Modal (Glass overlay) -->
+        <!-- Settings Modal (Solid Glass) -->
         <div id="settings-overlay" class="modal-overlay">
-            <div class="settings-modal card glass">
-                <div class="modal-header">
-                    <h3>タイマー設定</h3>
-                    <button id="btn-close-settings" class="btn-close">&times;</button>
-                </div>
+            <div class="settings-modal card">
+                <header class="modal-header">
+                    <h3>Settings</h3>
+                    <button id="btn-close-settings" class="btn-close" aria-label="Close">&times;</button>
+                </header>
                 <div class="modal-body">
                     <div class="setting-item">
-                        <label>集中時間 (分)</label>
+                        <label>Focus Time (Min)</label>
                         <input type="number" id="set-work" value="25" min="1" max="60">
                     </div>
                     <div class="setting-item">
-                        <label>休憩時間 (分)</label>
+                        <label>Short Break (Min)</label>
                         <input type="number" id="set-break" value="5" min="1" max="30">
                     </div>
                     <div class="setting-item">
-                        <label>長い休憩時間 (分)</label>
+                        <label>Long Break (Min)</label>
                         <input type="number" id="set-long" value="15" min="1" max="60">
                     </div>
                     <div class="setting-item">
                         <label class="checkbox-label">
+                            <span>Auto Start Next</span>
                             <input type="checkbox" id="set-auto-cycle" checked>
-                            <span>自動で次のモードへ</span>
                         </label>
                     </div>
                     <div class="setting-item">
                         <label class="checkbox-label">
+                            <span>Sound Notification</span>
                             <input type="checkbox" id="set-sound" checked>
-                            <span>終了時に通知音</span>
                         </label>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button id="btn-save-settings" class="btn btn-primary full-width">保存する</button>
-                </div>
+                <footer class="modal-footer">
+                    <button id="btn-save-settings" class="btn btn-primary full-width">SAVE CHANGES</button>
+                </footer>
             </div>
         </div>
     </main>

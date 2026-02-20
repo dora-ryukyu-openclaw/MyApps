@@ -1,18 +1,15 @@
-/* Pomodoro Timer — MyApps Style */
-
 :root {
     --c-accent: #ef4444; /* Pomodoro Red */
     --c-accent-soft: rgba(239, 68, 68, 0.1);
     --c-accent-glow: rgba(239, 68, 68, 0.4);
-    --c-break: #10b981; /* Emerald Green for Break */
-    --c-break-soft: rgba(16, 185, 129, 0.1);
-    --c-break-glow: rgba(16, 185, 129, 0.4);
+    --c-break: #10b981;
+    --c-long: #3b82f6;
 }
 
 .app-main {
     max-width: var(--w-page);
     margin: 0 auto;
-    padding: var(--sp-6);
+    padding: var(--sp-12) var(--sp-6);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -21,24 +18,23 @@
 }
 
 .timer-card {
-    padding: var(--sp-8);
+    padding: var(--sp-12);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--sp-8);
+    gap: var(--sp-10);
     background: var(--c-surface-card);
-    backdrop-filter: var(--glass);
     border: 1px solid var(--c-border);
-    border-radius: var(--r-xl);
-    box-shadow: var(--shadow-xl);
+    border-radius: var(--r-3xl);
+    box-shadow: 0 30px 100px -20px rgba(0,0,0,0.4), var(--shadow-xl);
     transition: all var(--duration-slow) var(--ease-default);
-    width: 400px;
+    width: 460px;
     max-width: 100%;
+    position: relative;
 }
 
 .timer-card:hover {
     transform: translateY(-4px);
-    box-shadow: var(--shadow-2xl);
 }
 
 .mode-selector {
@@ -51,7 +47,7 @@
 }
 
 .mode-btn {
-    padding: var(--sp-2) var(--sp-5);
+    padding: var(--sp-2) var(--sp-6);
     background: transparent;
     border: none;
     border-radius: var(--r-full);
@@ -61,27 +57,28 @@
     cursor: pointer;
     transition: all var(--duration);
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-}
-
-.mode-btn:hover {
-    color: var(--c-text-2);
+    letter-spacing: 0.15em;
 }
 
 .mode-btn.active {
     background: var(--c-surface-solid);
     color: var(--c-accent);
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--shadow-sm), 0 0 10px var(--c-accent-soft);
 }
 
 .timer-display-wrap {
     position: relative;
-    width: 280px;
-    height: 280px;
+    width: 320px;
+    height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .progress-ring {
     transform: rotate(-90deg);
+    position: absolute;
+    inset: 0;
 }
 
 .progress-ring__circle {
@@ -91,29 +88,31 @@
 }
 
 .time-content {
-    position: absolute;
-    inset: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: var(--sp-2);
+    gap: var(--sp-1);
+    z-index: 1;
 }
 
 .time-digits {
     font-family: var(--font-mono);
-    font-size: var(--text-6xl);
+    font-size: 84px;
     font-weight: 800;
     color: var(--c-text);
-    text-shadow: 0 0 20px var(--c-accent-glow);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
 }
 
 .status-label {
     font-size: var(--text-sm);
-    font-weight: 800;
+    font-weight: 900;
     color: var(--c-text-3);
     text-transform: uppercase;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.4em;
+    margin-top: var(--sp-2);
 }
 
 .controls {
@@ -125,63 +124,86 @@
 
 .main-action {
     flex: 1;
-    padding: var(--sp-4) var(--sp-6);
-    font-size: var(--text-lg);
-    font-weight: 800;
+    padding: var(--sp-5) var(--sp-8);
+    font-size: var(--text-xl);
+    font-weight: 900;
+    letter-spacing: 0.1em;
 }
 
 .btn-icon-only {
-    padding: var(--sp-4);
-    border-radius: var(--r-xl);
+    padding: var(--sp-5);
+    border-radius: var(--r-2xl);
+    aspect-ratio: 1;
 }
 
-/* Modals */
+/* --- Modals (Solid Glass) --- */
 .modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0,0,0,0.7);
     display: none;
     align-items: center;
     justify-content: center;
-    z-index: 100;
-    backdrop-filter: blur(4px);
+    z-index: 1000;
+    backdrop-filter: blur(12px); /* ブラーを強化 */
 }
 
 .settings-modal {
-    width: 320px;
-    padding: var(--sp-8);
+    width: 380px;
+    max-width: 90%;
+    padding: var(--sp-10);
     display: flex;
     flex-direction: column;
-    gap: var(--sp-6);
-    background: var(--c-surface-card);
+    gap: var(--sp-8);
+    background: var(--c-surface-solid); /* 半透明すぎないようにSolidを使用 */
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-3xl);
+    box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+    animation: modal-in 0.3s var(--ease-default);
+}
+
+@keyframes modal-in {
+    from { opacity: 0; transform: translateY(20px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid var(--c-border);
+    border-bottom: 2px solid var(--c-border);
     padding-bottom: var(--sp-4);
 }
 
 .modal-header h3 {
-    font-size: var(--text-lg);
-    font-weight: 800;
+    font-size: var(--text-xl);
+    font-weight: 900;
     color: var(--c-text);
 }
 
 .btn-close {
-    background: none;
+    background: var(--c-surface-alt);
     border: none;
-    color: var(--c-text-3);
-    font-size: var(--text-xl);
+    color: var(--c-text-2);
+    width: 32px;
+    height: 32px;
+    border-radius: var(--r-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-close:hover {
+    background: var(--c-error-soft);
+    color: var(--c-error);
 }
 
 .modal-body {
     display: flex;
     flex-direction: column;
-    gap: var(--sp-4);
+    gap: var(--sp-6);
 }
 
 .setting-item {
@@ -198,48 +220,48 @@
 }
 
 .setting-item input[type="number"] {
-    background: var(--c-surface-solid);
-    border: 1px solid var(--c-border);
-    border-radius: var(--r-lg);
-    padding: var(--sp-2) var(--sp-4);
+    background: var(--c-bg);
+    border: 2px solid var(--c-border);
+    border-radius: var(--r-xl);
+    padding: var(--sp-3) var(--sp-5);
     font-family: var(--font-mono);
+    font-size: var(--text-lg);
+    font-weight: 800;
     color: var(--c-text);
     outline: none;
+    transition: border-color 0.2s;
+}
+
+.setting-item input[type="number"]:focus {
+    border-color: var(--c-accent);
 }
 
 .checkbox-label {
     flex-direction: row !important;
     align-items: center;
-    gap: var(--sp-2);
+    justify-content: space-between;
+    background: var(--c-bg);
+    padding: var(--sp-3) var(--sp-4);
+    border-radius: var(--r-xl);
     cursor: pointer;
 }
 
 .checkbox-label input {
-    width: 18px;
-    height: 18px;
+    width: 24px;
+    height: 24px;
+    accent-color: var(--c-accent);
 }
 
 @media (max-width: 480px) {
     .timer-card {
-        padding: var(--sp-6);
-        width: 100%;
-        gap: var(--sp-6);
+        padding: var(--sp-8);
+        gap: var(--sp-8);
     }
-    .time-digits {
-        font-size: var(--text-4xl);
-    }
-    .timer-display-wrap {
-        width: 240px;
-        height: 240px;
-    }
-    .progress-ring {
-        width: 240px;
-        height: 240px;
-    }
+    .time-digits { font-size: 64px; }
+    .timer-display-wrap { width: 260px; height: 260px; }
+    .progress-ring { width: 260px; height: 260px; }
     .progress-ring__circle, .progress-ring__circle-bg {
-        r: 110;
-        cx: 120;
-        cy: 120;
-        stroke-dasharray: 691.15;
+        r: 120; cx: 130; cy: 130;
+        stroke-dasharray: 753.98;
     }
 }

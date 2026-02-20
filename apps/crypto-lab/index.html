@@ -16,12 +16,12 @@
 <body>
     <main class="app-main">
         <div class="editor-grid">
-            <div class="editor-pane card">
-                <div class="pane-header">入力データ</div>
+            <div class="card">
+                <div class="pane-header">Input Data</div>
                 
                 <div class="tab-group">
-                    <button class="tab-btn active" data-tab="text">テキスト</button>
-                    <button class="tab-btn" data-tab="file">ファイル</button>
+                    <button class="tab-btn active" data-tab="text">Text</button>
+                    <button class="tab-btn" data-tab="file">File</button>
                 </div>
 
                 <div id="tab-content-text" class="tab-content">
@@ -30,12 +30,13 @@
 
                 <div id="tab-content-file" class="tab-content" style="display: none;">
                     <div class="file-drop-zone" id="file-drop">
-                        <p>ファイルをドラッグ＆ドロップ</p>
-                        <span>またはクリックして選択</span>
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="M12 12v6"/><path d="m15 15-3-3-3 3"/></svg>
+                        <p style="font-weight: 700; margin-top: var(--sp-2);">ファイルをドロップ</p>
+                        <span style="font-size: var(--text-xs); color: var(--c-text-3);">またはクリックして選択</span>
                         <input type="file" id="file-input" hidden>
-                        <div id="file-info" style="display: none; margin-top: var(--sp-4);">
-                            <strong id="file-name-display">ファイル名</strong>
-                            <p id="file-size-display">サイズ</p>
+                        <div id="file-info" style="display: none; margin-top: var(--sp-4); text-align: center;">
+                            <strong id="file-name-display" style="font-size: var(--text-sm);">—</strong>
+                            <p id="file-size-display" style="font-size: var(--text-xs); color: var(--c-text-3);">—</p>
                         </div>
                     </div>
                 </div>
@@ -43,42 +44,42 @@
                 <div class="hmac-toggle-section">
                     <label class="checkbox-wrapper">
                         <input type="checkbox" id="hmac-enabled">
-                        <span>HMAC を使用する</span>
+                        <span>HMAC (Hash-based Message Authentication Code)</span>
                     </label>
-                    <div id="hmac-key-container" style="display: none; margin-top: var(--sp-2);">
+                    <div id="hmac-key-container" style="display: none;">
                         <input type="text" id="hmac-key" placeholder="秘密鍵 (Secret Key)" class="input-field">
                     </div>
                 </div>
             </div>
 
-            <div class="editor-pane card result-pane">
-                <div class="pane-header">計算結果</div>
+            <div class="card result-pane">
+                <div class="pane-header">Calculation Results</div>
                 <div class="hash-list">
                     <div class="hash-item">
                         <label>SHA-256</label>
                         <div class="hash-value-wrapper">
-                            <input type="text" id="hash-sha256" readonly class="hash-field">
+                            <input type="text" id="hash-sha256" class="hash-field" spellcheck="false">
                             <button class="btn-copy-small" data-target="hash-sha256">Copy</button>
                         </div>
                     </div>
                     <div class="hash-item">
                         <label>SHA-512</label>
                         <div class="hash-value-wrapper">
-                            <input type="text" id="hash-sha512" readonly class="hash-field">
+                            <input type="text" id="hash-sha512" class="hash-field" spellcheck="false">
                             <button class="btn-copy-small" data-target="hash-sha512">Copy</button>
                         </div>
                     </div>
                     <div class="hash-item">
                         <label>MD5</label>
                         <div class="hash-value-wrapper">
-                            <input type="text" id="hash-md5" readonly class="hash-field">
+                            <input type="text" id="hash-md5" class="hash-field" spellcheck="false">
                             <button class="btn-copy-small" data-target="hash-md5">Copy</button>
                         </div>
                     </div>
                     <div class="hash-item">
                         <label>SHA-1</label>
                         <div class="hash-value-wrapper">
-                            <input type="text" id="hash-sha1" readonly class="hash-field">
+                            <input type="text" id="hash-sha1" class="hash-field" spellcheck="false">
                             <button class="btn-copy-small" data-target="hash-sha1">Copy</button>
                         </div>
                     </div>
@@ -90,7 +91,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <script src="../../shared/header.js" 
         data-app-name="暗号・ハッシュ・ラボ" 
-        data-app-icon="key" 
+        data-app-icon="hash" 
         data-app-color="#ef4444"></script>
     <script src="script.js"></script>
 </body>

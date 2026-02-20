@@ -1,15 +1,13 @@
 # プロジェクトタスク
 
-- [x] MyAppsの最適化と品質向上 (タスクID: 20260218-MYAPPS-CLEANUP)
-    - [x] タスク 1: 未使用アプリのクリーンアップ (`registry.json` の削除と更新)
-    - [x] タスク 2: `DESIGN.md` の更新 (ハウルさんの「Vibe Coding」仕様への刷新)
-    - [x] タスク 3: 全アプリのタグの日本語化徹底 (`meta.json`)
-    - [x] タスク 4: 個別アプリのUI改善 (第1弾: Cron Master, Crypto Lab, Data URI Pro)
-    - [x] タスク 5: 個別アプリのUI改善 (第2弾: JSON Formatter, Markdown Editor, NumBase Station)
-    - [x] タスク 6: 個別アプリのUI改善 (第3弾: QR Master, Text Saver, Unix Timestamp, UUID, Word2Vec3D)
-    - [x] タスク 7: 候補アプリの大幅刷新 (Image Master, CSS Filter, Emoji, Keyboard, Pomodoro)
+- [x] MyApps 最終品質向上 (ハウルさんフィードバック反映)
+    - [x] タスク 1: 個別アプリの修正 (Batch 1: カラー・ヴォルト, 暗号・ハッシュ・ラボ, Icon Search)
+    - [x] タスク 2: 個別アプリの修正 (Batch 2: Markdownエディタ, Palette Extractor, パスワード・スタジオ, ポモドーロタイマー)
+    - [x] タスク 3: `DESIGN.md` の最終更新 (最高品質基準の定義)
+    - [x] タスク 4: リポジトリのクリーンアップ (`.gitignore` 追加と公開不要ファイルの除外)
 
 # アーカイブ (完了済み)
+- [x] MyAppsの最適化と品質向上 (タスクID: 20260218-MYAPPS-CLEANUP)
 - [x] "Recursive Tech Hunter" の設計と実装
 - [x] 初期システムヘルスチェック
 - [x] MyApps プロジェクト初期完了
