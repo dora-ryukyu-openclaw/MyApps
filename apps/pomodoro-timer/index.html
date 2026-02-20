@@ -15,38 +15,81 @@
 </head>
 <body>
     <main class="app-main">
-        <div class="app-container">
-            <div class="glass-card pomodoro-card">
-                <div class="mode-tabs">
-                    <button id="mode-work" class="mode-btn active" data-time="1500">集中</button>
-                    <button id="mode-break" class="mode-btn" data-time="300">休憩</button>
-                </div>
+        <div class="timer-card card glass">
+            <div class="mode-selector">
+                <button class="mode-btn active" data-mode="work">集中</button>
+                <button class="mode-btn" data-mode="break">休憩</button>
+                <button class="mode-btn" data-mode="long">長い休憩</button>
+            </div>
 
-                <div class="timer-visual">
-                    <div class="timer-circle">
-                        <svg viewBox="0 0 100 100" class="progress-svg">
-                            <circle class="bg-circle" cx="50" cy="50" r="45"></circle>
-                            <circle id="progress" class="fg-circle" cx="50" cy="50" r="45"></circle>
-                        </svg>
-                        <div class="timer-display-inner">
-                            <div id="display" class="time-text">25:00</div>
-                            <div id="status-text" class="status-text">READY</div>
-                        </div>
+            <div class="timer-display-wrap">
+                <svg class="progress-ring" width="280" height="280">
+                    <circle class="progress-ring__circle-bg" stroke="var(--c-border)" stroke-width="8" fill="transparent" r="130" cx="140" cy="140"/>
+                    <circle id="progress-bar" class="progress-ring__circle" stroke="var(--c-accent)" stroke-width="8" stroke-linecap="round" fill="transparent" r="130" cx="140" cy="140"/>
+                </svg>
+                <div class="time-content">
+                    <span id="display-time" class="time-digits">25:00</span>
+                    <span id="display-status" class="status-label">READY</span>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button id="btn-start" class="btn btn-primary main-action">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    START
+                </button>
+                <button id="btn-reset" class="btn btn-secondary btn-icon-only">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                </button>
+                <button id="btn-settings" class="btn btn-secondary btn-icon-only">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Settings Modal (Glass overlay) -->
+        <div id="settings-overlay" class="modal-overlay">
+            <div class="settings-modal card glass">
+                <div class="modal-header">
+                    <h3>タイマー設定</h3>
+                    <button id="btn-close-settings" class="btn-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="setting-item">
+                        <label>集中時間 (分)</label>
+                        <input type="number" id="set-work" value="25" min="1" max="60">
+                    </div>
+                    <div class="setting-item">
+                        <label>休憩時間 (分)</label>
+                        <input type="number" id="set-break" value="5" min="1" max="30">
+                    </div>
+                    <div class="setting-item">
+                        <label>長い休憩時間 (分)</label>
+                        <input type="number" id="set-long" value="15" min="1" max="60">
+                    </div>
+                    <div class="setting-item">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="set-auto-cycle" checked>
+                            <span>自動で次のモードへ</span>
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="set-sound" checked>
+                            <span>終了時に通知音</span>
+                        </label>
                     </div>
                 </div>
-
-                <div class="controls-row">
-                    <button id="start-btn" class="btn btn-primary btn-start">スタート</button>
-                    <button id="reset-btn" class="btn btn-soft btn-reset">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
-                    </button>
+                <div class="modal-footer">
+                    <button id="btn-save-settings" class="btn btn-primary full-width">保存する</button>
                 </div>
             </div>
         </div>
     </main>
+
     <script src="../../shared/header.js" 
         data-app-name="ポモドーロタイマー" 
-        data-app-icon="clock" 
+        data-app-icon="timer" 
         data-app-color="#ef4444"></script>
     <script src="script.js"></script>
 </body>

@@ -14,11 +14,23 @@
 </head>
 <body>
     <main class="app-main">
+        <div class="editor-header toolbar card glass">
+            <div class="toolbar-group">
+                <span class="status-badge" id="char-count">0 文字</span>
+                <span class="status-badge" id="word-count">0 単語</span>
+            </div>
+            <div class="toolbar-group">
+                <button id="btn-copy" class="btn btn-soft btn-sm">コピー</button>
+                <button id="btn-clear" class="btn btn-danger btn-sm">クリア</button>
+            </div>
+        </div>
         <div class="editor-grid">
             <div class="pane editor-pane card glass">
+                <div class="pane-label">エディタ</div>
                 <textarea id="markdown-input" placeholder="# ここに Markdown を入力..."></textarea>
             </div>
             <div class="pane preview-pane card glass">
+                <div class="pane-label">プレビュー</div>
                 <div id="markdown-output" class="markdown-body"></div>
             </div>
         </div>

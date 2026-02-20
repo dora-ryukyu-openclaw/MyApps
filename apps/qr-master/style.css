@@ -8,8 +8,8 @@
 .app-main {
     max-width: var(--w-page);
     margin: 0 auto;
-    padding: var(--sp-6); /* Depth 2.0: Spacing 24px */
-    min-height: calc(100vh - 64px);
+    padding: var(--sp-6);
+    min-height: calc(100vh - 80px);
     display: flex;
     flex-direction: column;
     gap: var(--sp-6);
@@ -18,32 +18,40 @@
 /* --- Tabs --- */
 .tabs {
     display: flex;
-    gap: var(--sp-2);
-    border-bottom: 1px solid var(--c-border);
-    padding-bottom: 2px;
+    gap: var(--sp-1);
+    background: var(--c-surface-card);
+    padding: var(--sp-1);
+    border-radius: var(--r-xl);
+    border: 1px solid var(--c-border);
 }
 
 .tab-btn {
-    padding: var(--sp-2) var(--sp-6);
+    flex: 1;
+    padding: var(--sp-3) var(--sp-4);
     background: transparent;
     border: none;
-    border-bottom: 2px solid transparent;
-    color: var(--c-text-2);
+    color: var(--c-text-3);
     font-family: var(--font);
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
-    transition: all var(--duration-fast) var(--ease-default);
-    border-radius: var(--r) var(--r) 0 0;
+    transition: all var(--duration) var(--ease-default);
+    border-radius: var(--r-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--sp-2);
+    font-size: var(--text-sm);
 }
 
 .tab-btn:hover {
-    color: var(--c-accent);
-    background: var(--c-accent-soft);
+    color: var(--c-text-2);
+    background: var(--c-surface-hover);
 }
 
 .tab-btn.active {
     color: var(--c-accent);
-    border-bottom-color: var(--c-accent);
+    background: var(--c-surface-solid);
+    box-shadow: var(--shadow-sm);
 }
 
 .tab-content {
@@ -68,7 +76,6 @@
 @media (max-width: 860px) {
     .editor-grid {
         grid-template-columns: 1fr;
-        grid-template-rows: auto auto;
     }
 }
 
@@ -79,76 +86,122 @@
     background: var(--c-surface-card);
     backdrop-filter: var(--glass);
     border: 1px solid var(--c-border);
-    border-radius: var(--r-xl); /* Depth 2.0: Larger radius */
+    border-radius: var(--r-xl);
     box-shadow: var(--shadow);
     transition: transform var(--duration) var(--ease-default), 
                 box-shadow var(--duration) var(--ease-default);
 }
 
 .editor-pane:hover {
-    transform: translateY(-4px); /* Depth 2.0 */
+    transform: translateY(-4px);
     box-shadow: var(--shadow-lg);
 }
 
 .preview-pane {
+    padding: var(--sp-8);
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: var(--sp-6);
+}
+
+.qr-result-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
 }
 
 .qr-container {
     padding: var(--sp-6);
-    background: white; /* QR codes must have high contrast */
+    background: white;
     border-radius: var(--r-lg);
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--shadow);
+    max-width: 100%;
 }
 
-.qr-container img {
-    max-width: 100%;
-    height: auto;
+.qr-container canvas, .qr-container img {
+    max-width: 100% !important;
+    height: auto !important;
 }
 
 /* --- Scanner --- */
+.scanner-pane {
+    min-height: 400px;
+}
+
 .scanner-container {
     flex: 1;
     position: relative;
     background: #000;
-    border-radius: var(--r-lg);
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 300px;
 }
 
-#scan-canvas {
-    max-width: 100%;
-    max-height: 100%;
+#scan-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.scan-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    background: rgba(0,0,0,0.3);
+}
+
+.scan-frame {
+    width: 250px;
+    height: 250px;
+    border: 2px solid var(--c-accent);
+    box-shadow: 0 0 0 4000px rgba(0,0,0,0.4), 0 0 20px var(--c-accent-glow);
+    border-radius: var(--r-lg);
+    position: relative;
+}
+
+.scan-frame::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--c-accent);
+    box-shadow: 0 0 10px var(--c-accent);
+    animation: scan-line 2s linear infinite;
+}
+
+@keyframes scan-line {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(250px); }
 }
 
 .drop-zone {
     position: absolute;
     inset: 0;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     color: #fff;
-    text-align: center;
-    font-size: var(--text-sm);
-    background: rgba(0,0,0,0.5);
-    padding: var(--sp-4);
-    border: 2px dashed rgba(255,255,255,0.3);
-    border-radius: var(--r-lg);
-    margin: var(--sp-2);
+    gap: var(--sp-4);
+    background: rgba(0,0,0,0.6);
+    cursor: pointer;
     transition: all var(--duration);
 }
 
-.drop-zone.drag-over {
-    background: rgba(16, 185, 129, 0.4);
-    border-color: #10b981;
+.drop-zone:hover {
+    background: rgba(16, 185, 129, 0.2);
 }
 
 /* --- Components --- */
@@ -170,7 +223,7 @@ textarea {
     padding: var(--sp-4);
     border: none;
     outline: none;
-    font-family: var(--font-mono); /* Better for inputs */
+    font-family: var(--font-mono);
     font-size: var(--text-sm);
     line-height: var(--leading);
     background: transparent;
@@ -195,13 +248,13 @@ textarea {
     background: var(--c-accent);
     color: white;
     border: none;
-    box-shadow: 0 0 15px var(--c-accent-glow);
+    box-shadow: 0 4px 12px var(--c-accent-glow);
 }
 
 .btn-primary:hover {
-    background: var(--c-accent-hover);
-    transform: scale(1.02);
-    box-shadow: 0 0 20px var(--c-accent-glow);
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--c-accent-glow);
 }
 
 .btn-secondary {
@@ -213,6 +266,13 @@ textarea {
 .btn-secondary:hover {
     background: var(--c-surface-hover);
     border-color: var(--c-accent);
+}
+
+.actions-row {
+    padding: var(--sp-6);
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .toolbar-actions {

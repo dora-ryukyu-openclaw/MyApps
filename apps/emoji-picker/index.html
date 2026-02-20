@@ -15,29 +15,38 @@
 </head>
 <body>
     <main class="app-main">
-        <div class="app-container">
-            <div class="glass-card picker-container">
-                <div class="picker-header">
-                    <div class="search-wrapper">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-                        <input type="text" id="emoji-search" placeholder="絵文字を検索（例: smile, cat, food）..." autocomplete="off">
-                    </div>
+        <div class="picker-card card glass">
+            <div class="picker-header">
+                <div class="search-box">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    <input type="text" id="emoji-search" placeholder="絵文字を検索..." autocomplete="off">
                 </div>
-                
-                <div class="grid-scroll-area">
-                    <div id="emoji-grid" class="emoji-grid">
-                        <!-- Emojis injected by script.js -->
-                    </div>
-                </div>
+            </div>
 
-                <div class="picker-footer">
-                    <div class="status-box">
-                        <span id="copy-status">クリックしてコピー</span>
-                    </div>
+            <div class="category-bar">
+                <button class="cat-btn active" data-cat="all">All</button>
+                <button class="cat-btn" data-cat="smileys" title="Smileys">😀</button>
+                <button class="cat-btn" data-cat="animals" title="Animals">🐶</button>
+                <button class="cat-btn" data-cat="food" title="Food">🍎</button>
+                <button class="cat-btn" data-cat="activities" title="Activities">⚽</button>
+                <button class="cat-btn" data-cat="travel" title="Travel">🚗</button>
+                <button class="cat-btn" data-cat="objects" title="Objects">💡</button>
+                <button class="cat-btn" data-cat="symbols" title="Symbols">❤️</button>
+                <button class="cat-btn" data-cat="flags" title="Flags">🚩</button>
+            </div>
+
+            <div class="emoji-grid-wrap">
+                <div id="emoji-grid" class="emoji-grid">
+                    <!-- Emojis here -->
                 </div>
+            </div>
+
+            <div class="picker-footer">
+                <div id="copy-feedback" class="copy-feedback">クリックしてコピー</div>
             </div>
         </div>
     </main>
+
     <script src="../../shared/header.js" 
         data-app-name="絵文字ピッカー" 
         data-app-icon="smile" 

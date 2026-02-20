@@ -1,130 +1,131 @@
+/* Emoji Picker — MyApps Style */
+
 :root {
-    --c-accent: #fbbf24;
+    --c-accent: #fbbf24; /* Amber */
+    --c-accent-soft: rgba(251, 191, 36, 0.1);
+    --c-accent-glow: rgba(251, 191, 36, 0.4);
 }
 
-.app-container {
-    max-width: 800px;
+.app-main {
+    max-width: var(--w-page);
     margin: 0 auto;
-    padding: var(--sp-8) var(--sp-4);
-}
-
-.glass-card {
-    background: var(--c-surface-card);
-    backdrop-filter: var(--glass);
-    -webkit-backdrop-filter: var(--glass);
-    border: 1px solid var(--c-border);
-    border-radius: var(--r-xl);
-    box-shadow: var(--shadow);
     padding: var(--sp-6);
-    transition: all var(--duration-slow) var(--ease-default);
 }
 
-.picker-container {
-    height: 700px;
+.picker-card {
+    max-width: 600px;
+    margin: var(--sp-4) auto;
     display: flex;
     flex-direction: column;
-    gap: var(--sp-6);
+    height: calc(100vh - 160px);
+    overflow: hidden;
+    background: var(--c-surface-card);
 }
 
 .picker-header {
-    flex-shrink: 0;
+    padding: var(--sp-4);
+    border-bottom: 1px solid var(--c-border);
 }
 
-.search-wrapper {
-    position: relative;
+.search-box {
     display: flex;
     align-items: center;
+    gap: var(--sp-3);
+    background: var(--c-surface-solid);
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-lg);
+    padding: var(--sp-2) var(--sp-4);
 }
 
-.search-icon {
-    position: absolute;
-    left: var(--sp-4);
-    color: var(--c-text-3);
-    pointer-events: none;
+.search-box:focus-within {
+    border-color: var(--c-accent);
+    box-shadow: 0 0 10px var(--c-accent-glow);
 }
 
 #emoji-search {
     width: 100%;
-    height: 54px;
-    padding: 0 var(--sp-4) 0 48px;
-    background: var(--c-surface-solid);
-    border: 1px solid var(--c-border);
-    border-radius: var(--r-lg);
+    border: none;
+    background: transparent;
     color: var(--c-text);
-    font-size: var(--text-base);
-    transition: all var(--duration-fast);
-}
-
-#emoji-search:focus {
     outline: none;
-    border-color: var(--c-accent);
-    box-shadow: 0 0 0 4px var(--c-accent-soft);
+    font-size: var(--text-sm);
 }
 
-.grid-scroll-area {
+.category-bar {
+    display: flex;
+    padding: var(--sp-2);
+    gap: var(--sp-1);
+    background: var(--c-surface-alt);
+    border-bottom: 1px solid var(--c-border);
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.category-bar::-webkit-scrollbar {
+    display: none;
+}
+
+.cat-btn {
+    flex: 0 0 auto;
+    padding: var(--sp-2) var(--sp-3);
+    background: transparent;
+    border: none;
+    border-radius: var(--r-lg);
+    font-size: var(--text-base);
+    cursor: pointer;
+    transition: all var(--duration);
+}
+
+.cat-btn.active {
+    background: var(--c-accent-soft);
+    color: var(--c-accent);
+}
+
+.emoji-grid-wrap {
     flex: 1;
     overflow-y: auto;
-    padding: var(--sp-1);
-    margin: 0 -4px;
-}
-
-/* Custom Scrollbar */
-.grid-scroll-area::-webkit-scrollbar {
-    width: 6px;
-}
-.grid-scroll-area::-webkit-scrollbar-thumb {
-    background: var(--c-border);
-    border-radius: 3px;
-}
-.grid-scroll-area::-webkit-scrollbar-thumb:hover {
-    background: var(--c-text-3);
+    padding: var(--sp-4);
 }
 
 .emoji-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(56px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(44px, 1fr));
     gap: var(--sp-2);
 }
 
 .emoji-item {
-    aspect-ratio: 1;
+    font-size: var(--text-2xl);
+    width: 44px;
+    height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 28px;
     cursor: pointer;
     border-radius: var(--r-lg);
-    background: transparent;
-    transition: all var(--duration-fast) var(--ease-default);
+    transition: all var(--duration);
 }
 
 .emoji-item:hover {
-    background: var(--c-surface-solid);
-    transform: translateY(-4px) scale(1.1);
-    box-shadow: var(--shadow);
-}
-
-.emoji-item:active {
-    transform: scale(0.9);
+    background: var(--c-surface-hover);
+    transform: scale(1.15);
 }
 
 .picker-footer {
-    flex-shrink: 0;
+    padding: var(--sp-3);
+    border-top: 1px solid var(--c-border);
     text-align: center;
+    background: var(--c-surface-alt);
 }
 
-.status-box {
-    padding: var(--sp-4);
-    background: var(--c-surface-solid);
-    border-radius: var(--r-lg);
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--c-text-2);
-    border: 1px solid var(--c-border);
+.copy-feedback {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    color: var(--c-text-3);
+    transition: all var(--duration);
 }
 
-#copy-status.success {
-    color: var(--c-accent);
-    background: var(--c-accent-soft);
-    border-color: var(--c-accent);
+@media (max-width: 480px) {
+    .picker-card {
+        height: calc(100vh - 120px);
+    }
 }

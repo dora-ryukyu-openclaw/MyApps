@@ -15,61 +15,95 @@
 </head>
 <body>
     <main class="app-main">
-        <div class="current-time-card card">
-            <div class="current-header">
-                <span class="label">現在の Unix タイムスタンプ</span>
-                <span id="current-unit" class="unit-badge">seconds</span>
+        <div class="current-time-dashboard card glass">
+            <div class="dashboard-header">
+                <div class="header-left">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    <label>現在の Unix タイムスタンプ</label>
+                </div>
+                <div class="header-right">
+                    <span id="current-unit" class="unit-badge">seconds</span>
+                </div>
             </div>
             <div id="current-ts" class="current-ts">0000000000</div>
-            <div id="current-date" class="current-date">----/--/-- --:--:--</div>
+            <div class="current-meta">
+                <div id="current-date" class="current-date">----/--/-- --:--:--</div>
+                <div id="current-utc" class="current-utc">UTC: ----/--/-- --:--:--</div>
+            </div>
         </div>
 
         <div class="converter-grid">
             <!-- TS to Date -->
-            <div class="converter-pane card">
-                <h3 class="pane-title">Timestamp → Date</h3>
-                <div class="input-group">
-                    <input type="number" id="input-ts" placeholder="Epoch (e.g. 1700000000)">
-                    <select id="input-unit">
-                        <option value="s">Seconds (s)</option>
-                        <option value="ms">Milliseconds (ms)</option>
-                    </select>
+            <div class="converter-pane card glass">
+                <div class="pane-header">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 16 4 4 4-4"/><path d="M7 20V4"/><path d="M21 8l-4-4-4 4"/><path d="M17 4v16"/></svg>
+                    Timestamp → Date
                 </div>
-                <div class="result-box">
-                    <div class="result-item">
-                        <label>Local Time</label>
-                        <div id="res-local" class="val">----/--/-- --:--:--</div>
+                <div class="pane-content">
+                    <div class="input-row">
+                        <input type="number" id="input-ts" placeholder="1700000000" class="input-main">
+                        <select id="input-unit" class="select-unit">
+                            <option value="s">s</option>
+                            <option value="ms">ms</option>
+                        </select>
                     </div>
-                    <div class="result-item">
-                        <label>UTC / GMT</label>
-                        <div id="res-utc" class="val">----/--/-- --:--:--</div>
-                    </div>
-                    <div class="result-item">
-                        <label>Relative</label>
-                        <div id="res-rel" class="val">--</div>
+                    <div class="result-stack">
+                        <div class="result-group">
+                            <label>Local Time (JST)</label>
+                            <div class="result-row">
+                                <span id="res-local" class="result-val">----/--/-- --:--:--</span>
+                                <button class="btn-icon-only btn-copy" data-target="res-local" title="Copy">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="result-group">
+                            <label>UTC / GMT</label>
+                            <div class="result-row">
+                                <span id="res-utc" class="result-val">----/--/-- --:--:--</span>
+                                <button class="btn-icon-only btn-copy" data-target="res-utc" title="Copy">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="result-group">
+                            <label>Relative</label>
+                            <div class="result-row">
+                                <span id="res-rel" class="result-val">--</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Date to TS -->
-            <div class="converter-pane card">
-                <h3 class="pane-title">Date → Timestamp</h3>
-                <div class="input-group">
-                    <input type="datetime-local" id="input-date" step="1">
+            <div class="converter-pane card glass">
+                <div class="pane-header">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 16 4 4 4-4"/><path d="M7 20V4"/><path d="M21 8l-4-4-4 4"/><path d="M17 4v16"/></svg>
+                    Date → Timestamp
                 </div>
-                <div class="result-box">
-                    <div class="result-item">
-                        <label>Unix Timestamp (s)</label>
-                        <div class="copy-val-wrapper">
-                            <span id="res-ts-s" class="val">0</span>
-                            <button class="btn-copy" data-target="res-ts-s">Copy</button>
-                        </div>
+                <div class="pane-content">
+                    <div class="input-row">
+                        <input type="datetime-local" id="input-date" step="1" class="input-main date-input">
                     </div>
-                    <div class="result-item">
-                        <label>Unix Timestamp (ms)</label>
-                        <div class="copy-val-wrapper">
-                            <span id="res-ts-ms" class="val">0</span>
-                            <button class="btn-copy" data-target="res-ts-ms">Copy</button>
+                    <div class="result-stack">
+                        <div class="result-group">
+                            <label>Timestamp (seconds)</label>
+                            <div class="result-row">
+                                <span id="res-ts-s" class="result-val">0</span>
+                                <button class="btn-icon-only btn-copy" data-target="res-ts-s" title="Copy">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="result-group">
+                            <label>Timestamp (milliseconds)</label>
+                            <div class="result-row">
+                                <span id="res-ts-ms" class="result-val">0</span>
+                                <button class="btn-icon-only btn-copy" data-target="res-ts-ms" title="Copy">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>

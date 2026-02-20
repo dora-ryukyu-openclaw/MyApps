@@ -10,9 +10,7 @@
             const target = btn.dataset.tab;
             tabBtns.forEach(b => b.classList.toggle('active', b === btn));
             tabContents.forEach(c => c.classList.toggle('active', c.id === `tab-${target}`));
-            if (target === 'scan' && scanning) {
-                // Keep scanning
-            } else {
+            if (target !== 'scan') {
                 stopScanner();
             }
         });
@@ -23,19 +21,25 @@
     const qrResult = document.getElementById('qr-result');
     const btnDownload = document.getElementById('btn-download');
 
-    const qrcode = new QRCode(qrResult, {
-        text: qrInput.value,
-        width: 256,
-        height: 256,
-        colorDark : "#000000",
-        colorLight : "#ffffff",
-        correctLevel : QRCode.CorrectLevel.H
-    });
+    let qrcode = null;
 
-    qrInput.addEventListener('input', () => {
-        qrcode.clear();
-        qrcode.makeCode(qrInput.value || " ");
-    });
+    function generateQR() {
+        if (!qrcode) {
+            qrcode = new QRCode(qrResult, {
+                text: qrInput.value || " ",
+                width: 256,
+                height: 256,
+                colorDark : "#000000",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        } else {
+            qrcode.clear();
+            qrcode.makeCode(qrInput.value || " ");
+        }
+    }
+
+    qrInput.addEventListener('input', generateQR);
 
     btnDownload.addEventListener('click', () => {
         const img = qrResult.querySelector('img');
@@ -46,11 +50,15 @@
         a.click();
     });
 
+    // Initial QR
+    generateQR();
+
     /* --- Scan --- */
     const video = document.getElementById('scan-video');
     const canvas = document.getElementById('scan-canvas');
     const ctx = canvas.getContext('2d', { willReadFrequently: true });
     const scanPlaceholder = document.getElementById('scan-placeholder');
+    const scanOverlay = document.getElementById('scan-overlay');
     const btnStartCamera = document.getElementById('btn-start-camera');
     const btnOpenFile = document.getElementById('btn-open-file');
     const inputFile = document.getElementById('input-file');
@@ -73,11 +81,15 @@
             video.play();
             scanning = true;
             scanPlaceholder.style.display = 'none';
-            btnStartCamera.textContent = 'カメラを停止';
+            scanOverlay.style.display = 'flex';
+            btnStartCamera.innerHTML = `
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><path d="M9 9h6v6H9z"/></svg>
+                カメラ停止
+            `;
             requestAnimationFrame(tick);
         } catch (err) {
             console.error(err);
-            alert("カメラの起動に失敗しました。");
+            alert("カメラの起動に失敗しました。権限を確認してください。");
         }
     });
 
@@ -87,8 +99,12 @@
             stream.getTracks().forEach(track => track.stop());
             stream = null;
         }
-        btnStartCamera.textContent = 'カメラを起動';
+        btnStartCamera.innerHTML = `
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>
+            カメラ起動
+        `;
         scanPlaceholder.style.display = 'flex';
+        scanOverlay.style.display = 'none';
     }
 
     function tick() {
@@ -103,6 +119,8 @@
             });
             if (code) {
                 scanResult.value = code.data;
+                // Vibrate if supported
+                if ("vibrate" in navigator) navigator.vibrate(200);
                 stopScanner();
                 return;
             }
@@ -136,9 +154,9 @@
 
     btnCopy.addEventListener('click', () => {
         navigator.clipboard.writeText(scanResult.value);
-        const original = btnCopy.textContent;
+        const original = btnCopy.innerHTML;
         btnCopy.textContent = 'コピー完了！';
-        setTimeout(() => btnCopy.textContent = original, 2000);
+        setTimeout(() => btnCopy.innerHTML = original, 2000);
     });
 
 })();

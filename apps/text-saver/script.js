@@ -1,61 +1,71 @@
-(function () {
+(function() {
     'use strict';
 
-    const $ = (id) => document.getElementById(id);
-    const $textInput = $('text-input');
-    const $filename = $('filename');
-    const $encoding = $('encoding');
-    const $downloadBtn = $('download-btn');
+    const input = document.getElementById('text-input');
+    const filename = document.getElementById('filename');
+    const encoding = document.getElementById('encoding');
+    const downloadBtn = document.getElementById('download-btn');
+    
+    const statChars = document.getElementById('stat-chars');
+    const statWords = document.getElementById('stat-words');
+    const statLines = document.getElementById('stat-lines');
+    const statSize = document.getElementById('stat-size');
 
-    $downloadBtn.addEventListener('click', () => {
-        const text = $textInput.value;
-        const filename = $filename.value || 'memo';
-        const encodingType = $encoding.value;
+    function updateStats() {
+        const text = input.value;
+        const chars = text.length;
+        const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+        const lines = text ? text.split('\n').length : 0;
+        
+        // 推定サイズ (UTF-8)
+        const size = new Blob([text]).size;
+        
+        statChars.textContent = chars.toLocaleString();
+        statWords.textContent = words.toLocaleString();
+        statLines.textContent = lines.toLocaleString();
+        
+        if (size < 1024) {
+            statSize.textContent = `${size} B`;
+        } else {
+            statSize.textContent = `${(size / 1024).toFixed(1)} KB`;
+        }
+    }
+
+    input.addEventListener('input', updateStats);
+
+    downloadBtn.addEventListener('click', () => {
+        const text = input.value;
+        const enc = encoding.value;
+        const fname = (filename.value || 'memo') + '.txt';
 
         try {
-            // encoding-japanese 
             const unicodeArray = Encoding.stringToCode(text);
-            const convertedArray = Encoding.convert(unicodeArray, {
-                to: encodingType,
+            const encodedArray = Encoding.convert(unicodeArray, {
+                to: enc,
                 from: 'UNICODE'
             });
-
-            const uint8Array = new Uint8Array(convertedArray);
+            const uint8Array = new Uint8Array(encodedArray);
             
-            // MIME type determination
-            let mimeType = 'text/plain';
-            if (encodingType === 'SJIS') {
-                mimeType = 'text/plain;charset=shift_jis';
-            } else if (encodingType === 'EUCJP') {
-                mimeType = 'text/plain;charset=euc-jp';
-            } else if (encodingType === 'UTF8') {
-                mimeType = 'text/plain;charset=utf-8';
-            }
-
-            const blob = new Blob([uint8Array], { type: mimeType });
+            const blob = new Blob([uint8Array], { type: 'text/plain' });
             const url = URL.createObjectURL(blob);
-            
             const a = document.createElement('a');
             a.href = url;
-            a.download = `${filename}.txt`;
-            document.body.appendChild(a);
+            a.download = fname;
             a.click();
+            URL.revokeObjectURL(url);
             
-            // cleanup
-            setTimeout(() => {
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-            }, 0);
-
-        } catch (error) {
-            console.error('Download error:', error);
-            alert('ファイルの作成に失敗しました。詳細: ' + error.message);
+            // Visual feedback
+            const originalText = downloadBtn.innerHTML;
+            downloadBtn.textContent = '保存完了！';
+            setTimeout(() => downloadBtn.innerHTML = originalText, 2000);
+            
+        } catch (err) {
+            console.error(err);
+            alert('ファイルの生成に失敗しました。');
         }
     });
 
-    // Mobile friendliness: Textarea focus improvements
-    $textInput.addEventListener('focus', () => {
-        // scroll to ensure the textarea is visible
-    });
+    // Auto-focus editor
+    input.focus();
 
 })();

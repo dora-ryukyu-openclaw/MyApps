@@ -8,13 +8,53 @@
     max-width: var(--w-page);
     margin: 0 auto;
     padding: var(--sp-6) var(--sp-6) var(--sp-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-4);
+}
+
+.editor-header.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--sp-3) var(--sp-5);
+    background: var(--c-surface-card);
+    border-radius: var(--r-xl);
+    border: 1px solid var(--c-border);
+}
+
+.toolbar-group {
+    display: flex;
+    gap: var(--sp-3);
+    align-items: center;
+}
+
+.status-badge {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    color: var(--c-text-3);
+    padding: var(--sp-1) var(--sp-3);
+    background: var(--c-bg);
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-full);
+}
+
+.pane-label {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    color: var(--c-text-3);
+    padding: var(--sp-2) var(--sp-5);
+    background: rgba(var(--c-bg), 0.5);
+    border-bottom: 1px solid var(--c-border);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .editor-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--sp-6);
-    height: calc(100vh - 120px);
+    height: calc(100vh - 180px); /* ツールバー分を調整 */
     margin: 0 auto;
     min-height: 0;
 }

@@ -9,20 +9,25 @@ const cRaw = document.getElementById('c-raw');
 const cCss = document.getElementById('c-css');
 const cHtml = document.getElementById('c-html');
 
+const dropText = document.getElementById('drop-text');
+
 dropZone.onclick = () => fileInput.click();
 
 dropZone.ondragover = (e) => {
     e.preventDefault();
     dropZone.classList.add('dragover');
+    dropText.textContent = '放してアップロード';
 };
 
 dropZone.ondragleave = () => {
     dropZone.classList.remove('dragover');
+    dropText.textContent = '画像をドラッグ＆ドロップ、またはクリックして選択';
 };
 
 dropZone.ondrop = (e) => {
     e.preventDefault();
     dropZone.classList.remove('dragover');
+    dropText.textContent = '画像をドラッグ＆ドロップ、またはクリックして選択';
     const file = e.dataTransfer.files[0];
     if (file && file.type.startsWith('image/')) {
         processFile(file);
@@ -35,6 +40,10 @@ fileInput.onchange = (e) => {
 };
 
 function processFile(file) {
+    dropText.textContent = '処理中...';
+    dropZone.style.opacity = '0.6';
+    dropZone.style.pointerEvents = 'none';
+
     fileName.textContent = file.name;
     fileSize.textContent = (file.size / 1024).toFixed(1) + ' KB';
 
@@ -48,6 +57,9 @@ function processFile(file) {
         cHtml.value = `<img src="${dataUri}" alt="${file.name}">`;
         
         resultArea.style.display = 'grid';
+        dropText.textContent = '画像をドラッグ＆ドロップ、またはクリックして選択';
+        dropZone.style.opacity = '1';
+        dropZone.style.pointerEvents = 'auto';
     };
     reader.readAsDataURL(file);
 }

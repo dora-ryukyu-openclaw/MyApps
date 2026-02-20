@@ -1,31 +1,60 @@
-const countIn = document.getElementById('count');
-const genBtn = document.getElementById('gen-btn');
-const output = document.getElementById('output');
-const copyBtn = document.getElementById('copy-btn');
+(function() {
+    'use strict';
 
-function generateUUID() {
-    // Basic crypto based UUID v4
-    return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
-        (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-    );
-}
+    const countInput = document.getElementById('count');
+    const genBtn = document.getElementById('gen-btn');
+    const copyBtn = document.getElementById('copy-btn');
+    const uuidList = document.getElementById('uuid-list');
+    const outputRaw = document.getElementById('output-raw');
 
-function update() {
-    const count = Math.min(100, Math.max(1, parseInt(countIn.value) || 1));
-    let result = '';
-    for (let i = 0; i < count; i++) {
-        result += generateUUID() + '\n';
+    function generateUUID() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
     }
-    output.value = result.trim();
-}
 
-genBtn.onclick = update;
+    function renderUUIDs() {
+        const count = parseInt(countInput.value) || 1;
+        const uuids = Array.from({ length: count }, generateUUID);
+        
+        uuidList.innerHTML = '';
+        outputRaw.value = uuids.join('\n');
+        
+        uuids.forEach(uuid => {
+            const item = document.createElement('div');
+            item.className = 'uuid-item';
+            item.innerHTML = `
+                <span class="uuid-val">${uuid}</span>
+                <button class="btn-icon-only copy-single" data-uuid="${uuid}" title="Copy">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>
+                </button>
+            `;
+            uuidList.appendChild(item);
+        });
 
-copyBtn.onclick = () => {
-    navigator.clipboard.writeText(output.value);
-    const orig = copyBtn.textContent;
-    copyBtn.textContent = 'コピーしました！';
-    setTimeout(() => copyBtn.textContent = orig, 2000);
-};
+        // Add event listeners to single copy buttons
+        document.querySelectorAll('.copy-single').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const uuid = btn.dataset.uuid;
+                navigator.clipboard.writeText(uuid);
+                const original = btn.innerHTML;
+                btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+                setTimeout(() => btn.innerHTML = original, 2000);
+            });
+        });
+    }
 
-update();
+    genBtn.addEventListener('click', renderUUIDs);
+
+    copyBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(outputRaw.value);
+        const original = copyBtn.innerHTML;
+        copyBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+        setTimeout(() => copyBtn.innerHTML = original, 2000);
+    });
+
+    // Initial generate
+    renderUUIDs();
+
+})();

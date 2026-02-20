@@ -1,376 +1,75 @@
-# MyApps デザイン定義書
+# MyApps デザイン定義書 (Vibe Coding Edition)
 
 > **対象読者**: このプロジェクトのコードを生成する LLM（AI アシスタント）
-> **目的**: 各アプリ間の UI 一貫性を保つためのデザインガイドライン
+> **目的**: ハウルさんの「Vibe Coding」を加速させるための、直感的で美しい UI/UX の一貫性保持。
 
 ---
 
 ## 概要
 
-MyApps は個人ツール・Web アプリのコレクションで、GitHub Pages 上にデプロイされる静的サイトです。
-Hub ページ（`index.html`）から各アプリ（`apps/{id}/`）へ遷移します。
-
-すべてのアプリは独立しつつも、**共通トークン（`shared/base.css`）を読み込む**ことで視覚的な一貫性を保ちます。
+MyApps は、単なる便利ツールの集合体ではなく、**「触っていて心地よい」「開発のテンションが上がる」**プロダクトを目指します。
+ミニマリズムと Depth 2.0（奥行き）を融合させたデザイン言語を採用します。
 
 ---
 
-## デザイン哲学: Modern Glass & Depth 2.0
+## 🎨 デザイン哲学: Modern Glass & Depth 2.0
 
-**キーワード**: モダン、グラスモーフィズム、深度、立体感、プロフェッショナル、アクセシビリティ
+**キーワード**: 直感的、グラスモーフィズム、ネオンアクセント、ストイック、プロフェッショナル
 
-- コンテンツが主役。装飾はコンテンツを引き立てる手段
-- フラットではなく「奥行きのある空間」を意識する
-- **背景**: 全アプリ共通で微細なサークルグラデーションメッシュ（`shared/base.css` で適用）を使用
-- インタラクティブ要素には明確なフィードバック（ホバー、フォーカス、アクティブ）
+- **コンテンツ・ファースト**: 装飾はコンテンツ（入力・結果）を邪魔せず、むしろ引き立てる。
+- **奥行きと影**: フラットな要素を避け、`box-shadow` と `transform` を駆使して「物理的なレイヤー感」を出す。
+- **ネオンアクセント**: 重要なアクションや状態表示には、微細なグロー効果（`0 0 15px var(--c-accent-soft)`）を適用。
 
-### 2.0 の追加ルール
-- **ネオンアクセント**: 重要なボタンやフォーカス状態には、`--c-accent` を使った微細なグロー効果（`box-shadow: 0 0 15px var(--c-accent-soft)`）を推奨
-- **カードの奥行き**: ホバー時の `transform: translateY(-4px)` と `shadow-lg` の組み合わせによる、明確な浮かび上がり効果
-- **一貫した余白**: セクション間の基本パディングを `var(--sp-6)` (24px) に統一し、窮屈さを排除
+### 1. カラーパレット (Vibe Mode)
+- **アクセント**: アプリごとに固有の `--c-accent` を定義するが、基本は彩度が高すぎない洗練された色を選ぶ。
+- **背景**: 深い背景色（`#0f1115`）と、透明度の高いカード（`rgba(25, 25, 29, 0.7)`）の組み合わせを推奨。
 
----
-
-## 日本語タグ & ローカライズ
-
-ユーザー（ハウルさん）が Hub で直感的に検索・フィルタリングできるよう、以下のルールを適用する：
-
-- **`meta.json` の `tags`**: 原則として**日本語のキーワード**を使用する
-  - 例: `["Utility", "Web"]` → `["ユーティリティ", "ウェブ"]`
-  - **推奨カテゴリ**: `ツール`, `開発`, `画像`, `テキスト`, `変換`, `計算`, `セキュリティ`, `デザイン`, `エンタメ`, `生成`
-- **説明文 (`description`)**: 丁寧語（「〜です」「〜ます」）で、機能を簡潔に説明する
-- **タイトル (`name`)**: 英語表記が一般的なものは英語（例: `Base64 Converter`）で良いが、Hub での視認性を考慮し、必要に応じて日本語を併記または日本語名にする
+### 2. タイポグラフィ
+- **フォント**: `DM Sans` + `Noto Sans JP` を標準とする。
+- **モノスペース**: コードや数値入力には必ず `var(--font-mono)` を使用し、読みやすさを確保。
 
 ---
 
-## UI フィードバック & バリデーション
+## 🏷️ 日本語タグ & ローカライズ (必須ルール)
 
-- **成功・エラー状態**: 入力エラー時は `border-color: var(--c-error)`、成功時は `border-color: var(--c-success)` を使用する。
-- **トースト通知**: 短いフィードバック（「コピーしました」など）には、画面下部中央に表示されるシンプルなトーストを推奨する。
-- **空状態 (Empty State)**: データがない場合は、「データがありません」などのメッセージと適切なアイコンを表示する。
+ハウルさんからの指示に基づき、Hub ページでの検索性を最大化するため、以下のルールを**厳守**する：
 
-## 共通トークン (`shared/base.css`)
-
-各アプリは以下を HTML `<head>` に追加する:
-
-```html
-<link rel="stylesheet" href="../../shared/base.css" />
-```
-
-### トークンの使い方
-
-`shared/base.css` は **CSS カスタムプロパティ（変数）のみ** を提供する。
-各アプリはこれを自由に参照・オーバーライドできる。
-
-```css
-/* 基本的な使い方 — トークンを参照 */
-.my-element {
-  color: var(--c-text);
-  background: var(--c-surface-solid);
-  border-radius: var(--r);
-  box-shadow: var(--shadow);
-  transition: all var(--duration) var(--ease-default);
-}
-
-/* アプリ固有の色にオーバーライドも可 */
-:root {
-  --c-accent: #e11d48; /* このアプリだけローズ色に */
-}
-```
+- **`meta.json` の `tags`**: 必ず**日本語**で記述する。
+  - 推奨タグ: `ツール`, `開発`, `画像`, `テキスト`, `変換`, `計算`, `セキュリティ`, `デザイン`, `生成`
+  - 英語タグは検索の補助として含めるのは良いが、日本語タグを主軸とする。
+- **説明文 (`description`)**: 機能を一撃で理解できる簡潔な日本語にする。
 
 ---
 
-## カラーパレット
+## 🛠️ UI コンポーネントの鉄則
 
-### Light Mode
+### 1. テキストエリア・入力フォーム
+- 「文字数カウンター Pro」をベンチマークとする。
+- 入力中やフォーカス時に、枠線がネオンのように光る（`--c-accent`）フィードバックを必須とする。
+- プレースホルダーは親切かつ控えめに。
 
-| 変数                | 値                      | 用途                                |
-| ------------------- | ----------------------- | ----------------------------------- |
-| `--c-bg`            | `#f5f7fa`               | ページ背景                          |
-| `--c-surface-solid` | `#ffffff`               | カード・パネル                      |
-| `--c-text`          | `#1e293b`               | 本文テキスト (コントラスト比 12:1+) |
-| `--c-text-2`        | `#475569`               | 補助テキスト (7:1+)                 |
-| `--c-text-3`        | `#94a3b8`               | ヒント・ラベル (3:1+)               |
-| `--c-accent`        | `#3b82f6`               | アクセントカラー                    |
-| `--c-border`        | `rgba(226,232,240,0.8)` | ボーダー                            |
+### 2. 統計ダッシュボード (Stat Dashboard)
+- 数値を扱うアプリでは、画面上部に「現在の状態」をひと目で把握できる統計カード（文字数、行数、ファイルサイズ等）を配置する。
 
-### Dark Mode
-
-`[data-theme="dark"]` または `[data-theme="system"]` + `prefers-color-scheme: dark` で自動切替。
-
-| 変数                | 値        | 用途             |
-| ------------------- | --------- | ---------------- |
-| `--c-bg`            | `#0f1115` | ページ背景       |
-| `--c-surface-solid` | `#19191d` | カード・パネル   |
-| `--c-text`          | `#f1f5f9` | 本文テキスト     |
-| `--c-accent`        | `#60a5fa` | アクセントカラー |
+### 3. モバイル・レスポンシブ
+- スマホでの片手操作を想定し、重要なボタン（保存、コピー）は親指が届く範囲、または目立つ位置に配置。
+- `grid-template-columns: 1fr` への切り替えを適切に行う。
 
 ---
 
-## タイポグラフィ
-
-| 項目       | 値                         |
-| ---------- | -------------------------- |
-| フォント   | `DM Sans` + `Noto Sans JP` |
-| 本文サイズ | `15px` (`--text-base`)     |
-| 行間       | `1.6` (`--leading`)        |
-| 見出し行間 | `1.3` (`--leading-tight`)  |
-
-- **見出し**: `font-weight: 700`, `letter-spacing: -0.01em`
-- **本文**: `font-weight: 400`
-- **ラベル・キャプション**: `--text-sm` (13px), `font-weight: 500`
-
----
-
-## スペーシング
-
-4px ベースのスケール (`--sp-1` 〜 `--sp-16`):
-
-```
-4 → 8 → 12 → 16 → 20 → 24 → 32 → 40 → 48 → 64
-```
-
-- セクション間: `--sp-8` (32px) 以上
-- 要素間: `--sp-3` (12px) 〜 `--sp-4` (16px)
-- 内部パディング: `--sp-4` (16px) 〜 `--sp-6` (24px)
-
-## レイアウト
-
-- **最大幅**: `1280px` (`--w-page`) — PC閲覧時の快適性を考慮し、Hubでのカード4列表示に対応。
-- **配置**: 中央揃え (`margin: 0 auto;`)
-- **レスポンス**: モバイル時は左右パディングを確保しつつフル幅表示。
-
----
-
-## スペーシング
-
-以下は **コード規定ではなく方針** です。各アプリは状況に応じて調整してよい。
-
-### ボタン
-
-```css
-.btn {
-  padding: var(--sp-3) var(--sp-5);
-  font-family: var(--font);
-  font-weight: 600;
-  border-radius: var(--r);
-  cursor: pointer;
-  transition: all var(--duration) var(--ease-default);
-}
-.btn:focus-visible {
-  outline: 2px solid var(--c-focus-ring);
-  outline-offset: 2px;
-}
-```
-
-### カード
-
-```css
-.card {
-  background: var(--c-surface-solid);
-  border: 1px solid var(--c-border);
-  border-radius: var(--r-lg);
-  box-shadow: var(--shadow);
-  padding: var(--sp-5);
-  transition: all var(--duration-slow) var(--ease-default);
-}
-.card:hover {
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-4px); /* Depth 2.0: -2pxから-4pxに強化 */
-}
-```
-
-### 入力フィールド
-
-```css
-input,
-textarea,
-select {
-  font-family: var(--font);
-  font-size: var(--text-base);
-  color: var(--c-text);
-  background: var(--c-surface-solid);
-  border: 1px solid var(--c-border);
-  border-radius: var(--r);
-  padding: var(--sp-3) var(--sp-4);
-  outline: none;
-  transition:
-    border-color var(--duration-fast),
-    box-shadow var(--duration-fast);
-}
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible {
-  border-color: var(--c-accent);
-  box-shadow: 0 0 0 3px var(--c-accent-soft);
-}
-```
-
----
-
-## テーマ切替
-
-### 仕組み
-
-`<html>` 要素の `data-theme` 属性で管理:
-
-- `data-theme="system"` — OS設定に追従（デフォルト）
-- `data-theme="light"` — 常にライト
-- `data-theme="dark"` — 常にダーク
-
-### 各アプリの `<head>` テンプレート（必須）
-
-```html
-<link rel="icon" href="favicon.svg" type="image/svg+xml" />
-<link rel="stylesheet" href="../../shared/base.css" />
-<script>
-  document.documentElement.setAttribute(
-    "data-theme",
-    localStorage.getItem("myapps-theme") || "system",
-  );
-</script>
-```
-
-- **favicon**: アプリ固有の SVG favicon（`meta.json` の `icon` + `color` に対応する Lucide アイコンを同ディレクトリに `favicon.svg` として配置）
-- **base.css**: 共通デザイントークンを読み込み
-- **テーマ初期化**: Hub で選択したテーマを `localStorage` から読み取り適用（FOUC 防止のため CSS 直後に配置）
-
-### 実装パターン
-
-```javascript
-// テーマ読み込み
-const saved = localStorage.getItem("myapps-theme") || "system";
-document.documentElement.setAttribute("data-theme", saved);
-
-// テーマ切替
-function toggleTheme() {
-  const cur = document.documentElement.getAttribute("data-theme");
-  const isDark =
-    cur === "dark" ||
-    (cur === "system" && matchMedia("(prefers-color-scheme: dark)").matches);
-  const next = isDark ? "light" : "dark";
-  document.documentElement.setAttribute("data-theme", next);
-  localStorage.setItem("myapps-theme", next);
-}
-```
-
----
-
-## 共通ヘッダー (`shared/header.css` + `shared/header.js`)
-
-各アプリには Hub と視覚的に統一されたヘッダーが自動注入される。
-
-### 使い方
-
-```html
-<link rel="stylesheet" href="../../shared/header.css" />
-<!-- body末尾で読み込む -->
-<script
-  src="../../shared/header.js"
-  data-app-name="アプリ名"
-  data-app-icon="lucide-icon-name"
-  data-app-color="#hex"
-></script>
-```
-
-| 属性             | 必須 | 説明                                      |
-| ---------------- | ---- | ----------------------------------------- |
-| `data-app-name`  | ❌   | アプリ名（省略時 `<title>` から自動取得） |
-| `data-app-icon`  | ❌   | Lucide アイコン名（省略時 `zap`）         |
-| `data-app-color` | ❌   | テーマカラー HEX（省略時 `--c-accent`）   |
-
-### ヘッダーの構成
-
-```
-[Hub ロゴ + MyApps] | [アプリアイコン + アプリ名]     [🌙 テーマ切替]
-```
-
-- **モバイル (≤480px)**: 「MyApps」テキストが非表示になりアイコンだけ残る
-- **テーマ切替**: Hub と同じ `localStorage` キーを使用し、全ページで同期
-
----
-
-## ローディング画面と重いリソースの扱い (`shared/loader.css`)
-
-初期ロードに時間がかかる、または大容量のダウンロード（50MB以上目安）が必要なアプリは、**統一されたローディング画面と同意フロー**を実装する。
-
-### 1. 同意画面 (Consent State)
-
-ユーザーの予期しない大量通信を防ぐため、大容量モデルのダウンロード前には必ず同意を求める。
-
-- **必須要素**: アプリ名、アイコン、ダウンロードサイズ（概算）、開始ボタン
-- **ボタン**: 「モデルをダウンロードして開始」など、アクションを明示する
-
-### 2. ローディング画面 (Loading State)
-
-同意後はプログレスバー付きのローディング画面を表示する。
-
-- **必須要素**: 進行状況バー、ステータス テキスト（「準備中...」「XX MB / YY MB」など）
-
-### 実装方法
-
-HTML に `shared/loader.css` を読み込み、以下の構造を配置する:
-
-```html
-<link rel="stylesheet" href="../../shared/loader.css" />
-
-<div id="loading-screen" class="loading-screen">
-  <div class="loading-content">
-    <!-- 同意画面 -->
-    <div id="consent-state">
-      <div class="loading-icon"><!-- SVG goes here --></div>
-      <h2 class="loading-title">App Name</h2>
-      <p class="loading-subtitle">
-        初回利用時はモデル（約XXMB）のダウンロードが必要です。
-      </p>
-      <button id="consent-btn" class="btn-consent">開始</button>
-    </div>
-
-    <!-- ローディング中画面 -->
-    <div id="loading-state" style="display: none;">
-      <div class="loading-icon"><!-- SVG goes here --></div>
-      <h2 class="loading-title">App Name</h2>
-      <p class="loading-subtitle" id="status-text">準備中...</p>
-      <div class="progress-track">
-        <div class="progress-fill" id="progress-bar"></div>
-      </div>
-    </div>
-  </div>
-</div>
-```
-
-JS で制御:
-
-1. 初期状態: `#consent-state` 表示, `#loading-state` 非表示
-2. ボタンクリック:
-   - `#consent-state` を非表示
-   - `#loading-state` を表示
-   - ダウンロード処理開始
-3. 完了時:
-   - `#loading-screen` に `.fade-out` クラスを追加
-   - 完了後に `display: none`
-
-## Do / Don't
+## ✅ Do / Don't (Vibe Check)
 
 ### ✅ Do
-
-- `shared/base.css` を読み込む
-- CSS 変数（`var(--c-*)`）でテーマ対応する
-- `focus-visible` で全インタラクティブ要素にフォーカス表示を付ける
-- 装飾 SVG に `aria-hidden="true"` を付ける
-- `cursor: pointer` をクリック可能要素に付ける
-- `prefers-reduced-motion` を尊重する
-- ライト・ダーク両方で見た目を確認する
+- `shared/base.css` と `shared/header.js` を必ず読み込む。
+- ボタンのホバー時に `transform: translateY(-2px)` を入れる。
+- コピー完了時などに、ボタンのテキストや色を一時的に変えてフィードバックする。
+- **favicon.svg** を各アプリのディレクトリに配置し、テーマカラーに合わせる。
 
 ### ❌ Don't
-
-- **Inter / Roboto / Arial をフォントに使わない**（DM Sans + Noto Sans JP を使う）
-- **紫グラデーション一色のデザインにしない**（AIっぽく見える）
-- **全要素を中央揃えにしない**
-- **過度に均一な角丸にしない**（要素の役割に応じて `--r-sm` 〜 `--r-xl` を使い分ける）
-- **emoji をアイコンとして使わない**（SVG アイコンを使う。Lucide Icons 推奨）
-- **`transition: all` を安易に使わない**（変化するプロパティのみ指定推奨）
-- **base.css のトークン定義を直接編集しない**（オーバーライドで対応）
-- **アイコンの登録漏れに注意**（新しい Lucide アイコンを使う場合、**`hub/script.js` の `ICON` と `shared/header.js` の `ICONS` の両方**に SVG パスを追加すること。片方だけだと Hub カードかヘッダーのどちらかがフォールバックアイコン `zap` になる）
+- **ダサいグラデーションを使わない**。
+- **デフォルトのスクロールバーを放置しない**。
+- **エラーメッセージを無機質な alert() だけで済ませない**（可能な限り UI 内に表示）。
+- **タグを英語のままにしない。**
 
 ---
 
@@ -379,24 +78,14 @@ JS で制御:
 ```
 MyApps/
 ├── index.html                  # Hub ページ
-├── hub/
-│   ├── style.css               # Hub 固有スタイル
-│   └── script.js
-├── shared/
-│   ├── base.css                # 全アプリ共通トークン
-│   ├── header.css              # 共通ヘッダースタイル
-│   ├── header.js               # ヘッダー動的注入 + テーマ切替
-│   └── loader.css              # ローディング画面スタイル
+├── shared/                     # 共通アセット
 ├── apps/
-│   ├── my-app/
-│   │   ├── index.html          # base.css を読み込む
-│   │   ├── favicon.svg         # アプリ固有 favicon
-│   │   ├── style.css           # アプリ固有スタイル
+│   ├── [app-id]/
+│   │   ├── index.html
+│   │   ├── style.css
 │   │   ├── script.js
-│   │   └── meta.json           # Hub に表示するメタ情報
-│   └── ...
-├── registry.json
-├── DESIGN.md                   # ← この文書
-└── .github/workflows/
-    └── deploy.yml              # registry.json 自動生成を含む
+│   │   ├── meta.json           # 日本語タグを忘れずに！
+│   │   └── favicon.svg
+├── registry.json               # デプロイ時に自動生成
+└── DESIGN.md                   # ← この文書
 ```
