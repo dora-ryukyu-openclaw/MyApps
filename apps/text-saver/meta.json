@@ -4,5 +4,9 @@
   "description": "入力テキストを任意のエンコードでファイル保存。スマホでのファイル作成に最適。",
   "icon": "file-down",
   "color": "#10b981",
-  "tags": ["Utility", "Text", "Mobile"]
+  "tags": [
+    "ツール",
+    "テキスト",
+    "開発"
+  ]
 }

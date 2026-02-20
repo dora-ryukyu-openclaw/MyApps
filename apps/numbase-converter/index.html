@@ -8,10 +8,13 @@
     <link rel="stylesheet" href="../../shared/base.css">
     <link rel="stylesheet" href="../../shared/header.css">
     <link rel="stylesheet" href="style.css">
+    <script>
+        document.documentElement.setAttribute('data-theme', localStorage.getItem('myapps-theme') || 'system');
+    </script>
 </head>
 <body>
     <main class="app-main">
-        <div class="base-container card">
+        <div class="base-container card glass">
             <div class="input-row">
                 <div class="input-group">
                     <label>Binary (2進数)</label>

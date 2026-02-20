@@ -1,127 +1,156 @@
+/* --- App Specific Overrides --- */
 :root {
-    --c-app: #06b6d4;
-    --c-app-soft: rgba(6, 182, 212, 0.1);
-    --c-app-glow: rgba(6, 182, 212, 0.4);
+    --c-accent: #06b6d4;
+    --c-accent-glow: rgba(6, 182, 212, 0.4);
+    --c-accent-soft: rgba(6, 182, 212, 0.1);
 }
 
 .app-main {
-    max-width: 800px;
+    max-width: var(--w-page);
     margin: 0 auto;
-    padding: var(--sp-8) var(--sp-4);
+    padding: var(--sp-6);
     display: flex;
     flex-direction: column;
-    gap: var(--sp-4);
+    gap: var(--sp-6);
+    min-height: calc(100vh - 64px);
 }
 
-/* --- Current Time --- */
+.card {
+    background: var(--c-surface-card);
+    backdrop-filter: var(--glass);
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-xl);
+    box-shadow: var(--shadow);
+    transition: transform var(--duration) var(--ease-default), 
+                box-shadow var(--duration) var(--ease-default);
+}
+
+.card:hover {
+    transform: translateY(-4px); /* Depth 2.0 */
+    box-shadow: var(--shadow-lg);
+}
+
+/* --- Current Time Card --- */
 .current-time-card {
-    background: var(--c-surface-solid);
-    padding: var(--sp-6) !important;
+    padding: var(--sp-8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    border-bottom: 4px solid var(--c-app);
+    background-image: radial-gradient(at 0% 0%, var(--c-accent-soft) 0px, transparent 50%);
 }
 
 .current-header {
     display: flex;
-    justify-content: center;
     align-items: center;
     gap: var(--sp-2);
-    margin-bottom: var(--sp-3);
+    margin-bottom: var(--sp-2);
 }
 
-.label {
-    font-size: var(--text-xs);
+.current-header .label {
+    font-size: var(--text-sm);
     font-weight: 700;
-    color: var(--c-text-3);
+    color: var(--c-text-2);
     text-transform: uppercase;
+    letter-spacing: 0.1em;
 }
 
 .unit-badge {
-    font-size: 10px;
-    background: var(--c-app-soft);
-    color: var(--c-app);
     padding: 2px 8px;
-    border-radius: var(--r-full);
+    background: var(--c-accent-soft);
+    color: var(--c-accent);
+    font-size: 10px;
     font-weight: 700;
+    border-radius: var(--r-full);
+    border: 1px solid var(--c-accent);
 }
 
 .current-ts {
     font-family: var(--font-mono);
-    font-size: var(--text-4xl);
-    font-weight: 800;
-    color: var(--c-text);
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    color: var(--c-accent);
+    letter-spacing: 0.05em;
     margin-bottom: var(--sp-1);
-    letter-spacing: -0.02em;
+    text-shadow: 0 0 15px var(--c-accent-glow);
 }
 
 .current-date {
-    font-size: var(--text-sm);
+    font-family: var(--font-mono);
+    font-size: var(--text-base);
     color: var(--c-text-2);
-    font-weight: 500;
 }
 
-/* --- Grid --- */
+/* --- Converter Grid --- */
 .converter-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--sp-4);
+    gap: var(--sp-6);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 860px) {
     .converter-grid {
         grid-template-columns: 1fr;
     }
 }
 
+.converter-pane {
+    padding: var(--sp-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-5);
+}
+
 .pane-title {
-    font-size: var(--text-xs);
+    font-size: var(--text-lg);
     font-weight: 700;
-    color: var(--c-text-3);
-    text-transform: uppercase;
-    margin-bottom: var(--sp-4);
+    margin: 0;
 }
 
 .input-group {
     display: flex;
     gap: var(--sp-2);
-    margin-bottom: var(--sp-6);
 }
 
-input, select {
-    background: var(--c-bg);
+input[type="number"], 
+input[type="datetime-local"], 
+select {
+    flex: 1;
+    padding: var(--sp-3) var(--sp-4);
+    background: var(--c-surface-solid);
     border: 1px solid var(--c-border);
     border-radius: var(--r);
-    padding: var(--sp-2) var(--sp-3);
     color: var(--c-text);
-    font-family: var(--font-mono);
-    font-size: var(--text-sm);
-    outline: none;
-    width: 100%;
+    font-family: var(--font);
+    font-size: var(--text-base);
+    transition: all var(--duration);
 }
 
 input:focus, select:focus {
-    border-color: var(--c-app);
+    outline: none;
+    border-color: var(--c-accent);
+    box-shadow: 0 0 0 3px var(--c-accent-soft);
 }
 
-#input-unit {
-    width: 100px;
-}
-
-/* --- Result --- */
+/* Result Box */
 .result-box {
     display: flex;
     flex-direction: column;
     gap: var(--sp-4);
+    background: var(--c-surface-alt);
+    padding: var(--sp-4);
+    border-radius: var(--r-lg);
+    border: 1px solid var(--c-border);
 }
 
 .result-item {
     display: flex;
     flex-direction: column;
-    gap: var(--sp-1);
+    gap: 4px;
 }
 
 .result-item label {
-    font-size: 10px;
+    font-size: var(--text-xs);
     font-weight: 700;
     color: var(--c-text-3);
     text-transform: uppercase;
@@ -129,29 +158,38 @@ input:focus, select:focus {
 
 .val {
     font-family: var(--font-mono);
-    font-size: var(--text-sm);
+    font-size: var(--text-base);
     color: var(--c-text);
-    font-weight: 600;
+    word-break: break-all;
 }
 
 .copy-val-wrapper {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-2);
 }
 
 .btn-copy {
-    padding: var(--sp-1) var(--sp-3);
-    font-size: 10px;
-    font-weight: 700;
-    border-radius: var(--r-sm);
+    padding: 4px 10px;
+    font-size: var(--text-xs);
+    font-weight: 600;
     background: var(--c-surface-solid);
-    border: 1px solid var(--c-border);
-    cursor: pointer;
     color: var(--c-text-2);
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-sm);
+    cursor: pointer;
+    transition: all var(--duration);
 }
 
 .btn-copy:hover {
-    border-color: var(--c-app);
-    color: var(--c-app);
+    background: var(--c-accent-soft);
+    color: var(--c-accent);
+    border-color: var(--c-accent);
+}
+
+.btn-copy.copied {
+    background: var(--c-success);
+    color: white;
+    border-color: var(--c-success);
 }

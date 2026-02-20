@@ -4,41 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CSSフィルタースタジオ — MyApps</title>
+    <meta name="description" content="画像にCSSフィルターを適用し、リアルタイムで効果を確認。コードを即座に生成。">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="../../shared/base.css">
     <link rel="stylesheet" href="../../shared/header.css">
     <link rel="stylesheet" href="style.css">
+    <script>
+        document.documentElement.setAttribute('data-theme', localStorage.getItem('myapps-theme') || 'system');
+    </script>
 </head>
 <body>
     <main class="app-main">
-        <div class="studio-grid">
-            <div class="preview-pane card glass">
-                <div class="img-container">
-                    <img id="preview-img" src="https://picsum.photos/seed/filter/800/600" alt="Preview">
-                </div>
-                <div class="preview-actions">
-                    <button id="upload-btn" class="btn btn-secondary">画像をアップロード</button>
-                    <input type="file" id="file-input" accept="image/*" hidden>
-                    <button id="reset-btn" class="btn btn-soft">リセット</button>
-                </div>
-            </div>
-
-            <div class="controls-pane card glass">
-                <div class="control-section">
-                    <h3>フィルター設定</h3>
-                    <div id="sliders">
-                        <!-- Filter Sliders -->
+        <div class="app-container">
+            <div class="studio-layout">
+                <!-- 左側: プレビューエリア -->
+                <div class="glass-card preview-card">
+                    <div class="img-frame">
+                        <img id="preview-img" src="https://picsum.photos/seed/filter/800/600" alt="Preview">
+                    </div>
+                    <div class="preview-actions">
+                        <button id="upload-btn" class="btn btn-secondary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+                            画像をアップロード
+                        </button>
+                        <input type="file" id="file-input" accept="image/*" hidden>
+                        <button id="reset-btn" class="btn btn-soft">リセット</button>
                     </div>
                 </div>
 
-                <div class="code-output card">
-                    <pre><code id="css-code">filter: none;</code></pre>
-                    <button id="copy-btn" class="btn btn-primary btn-sm">コピー</button>
+                <!-- 右側: コントロールパネル -->
+                <div class="sidebar">
+                    <div class="glass-card controls-card">
+                        <h3 class="sidebar-title">フィルター設定</h3>
+                        <div id="sliders" class="sliders-list">
+                            <!-- Sliders injected by script.js -->
+                        </div>
+                    </div>
+
+                    <div class="glass-card code-card">
+                        <div class="code-header">
+                            <span class="code-label">CSS Filter Code</span>
+                            <button id="copy-btn" class="btn btn-primary btn-sm">コピー</button>
+                        </div>
+                        <div class="code-area">
+                            <pre><code id="css-code">filter: none;</code></pre>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
-    <script src="../../shared/header.js" data-app-name="CSSフィルタースタジオ" data-app-icon="wand-2" data-app-color="#8b5cf6"></script>
+
+    <script src="../../shared/header.js" 
+        data-app-name="CSSフィルタースタジオ" 
+        data-app-icon="wand-2" 
+        data-app-color="#8b5cf6"></script>
     <script src="script.js"></script>
 </body>
 </html>

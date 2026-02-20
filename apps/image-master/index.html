@@ -16,59 +16,66 @@
 </head>
 <body>
     <main class="app-main">
-        <div class="toolbar">
-            <div class="toolbar-group">
-                <input type="file" id="input-image" accept="image/*" style="display: none;">
-                <button id="btn-open" class="btn btn-primary">画像を開く</button>
-            </div>
-            <div class="toolbar-group">
-                <button id="btn-save" class="btn btn-primary" disabled>保存する</button>
-            </div>
-        </div>
-
-        <div class="editor-layout">
-            <div class="canvas-area card">
-                <div id="image-container">
-                    <img id="preview-image" src="" alt="">
-                    <div id="drop-zone" class="drop-zone">
-                        <span>画像をここにドラッグ＆ドロップ、または「画像を開く」をクリック</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="sidebar card">
-                <div class="sidebar-section">
-                    <h3 class="sidebar-title">クロップ比率</h3>
-                    <div class="ratio-grid">
-                        <button class="btn-ratio active" data-ratio="NaN">自由</button>
-                        <button class="btn-ratio" data-ratio="1">1:1</button>
-                        <button class="btn-ratio" data-ratio="1.3333333333333333">4:3</button>
-                        <button class="btn-ratio" data-ratio="1.7777777777777777">16:9</button>
-                    </div>
-                </div>
-
-                <div class="sidebar-section">
-                    <h3 class="sidebar-title">サイズ変更 (出力)</h3>
-                    <div class="input-grid">
-                        <div class="input-wrapper">
-                            <label for="out-width">幅 (px)</label>
-                            <input type="number" id="out-width" placeholder="Auto">
-                        </div>
-                        <div class="input-wrapper">
-                            <label for="out-height">高さ (px)</label>
-                            <input type="number" id="out-height" placeholder="Auto">
+        <div class="app-container">
+            <div class="editor-layout">
+                <!-- 左側: プレビューエリア -->
+                <div class="glass-card preview-card">
+                    <div id="image-container" class="image-box">
+                        <img id="preview-image" src="" alt="">
+                        <div id="drop-zone" class="drop-zone">
+                            <div class="drop-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-upload-cloud"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m16 16-4-4-4 4"/></svg>
+                            </div>
+                            <span>画像をここにドラッグ＆ドロップ</span>
+                            <p class="drop-sub">または「画像を開く」をクリック</p>
+                            <input type="file" id="input-image" accept="image/*" style="display: none;">
+                            <button id="btn-open" class="btn btn-primary">画像を開く</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="sidebar-section">
-                    <h3 class="sidebar-title">保存形式</h3>
-                    <div class="input-wrapper">
-                        <select id="out-format">
-                            <option value="image/png">PNG</option>
-                            <option value="image/jpeg">JPEG (High Quality)</option>
-                            <option value="image/webp">WebP</option>
-                        </select>
+                <!-- 右側: コントロールパネル -->
+                <div class="sidebar">
+                    <div class="glass-card controls-card">
+                        <div class="sidebar-section">
+                            <h3 class="section-title">クロップ比率</h3>
+                            <div class="ratio-grid">
+                                <button class="btn-ratio active" data-ratio="NaN">自由</button>
+                                <button class="btn-ratio" data-ratio="1">1:1</button>
+                                <button class="btn-ratio" data-ratio="1.3333333333333333">4:3</button>
+                                <button class="btn-ratio" data-ratio="1.7777777777777777">16:9</button>
+                            </div>
+                        </div>
+
+                        <div class="sidebar-section">
+                            <h3 class="section-title">出力サイズ</h3>
+                            <div class="input-grid">
+                                <div class="field-group">
+                                    <label for="out-width">幅 (px)</label>
+                                    <input type="number" id="out-width" placeholder="Auto">
+                                </div>
+                                <div class="field-group">
+                                    <label for="out-height">高さ (px)</label>
+                                    <input type="number" id="out-height" placeholder="Auto">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sidebar-section">
+                            <h3 class="section-title">保存オプション</h3>
+                            <div class="field-group">
+                                <label for="out-format">形式</label>
+                                <select id="out-format">
+                                    <option value="image/png">PNG</option>
+                                    <option value="image/jpeg">JPEG (High Quality)</option>
+                                    <option value="image/webp">WebP</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="action-section">
+                            <button id="btn-save" class="btn btn-primary btn-save-main" disabled>保存する</button>
+                        </div>
                     </div>
                 </div>
             </div>

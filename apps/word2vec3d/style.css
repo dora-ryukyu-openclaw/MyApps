@@ -1,9 +1,11 @@
 /* ==========================================================
-   Word2Vec3D — アプリ固有スタイル
+   Word2Vec3D — アプリ固有スタイル (Modern Glass & Depth 2.0)
    ========================================================== */
 
 :root {
     --c-accent: #8b5cf6;
+    --c-accent-glow: rgba(139, 92, 246, 0.4);
+    --c-accent-soft: rgba(139, 92, 246, 0.1);
 }
 
 /* --- レイアウト --- */
@@ -12,6 +14,7 @@
     width: 100%;
     height: calc(100vh - 48px);
     overflow: hidden;
+    background: var(--c-bg);
 }
 
 #canvas-container {
@@ -23,29 +26,31 @@
     display: block;
 }
 
-/* --- ローディング画面 --- */
-/* shared/loader.css を使用 */
+/* --- パネル共通スタイル --- */
+.glass-panel {
+    background: var(--c-surface-card);
+    backdrop-filter: var(--glass);
+    -webkit-backdrop-filter: var(--glass);
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-xl);
+    box-shadow: var(--shadow);
+    transition: transform var(--duration) var(--ease-default), 
+                box-shadow var(--duration) var(--ease-default),
+                opacity var(--duration) var(--ease-default);
+    z-index: 10;
+}
 
+.glass-panel:hover {
+    transform: translateY(-4px); /* Depth 2.0 */
+    box-shadow: var(--shadow-lg);
+}
 
 /* --- 入力パネル --- */
 .input-panel {
     position: absolute;
-    bottom: var(--sp-5);
-    left: var(--sp-5);
-    width: 320px;
-    background: var(--c-surface-glass, rgba(255, 255, 255, 0.85));
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--c-border);
-    border-radius: var(--r-lg);
-    box-shadow: var(--shadow-lg);
-    z-index: 10;
-    overflow: hidden;
-    transition: transform 0.3s var(--ease-default), opacity 0.3s var(--ease-default);
-}
-
-[data-theme="dark"] .input-panel {
-    background: rgba(25, 25, 29, 0.88);
+    bottom: var(--sp-6);
+    left: var(--sp-6);
+    width: 340px;
 }
 
 .input-panel.collapsed .input-panel-body {
@@ -66,24 +71,26 @@
 }
 
 .input-panel-title {
-    font-size: var(--text-sm);
-    font-weight: 600;
-    color: var(--c-text);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    color: var(--c-text-2);
     margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .panel-toggle {
     background: none;
     border: none;
     color: var(--c-text-3);
-    padding: 2px;
+    padding: 4px;
     cursor: pointer;
     border-radius: var(--r-sm);
     transition: color 0.2s;
 }
 
 .panel-toggle:hover {
-    color: var(--c-text);
+    color: var(--c-accent);
 }
 
 .panel-toggle svg {
@@ -110,71 +117,63 @@
     border-radius: var(--r);
     padding: var(--sp-2) var(--sp-3);
     outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    transition: border-color var(--duration), box-shadow var(--duration);
 }
 
-.word-form input:focus-visible {
+.word-form input:focus {
     border-color: var(--c-accent);
-    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+    box-shadow: 0 0 0 3px var(--c-accent-soft);
 }
 
 .btn-primary {
     display: inline-flex;
     align-items: center;
     gap: var(--sp-1);
-    padding: var(--sp-2) var(--sp-3);
+    padding: var(--sp-2) var(--sp-4);
     font-family: var(--font);
     font-size: var(--text-sm);
-    font-weight: 600;
+    font-weight: 700;
     color: #fff;
     background: var(--c-accent);
     border: none;
     border-radius: var(--r);
     cursor: pointer;
     white-space: nowrap;
-    transition: background-color 0.2s, transform 0.1s;
+    transition: all var(--duration) var(--ease-default);
+    box-shadow: 0 0 10px var(--c-accent-glow);
 }
 
 .btn-primary:hover {
-    background: #7c3aed;
+    background: var(--c-accent-hover);
+    box-shadow: 0 0 15px var(--c-accent-glow);
+    transform: scale(1.05);
 }
 
 .btn-primary:active {
-    transform: scale(0.97);
-}
-
-.btn-primary:focus-visible {
-    outline: 2px solid var(--c-accent);
-    outline-offset: 2px;
-}
-
-.btn-primary:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+    transform: scale(0.95);
 }
 
 .added-words {
     display: flex;
     flex-wrap: wrap;
     gap: var(--sp-2);
-    margin-top: var(--sp-3);
-}
-
-.added-words:empty {
-    margin-top: 0;
+    margin-top: var(--sp-4);
+    max-height: 120px;
+    overflow-y: auto;
 }
 
 .added-word-tag {
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    padding: 2px 8px;
-    font-size: 12px;
-    font-weight: 500;
+    padding: 2px 10px;
+    font-size: 11px;
+    font-weight: 700;
     color: #fff;
     background: var(--c-accent);
-    border-radius: 999px;
+    border-radius: var(--r-full);
     animation: pop-in 0.25s var(--ease-default);
+    box-shadow: 0 2px 5px var(--c-accent-glow);
 }
 
 @keyframes pop-in {
@@ -185,21 +184,9 @@
 /* --- 凡例パネル --- */
 .legend-panel {
     position: absolute;
-    top: var(--sp-5);
-    right: var(--sp-5);
+    top: var(--sp-6);
+    right: var(--sp-6);
     width: 200px;
-    background: var(--c-surface-glass, rgba(255, 255, 255, 0.85));
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--c-border);
-    border-radius: var(--r-lg);
-    box-shadow: var(--shadow);
-    z-index: 10;
-    overflow: hidden;
-}
-
-[data-theme="dark"] .legend-panel {
-    background: rgba(25, 25, 29, 0.88);
 }
 
 .legend-panel.collapsed .legend-body {
@@ -220,28 +207,26 @@
 }
 
 .legend-title {
-    font-size: var(--text-sm);
-    font-weight: 600;
-    color: var(--c-text);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    color: var(--c-text-2);
     margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .legend-toggle {
     background: none;
     border: none;
     color: var(--c-text-3);
-    padding: 2px;
+    padding: 4px;
     cursor: pointer;
     border-radius: var(--r-sm);
     transition: color 0.2s;
 }
 
 .legend-toggle:hover {
-    color: var(--c-text);
-}
-
-.legend-toggle svg {
-    transition: transform 0.3s var(--ease-default);
+    color: var(--c-accent);
 }
 
 .legend-body {
@@ -261,11 +246,12 @@
     color: var(--c-text-2);
     cursor: pointer;
     padding: 2px 0;
-    transition: color 0.15s;
+    transition: all 0.15s;
 }
 
 .legend-item:hover {
-    color: var(--c-text);
+    color: var(--c-accent);
+    transform: translateX(4px);
 }
 
 .legend-item.dimmed {
@@ -277,25 +263,28 @@
     height: 10px;
     border-radius: 50%;
     flex-shrink: 0;
+    box-shadow: 0 0 8px rgba(0,0,0,0.2);
 }
 
 /* --- ツールチップ --- */
 .tooltip {
     position: fixed;
-    padding: 4px 10px;
+    padding: 6px 12px;
     font-size: 13px;
-    font-weight: 500;
+    font-weight: 700;
     font-family: var(--font);
     color: #fff;
-    background: rgba(30, 30, 40, 0.9);
+    background: rgba(30, 30, 40, 0.85);
     backdrop-filter: blur(8px);
-    border-radius: var(--r-sm);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--r);
     pointer-events: none;
     opacity: 0;
     transform: translateY(4px);
     transition: opacity 0.15s, transform 0.15s;
     z-index: 100;
     white-space: nowrap;
+    box-shadow: var(--shadow-lg);
 }
 
 .tooltip.visible {
@@ -306,29 +295,26 @@
 /* --- 情報バッジ --- */
 .info-badge {
     position: absolute;
-    bottom: var(--sp-5);
-    right: var(--sp-5);
+    bottom: var(--sp-6);
+    right: var(--sp-6);
     display: inline-flex;
     align-items: center;
-    gap: var(--sp-2);
-    padding: var(--sp-2) var(--sp-3);
-    font-size: var(--text-sm);
-    color: var(--c-text-3);
-    background: var(--c-surface-glass, rgba(255, 255, 255, 0.7));
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    gap: var(--sp-3);
+    padding: var(--sp-2) var(--sp-4);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: var(--c-text-2);
+    background: var(--c-surface-card);
+    backdrop-filter: var(--glass);
     border: 1px solid var(--c-border);
-    border-radius: var(--r);
+    border-radius: var(--r-full);
     z-index: 10;
+    box-shadow: var(--shadow);
     animation: fade-in-up 0.6s 0.5s both;
 }
 
-[data-theme="dark"] .info-badge {
-    background: rgba(25, 25, 29, 0.75);
-}
-
 @keyframes fade-in-up {
-    from { opacity: 0; transform: translateY(8px); }
+    from { opacity: 0; transform: translateY(12px); }
     to   { opacity: 1; transform: translateY(0); }
 }
 
@@ -336,27 +322,24 @@
 .btn-about {
     display: inline-flex;
     align-items: center;
-    gap: 4px;
-    padding: 4px 10px;
+    gap: 6px;
+    padding: 4px 12px;
     font-family: var(--font);
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 11px;
+    font-weight: 700;
     color: var(--c-accent);
-    background: none;
+    background: var(--c-accent-soft);
     border: 1px solid var(--c-accent);
-    border-radius: var(--r);
+    border-radius: var(--r-full);
     cursor: pointer;
-    transition: background-color 0.2s, color 0.2s;
+    transition: all 0.2s;
+    text-transform: uppercase;
 }
 
 .btn-about:hover {
     background: var(--c-accent);
     color: #fff;
-}
-
-.btn-about:focus-visible {
-    outline: 2px solid var(--c-accent);
-    outline-offset: 2px;
+    box-shadow: 0 0 10px var(--c-accent-glow);
 }
 
 /* --- About パネル --- */
@@ -365,84 +348,82 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 480px;
+    width: 520px;
     max-width: calc(100vw - 32px);
     max-height: calc(100vh - 120px);
     overflow-y: auto;
-    background: var(--c-surface-glass, rgba(255, 255, 255, 0.92));
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: var(--c-surface-card);
+    backdrop-filter: blur(24px);
     border: 1px solid var(--c-border);
-    border-radius: var(--r-lg);
-    box-shadow: var(--shadow-lg);
+    border-radius: var(--r-xl);
+    box-shadow: var(--shadow-xl);
     z-index: 50;
-    animation: fade-in-up 0.3s var(--ease-default);
+    animation: zoom-in 0.3s var(--ease-default);
 }
 
-[data-theme="dark"] .about-panel {
-    background: rgba(25, 25, 29, 0.95);
+@keyframes zoom-in {
+    from { opacity: 0; transform: translate(-50%, -45%) scale(0.95); }
+    to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 }
 
 .about-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: var(--sp-4) var(--sp-5);
+    padding: var(--sp-5) var(--sp-6);
     border-bottom: 1px solid var(--c-border);
 }
 
 .about-title {
-    font-size: 16px;
-    font-weight: 700;
+    font-size: var(--text-lg);
+    font-weight: 800;
     color: var(--c-text);
     margin: 0;
 }
 
 .about-close {
-    background: none;
+    background: var(--c-surface-alt);
     border: none;
     color: var(--c-text-3);
-    padding: 4px;
+    padding: 6px;
     cursor: pointer;
-    border-radius: var(--r-sm);
-    transition: color 0.2s;
+    border-radius: var(--r-full);
+    transition: all 0.2s;
 }
 
 .about-close:hover {
-    color: var(--c-text);
+    background: var(--c-error);
+    color: white;
 }
 
 .about-body {
-    padding: var(--sp-4) var(--sp-5);
+    padding: var(--sp-6);
 }
 
 .about-section {
-    margin-bottom: var(--sp-5);
-}
-
-.about-section:last-child {
-    margin-bottom: 0;
+    margin-bottom: var(--sp-6);
 }
 
 .about-section h4 {
-    font-size: var(--text-sm);
-    font-weight: 700;
+    font-size: var(--text-xs);
+    font-weight: 800;
     color: var(--c-accent);
     margin: 0 0 var(--sp-2);
     text-transform: uppercase;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.1em;
 }
 
 .about-section p {
     font-size: var(--text-sm);
     color: var(--c-text-2);
     margin: 0;
-    line-height: 1.7;
+    line-height: 1.8;
 }
 
 .about-section a {
     color: var(--c-accent);
     text-decoration: none;
+    font-weight: 600;
 }
 
 .about-section a:hover {
@@ -450,61 +431,50 @@
 }
 
 .about-steps {
-    margin: 0;
+    margin: var(--sp-2) 0 0;
     padding-left: 20px;
     font-size: var(--text-sm);
     color: var(--c-text-2);
-    line-height: 1.7;
-}
-
-.about-steps li {
-    margin-bottom: var(--sp-2);
-}
-
-.about-steps li:last-child {
-    margin-bottom: 0;
+    line-height: 1.8;
 }
 
 .about-tech {
-    padding-top: var(--sp-4);
+    padding-top: var(--sp-6);
     border-top: 1px solid var(--c-border);
 }
 
 /* --- モバイル対応 --- */
 @media (max-width: 640px) {
     .input-panel {
-        left: var(--sp-3);
-        right: var(--sp-3);
-        bottom: var(--sp-3);
+        left: var(--sp-4);
+        right: var(--sp-4);
+        bottom: var(--sp-4);
         width: auto;
     }
 
     .legend-panel {
-        top: var(--sp-3);
-        right: var(--sp-3);
-        width: 160px;
+        top: var(--sp-4);
+        right: var(--sp-4);
+        width: 140px;
     }
 
     .info-badge {
         display: none;
     }
+
+    .about-panel {
+        width: 100%;
+        height: 100%;
+        max-height: 100%;
+        border-radius: 0;
+        top: 0;
+        left: 0;
+        transform: none;
+        animation: slide-up 0.3s var(--ease-default);
+    }
 }
 
-/* --- prefers-reduced-motion --- */
-@media (prefers-reduced-motion: reduce) {
-    .loading-icon {
-        animation: none;
-    }
-
-    .added-word-tag {
-        animation: none;
-    }
-
-    .info-badge {
-        animation: none;
-    }
-
-    .progress-fill {
-        transition: none;
-    }
+@keyframes slide-up {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
 }

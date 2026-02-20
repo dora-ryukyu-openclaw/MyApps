@@ -1,35 +1,60 @@
-.studio-grid {
-    display: grid;
-    grid-template-columns: 1fr 400px;
-    gap: var(--sp-8);
-    height: calc(100vh - 120px);
-    max-width: var(--w-page);
-    margin: 0 auto;
-    padding: var(--sp-4);
+:root {
+    --c-accent: #8b5cf6;
 }
 
-.glass {
+.app-container {
+    max-width: var(--w-page);
+    margin: 0 auto;
+    padding: var(--sp-8) var(--sp-4);
+}
+
+.studio-layout {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: var(--sp-8);
+    align-items: start;
+}
+
+@media (max-width: 1000px) {
+    .studio-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+.glass-card {
     background: var(--c-surface-card);
     backdrop-filter: var(--glass);
     -webkit-backdrop-filter: var(--glass);
     border: 1px solid var(--c-border);
+    border-radius: var(--r-xl);
+    box-shadow: var(--shadow);
+    padding: var(--sp-6);
+    transition: all var(--duration-slow) var(--ease-default);
 }
 
-.preview-pane {
+.glass-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+}
+
+/* プレビュー */
+.preview-card {
     display: flex;
     flex-direction: column;
-    gap: var(--sp-4);
-    padding: var(--sp-6);
+    gap: var(--sp-6);
+    min-height: 500px;
 }
 
-.img-container {
+.img-frame {
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
     background: #000;
     border-radius: var(--r-lg);
+    overflow: hidden;
+    min-height: 400px;
+    border: 1px solid var(--c-border);
 }
 
 #preview-img {
@@ -40,65 +65,104 @@
 
 .preview-actions {
     display: flex;
-    gap: var(--sp-4);
     justify-content: center;
+    gap: var(--sp-4);
 }
 
-.controls-pane {
-    padding: var(--sp-6);
+/* サイドバー */
+.sidebar {
     display: flex;
     flex-direction: column;
     gap: var(--sp-6);
-    overflow-y: auto;
 }
 
-.control-section h3 {
+.sidebar-title {
     font-size: var(--text-sm);
-    text-transform: uppercase;
-    color: var(--c-text-3);
+    font-weight: 700;
     margin-bottom: var(--sp-4);
+    color: var(--c-text-2);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
+.sliders-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-4);
+}
+
+/* Slider Style */
 .slider-group {
-    margin-bottom: var(--sp-4);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
 .slider-header {
     display: flex;
     justify-content: space-between;
-    font-size: var(--text-xs);
+    font-size: 13px;
     font-weight: 600;
-    margin-bottom: 4px;
+    color: var(--c-text-2);
 }
 
-.slider-group input {
+.slider-group input[type="range"] {
+    appearance: none;
+    -webkit-appearance: none;
     width: 100%;
+    height: 6px;
+    background: var(--c-border);
+    border-radius: 3px;
+    outline: none;
 }
 
-.code-output {
-    margin-top: auto;
-    padding: var(--sp-4);
-    background: var(--c-bg);
-    position: relative;
+.slider-group input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    background: var(--c-accent);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 10px var(--c-accent-soft);
+    border: 2px solid #fff;
 }
 
-pre {
-    font-family: var(--font-mono);
+/* Code Output */
+.code-card {
+    background: var(--c-surface-solid);
+}
+
+.code-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--sp-4);
+}
+
+.code-label {
     font-size: var(--text-xs);
+    font-weight: 700;
+    color: var(--c-text-3);
+    text-transform: uppercase;
+}
+
+.code-area {
+    background: var(--c-bg);
+    padding: var(--sp-4);
+    border-radius: var(--r);
+    border: 1px solid var(--c-border);
+    overflow-x: auto;
+}
+
+#css-code {
+    font-family: var(--font-mono);
+    font-size: 13px;
     color: var(--c-accent);
     white-space: pre-wrap;
     word-break: break-all;
 }
 
-.btn-sm {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-}
-
-@media (max-width: 1000px) {
-    .studio-grid {
-        grid-template-columns: 1fr;
-        height: auto;
-    }
+.btn-soft {
+    background: var(--c-bg);
+    color: var(--c-text-2);
 }

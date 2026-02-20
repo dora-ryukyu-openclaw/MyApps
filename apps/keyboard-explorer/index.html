@@ -4,42 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Keyboard Explorer — MyApps</title>
+    <meta name="description" content="キーボードイベントのプロパティ（keyCode, code, key 等）をリアルタイム表示。">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="../../shared/base.css">
     <link rel="stylesheet" href="../../shared/header.css">
     <link rel="stylesheet" href="style.css">
+    <script>
+        document.documentElement.setAttribute('data-theme', localStorage.getItem('myapps-theme') || 'system');
+    </script>
 </head>
 <body>
     <main class="app-main">
-        <div class="explorer-container">
-            <div id="key-display" class="key-card">
+        <div class="app-container">
+            <div id="key-display" class="glass-card main-key-card">
                 <span class="instruction">何かキーを押してください</span>
-                <div class="big-key" id="v-key">—</div>
+                <div class="big-key-wrapper">
+                    <div class="big-key" id="v-key">—</div>
+                </div>
                 <div class="code-label" id="v-code">—</div>
             </div>
 
             <div class="details-grid">
-                <div class="card detail-item">
+                <div class="glass-card detail-item">
                     <span class="label">event.key</span>
                     <span id="p-key" class="value">—</span>
                 </div>
-                <div class="card detail-item">
+                <div class="glass-card detail-item">
                     <span class="label">event.code</span>
                     <span id="p-code" class="value">—</span>
                 </div>
-                <div class="card detail-item">
-                    <span class="label">event.which (Deprecated)</span>
+                <div class="glass-card detail-item">
+                    <span class="label">event.which</span>
                     <span id="p-which" class="value">—</span>
                 </div>
-                <div class="card detail-item">
-                    <span class="label">event.keyCode (Deprecated)</span>
+                <div class="glass-card detail-item">
+                    <span class="label">keyCode</span>
                     <span id="p-keyCode" class="value">—</span>
                 </div>
-                <div class="card detail-item">
+                <div class="glass-card detail-item">
                     <span class="label">Location</span>
                     <span id="p-location" class="value">—</span>
                 </div>
-                <div class="card detail-item">
+                <div class="glass-card detail-item">
                     <span class="label">Modifiers</span>
                     <div id="p-modifiers" class="modifiers-list">
                         <!-- Shift, Ctrl, Alt, Meta -->
@@ -47,14 +53,19 @@
                 </div>
             </div>
 
-            <div class="history-card card">
-                <h3>最近の入力履歴</h3>
-                <ul id="history-list"></ul>
+            <div class="glass-card history-card">
+                <h3 class="sidebar-title">最近の入力履歴</h3>
+                <div class="history-scroll">
+                    <ul id="history-list"></ul>
+                </div>
             </div>
         </div>
     </main>
 
-    <script src="../../shared/header.js" data-app-name="Keyboard Explorer" data-app-icon="keyboard" data-app-color="#6366f1"></script>
+    <script src="../../shared/header.js" 
+        data-app-name="Keyboard Explorer" 
+        data-app-icon="keyboard" 
+        data-app-color="#6366f1"></script>
     <script src="script.js"></script>
 </body>
 </html>

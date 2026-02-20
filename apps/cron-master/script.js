@@ -6,7 +6,12 @@ const presetBtns = document.querySelectorAll('.preset-btn');
 
 function parse() {
     const val = input.value.trim();
-    if (!val) return;
+    if (!val) {
+        input.classList.add('error');
+        return;
+    }
+
+    input.classList.remove('error');
 
     try {
         // cronstrue.toString(expression, { locale: "ja" })
@@ -15,28 +20,34 @@ function parse() {
             use24HourTimeFormat: true 
         });
         explanation.textContent = desc;
-        explanation.style.color = 'var(--fg)';
+        explanation.style.color = 'var(--c-text)';
         
         updateNextRuns(val);
     } catch (e) {
-        explanation.textContent = '無効な Cron 式です: ' + e;
-        explanation.style.color = '#ef4444';
-        nextList.innerHTML = '<li>解析できません</li>';
+        explanation.textContent = '無効な Cron 式です';
+        explanation.style.color = 'var(--c-error)';
+        input.classList.add('error');
+        nextList.innerHTML = '<li>解析できませんでした</li>';
     }
 }
 
 /**
- * 簡易的な実行予定計算 (正確な cron-parser がない場合のフォールバック)
- * 本来は cron-parser 等を使うべきだが、
- * ここでは「形式の確認」を主目的とする。
+ * 簡易的な実行予定計算
  */
 function updateNextRuns(val) {
-    // プレースホルダーメッセージ
-    nextList.innerHTML = '<li>実行予定のシミュレーションは現在準備中です。</li>';
+    // 解析用のシンプルなメッセージ
+    nextList.innerHTML = '<li>実行予定のシミュレーション機能は近日公開予定です。</li>';
+    
+    // 実際に次の時間を計算したい場合は cdnjs 等から cron-parser を呼ぶ必要があるが、
+    // 現状は UI 改善にフォーカス
 }
 
 input.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') parse();
+});
+
+input.addEventListener('input', () => {
+    input.classList.remove('error');
 });
 
 btnParse.addEventListener('click', parse);

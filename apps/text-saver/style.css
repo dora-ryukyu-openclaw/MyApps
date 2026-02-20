@@ -1,26 +1,36 @@
+/* --- App Specific Overrides --- */
 :root {
     --c-accent: #10b981;
+    --c-accent-glow: rgba(16, 185, 129, 0.4);
     --c-accent-soft: rgba(16, 185, 129, 0.1);
 }
 
 .container {
     max-width: var(--w-page);
-    margin: var(--sp-8) auto;
-    padding: 0 var(--sp-4);
+    margin: 0 auto;
+    padding: var(--sp-6) var(--sp-4) var(--sp-12);
     display: flex;
     flex-direction: column;
-    gap: var(--sp-6);
+    gap: var(--sp-8);
 }
 
 .card {
-    background: var(--c-surface-solid);
+    background: var(--c-surface-card);
+    backdrop-filter: var(--glass);
     border: 1px solid var(--c-border);
-    border-radius: var(--r-lg);
+    border-radius: var(--r-xl);
     box-shadow: var(--shadow);
-    padding: var(--sp-6);
+    padding: var(--sp-8);
     display: flex;
     flex-direction: column;
-    gap: var(--sp-6);
+    gap: var(--sp-8);
+    transition: transform var(--duration) var(--ease-default), 
+                box-shadow var(--duration) var(--ease-default);
+}
+
+.card:hover {
+    transform: translateY(-4px); /* Depth 2.0 */
+    box-shadow: var(--shadow-lg);
 }
 
 .input-group {
@@ -31,20 +41,35 @@
 
 .label {
     font-size: var(--text-sm);
-    font-weight: 600;
+    font-weight: 700;
     color: var(--c-text-2);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 textarea {
     width: 100%;
     min-height: 400px;
     resize: vertical;
+    font-family: var(--font-mono);
+    padding: var(--sp-4);
+    background: var(--c-surface-solid);
+    border: 1px solid var(--c-border);
+    border-radius: var(--r);
+    color: var(--c-text);
+    transition: border-color var(--duration), box-shadow var(--duration);
+}
+
+textarea:focus {
+    outline: none;
+    border-color: var(--c-accent);
+    box-shadow: 0 0 0 3px var(--c-accent-soft);
 }
 
 .controls {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--sp-4);
+    grid-template-columns: 1.5fr 1fr;
+    gap: var(--sp-6);
 }
 
 .controls .input-group:first-child {
@@ -57,16 +82,35 @@ textarea {
     bottom: var(--sp-3);
     color: var(--c-text-3);
     font-size: var(--text-base);
+    font-family: var(--font-mono);
     pointer-events: none;
 }
 
 #filename {
-    padding-right: 3rem;
+    padding-right: 4rem;
+}
+
+input[type="text"], select {
+    padding: var(--sp-3) var(--sp-4);
+    background: var(--c-surface-solid);
+    border: 1px solid var(--c-border);
+    border-radius: var(--r);
+    color: var(--c-text);
+    font-family: var(--font);
+    font-size: var(--text-base);
+    transition: border-color var(--duration), box-shadow var(--duration);
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--c-accent);
+    box-shadow: 0 0 0 3px var(--c-accent-soft);
 }
 
 .actions {
     display: flex;
     justify-content: center;
+    padding-top: var(--sp-4);
 }
 
 .btn-primary {
@@ -74,16 +118,25 @@ textarea {
     color: #fff;
     border: none;
     font-size: var(--text-lg);
-    padding: var(--sp-4) var(--sp-8);
+    font-weight: 700;
+    padding: var(--sp-4) var(--sp-12);
     display: flex;
     align-items: center;
     gap: var(--sp-3);
-    box-shadow: 0 4px 12px var(--c-accent-soft);
+    border-radius: var(--r-full);
+    cursor: pointer;
+    box-shadow: 0 0 20px var(--c-accent-glow);
+    transition: all var(--duration) var(--ease-default);
 }
 
 .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px var(--c-accent-soft);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 0 30px var(--c-accent-glow);
+    background: var(--c-accent-hover);
+}
+
+.btn-primary:active {
+    transform: translateY(0) scale(0.98);
 }
 
 .btn-icon {
@@ -91,16 +144,19 @@ textarea {
 }
 
 .info {
-    padding: var(--sp-6);
-    background: var(--c-accent-soft);
-    border-radius: var(--r-lg);
-    border-left: 4px solid var(--c-accent);
+    padding: var(--sp-8);
+    background: var(--c-surface-card);
+    backdrop-filter: var(--glass);
+    border-radius: var(--r-xl);
+    border: 1px solid var(--c-border);
+    border-left: 6px solid var(--c-accent);
 }
 
 .info h3 {
     margin-top: 0;
-    margin-bottom: var(--sp-2);
+    margin-bottom: var(--sp-3);
     font-size: var(--text-lg);
+    font-weight: 700;
     color: var(--c-text);
 }
 
@@ -108,19 +164,29 @@ textarea {
     margin: 0;
     font-size: var(--text-base);
     color: var(--c-text-2);
+    line-height: var(--leading);
 }
 
 @media (max-width: 640px) {
+    .container {
+        padding: var(--sp-4);
+    }
+
+    .card {
+        padding: var(--sp-6);
+    }
+
     .controls {
         grid-template-columns: 1fr;
     }
     
     textarea {
-        min-height: 50vh;
+        min-height: 300px;
     }
     
     .btn-primary {
         width: 100%;
         justify-content: center;
+        padding: var(--sp-4);
     }
 }

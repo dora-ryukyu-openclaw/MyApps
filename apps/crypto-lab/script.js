@@ -47,7 +47,11 @@
             
             const original = btn.textContent;
             btn.textContent = 'Copied!';
-            setTimeout(() => btn.textContent = original, 2000);
+            btn.classList.add('copied');
+            setTimeout(() => {
+                btn.textContent = original;
+                btn.classList.remove('copied');
+            }, 2000);
         });
     });
 

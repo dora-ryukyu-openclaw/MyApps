@@ -19,6 +19,11 @@ window.addEventListener('keydown', (e) => {
     vKey.textContent = e.key === ' ' ? 'Space' : e.key;
     vCode.textContent = e.code;
 
+    // Trigger flash animation
+    vKey.classList.remove('key-flash');
+    void vKey.offsetWidth; // Force reflow
+    vKey.classList.add('key-flash');
+
     pKey.textContent = e.key;
     pCode.textContent = e.code;
     pWhich.textContent = e.which;

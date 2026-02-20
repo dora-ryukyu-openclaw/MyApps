@@ -4,34 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ポモドーロタイマー — MyApps</title>
+    <meta name="description" content="25分の集中と5分の休憩を繰り返すポモドーロ・テクニックのためのタイマー。">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="../../shared/base.css">
     <link rel="stylesheet" href="../../shared/header.css">
     <link rel="stylesheet" href="style.css">
+    <script>
+        document.documentElement.setAttribute('data-theme', localStorage.getItem('myapps-theme') || 'system');
+    </script>
 </head>
 <body>
     <main class="app-main">
-        <div class="pomodoro-container card glass">
-            <div class="mode-tabs">
-                <button id="mode-work" class="mode-btn active" data-time="1500">集中 (25:00)</button>
-                <button id="mode-break" class="mode-btn" data-time="300">休憩 (05:00)</button>
-            </div>
+        <div class="app-container">
+            <div class="glass-card pomodoro-card">
+                <div class="mode-tabs">
+                    <button id="mode-work" class="mode-btn active" data-time="1500">集中</button>
+                    <button id="mode-break" class="mode-btn" data-time="300">休憩</button>
+                </div>
 
-            <div class="timer-circle">
-                <svg viewBox="0 0 100 100">
-                    <circle class="bg" cx="50" cy="50" r="45"></circle>
-                    <circle id="progress" class="fg" cx="50" cy="50" r="45"></circle>
-                </svg>
-                <div id="display" class="time-display">25:00</div>
-            </div>
+                <div class="timer-visual">
+                    <div class="timer-circle">
+                        <svg viewBox="0 0 100 100" class="progress-svg">
+                            <circle class="bg-circle" cx="50" cy="50" r="45"></circle>
+                            <circle id="progress" class="fg-circle" cx="50" cy="50" r="45"></circle>
+                        </svg>
+                        <div class="timer-display-inner">
+                            <div id="display" class="time-text">25:00</div>
+                            <div id="status-text" class="status-text">READY</div>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="controls">
-                <button id="start-btn" class="btn btn-primary btn-lg">スタート</button>
-                <button id="reset-btn" class="btn btn-soft">リセット</button>
+                <div class="controls-row">
+                    <button id="start-btn" class="btn btn-primary btn-start">スタート</button>
+                    <button id="reset-btn" class="btn btn-soft btn-reset">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                    </button>
+                </div>
             </div>
         </div>
     </main>
-    <script src="../../shared/header.js" data-app-name="ポモドーロタイマー" data-app-icon="clock" data-app-color="#ef4444"></script>
+    <script src="../../shared/header.js" 
+        data-app-name="ポモドーロタイマー" 
+        data-app-icon="clock" 
+        data-app-color="#ef4444"></script>
     <script src="script.js"></script>
 </body>
 </html>

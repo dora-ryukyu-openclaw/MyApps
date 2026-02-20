@@ -1,53 +1,94 @@
+:root {
+    --c-app: #8b5cf6;
+    --c-app-soft: rgba(139, 92, 246, 0.08);
+    --c-app-glow: rgba(139, 92, 246, 0.4);
+}
+
+.app-main {
+    max-width: var(--w-page);
+    margin: 0 auto;
+    padding: var(--sp-8) var(--sp-6);
+    display: flex;
+    justify-content: center;
+}
+
 .base-container {
-    max-width: 700px;
-    margin: 2rem auto;
-    padding: 2rem;
+    width: 100%;
+    max-width: 800px;
+    background: var(--c-surface-card);
+    backdrop-filter: var(--glass);
+    -webkit-backdrop-filter: var(--glass);
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-xl);
+    padding: var(--sp-8);
+    box-shadow: var(--shadow);
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: var(--sp-8);
+    transition: transform var(--duration-slow) var(--ease-default), box-shadow var(--duration-slow) var(--ease-default);
+}
+
+.base-container:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px); /* Depth 2.0 */
 }
 
 .input-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
+    gap: var(--sp-6);
 }
 
-.input-group {
+.input-group, .ascii-section {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: var(--sp-2);
 }
 
 label {
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--fg-dim);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--c-text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding-left: var(--sp-1);
 }
 
 input {
     font-family: var(--font-mono);
-    font-size: 1.25rem;
-    padding: 0.75rem 1rem;
-    border-radius: 0.75rem;
-    border: 1px solid var(--border);
-    background: var(--bg-soft);
-    color: var(--fg);
+    font-size: var(--text-lg);
+    padding: var(--sp-4) var(--sp-5);
+    border-radius: var(--r-lg);
+    border: 2px solid var(--c-border);
+    background: var(--c-surface-solid);
+    color: var(--c-text);
+    transition: all var(--duration) var(--ease-default);
+    outline: none;
 }
 
 input:focus {
-    border-color: var(--accent);
-    background: var(--bg-card);
+    border-color: var(--c-app);
+    background: var(--c-surface-hover);
+    box-shadow: 0 0 15px var(--c-app-glow);
 }
 
-.ascii-section {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+input::placeholder {
+    color: var(--c-text-3);
+    opacity: 0.5;
+}
+
+.ascii-section input {
+    font-size: var(--text-xl);
+    text-align: center;
+    background: var(--c-surface-alt);
 }
 
 @media (max-width: 600px) {
     .input-row {
         grid-template-columns: 1fr;
+    }
+    .base-container {
+        padding: var(--sp-5);
+        gap: var(--sp-5);
     }
 }

@@ -59,7 +59,11 @@ document.querySelectorAll('.btn-copy').forEach(btn => {
         navigator.clipboard.writeText(textarea.value);
         
         const originalText = btn.textContent;
-        btn.textContent = '完了！';
-        setTimeout(() => btn.textContent = originalText, 2000);
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+            btn.textContent = originalText;
+            btn.classList.remove('copied');
+        }, 2000);
     };
 });

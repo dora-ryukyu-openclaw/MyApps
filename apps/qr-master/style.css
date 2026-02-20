@@ -1,17 +1,18 @@
+/* --- App Specific Overrides --- */
 :root {
-    --c-app: #10b981;
-    --c-app-soft: rgba(16, 185, 129, 0.1);
-    --c-app-glow: rgba(16, 185, 129, 0.4);
+    --c-accent: #10b981;
+    --c-accent-glow: rgba(16, 185, 129, 0.4);
+    --c-accent-soft: rgba(16, 185, 129, 0.1);
 }
 
 .app-main {
     max-width: var(--w-page);
     margin: 0 auto;
-    padding: var(--sp-5) var(--sp-5) var(--sp-8);
-    height: calc(100vh - 80px);
+    padding: var(--sp-6); /* Depth 2.0: Spacing 24px */
+    min-height: calc(100vh - 64px);
     display: flex;
     flex-direction: column;
-    gap: var(--sp-4);
+    gap: var(--sp-6);
 }
 
 /* --- Tabs --- */
@@ -19,7 +20,7 @@
     display: flex;
     gap: var(--sp-2);
     border-bottom: 1px solid var(--c-border);
-    padding-bottom: 1px;
+    padding-bottom: 2px;
 }
 
 .tab-btn {
@@ -28,24 +29,26 @@
     border: none;
     border-bottom: 2px solid transparent;
     color: var(--c-text-2);
+    font-family: var(--font);
     font-weight: 600;
     cursor: pointer;
-    transition: all var(--duration-fast);
+    transition: all var(--duration-fast) var(--ease-default);
+    border-radius: var(--r) var(--r) 0 0;
 }
 
 .tab-btn:hover {
-    color: var(--c-app);
+    color: var(--c-accent);
+    background: var(--c-accent-soft);
 }
 
 .tab-btn.active {
-    color: var(--c-app);
-    border-bottom-color: var(--c-app);
+    color: var(--c-accent);
+    border-bottom-color: var(--c-accent);
 }
 
 .tab-content {
     display: none;
     flex: 1;
-    min-height: 0;
 }
 
 .tab-content.active {
@@ -58,14 +61,14 @@
     flex: 1;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--sp-4);
+    gap: var(--sp-6);
     min-height: 0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 860px) {
     .editor-grid {
-        grid-template-rows: 1fr 1fr;
         grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
     }
 }
 
@@ -73,21 +76,34 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    background: var(--c-surface-card);
+    backdrop-filter: var(--glass);
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-xl); /* Depth 2.0: Larger radius */
+    box-shadow: var(--shadow);
+    transition: transform var(--duration) var(--ease-default), 
+                box-shadow var(--duration) var(--ease-default);
+}
+
+.editor-pane:hover {
+    transform: translateY(-4px); /* Depth 2.0 */
+    box-shadow: var(--shadow-lg);
 }
 
 .preview-pane {
     align-items: center;
     justify-content: center;
-    background: var(--c-surface-solid);
+    padding: var(--sp-6);
 }
 
 .qr-container {
     padding: var(--sp-6);
-    background: white; /* QR codes need white background */
-    border-radius: var(--r);
+    background: white; /* QR codes must have high contrast */
+    border-radius: var(--r-lg);
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: var(--shadow-sm);
 }
 
 .qr-container img {
@@ -100,11 +116,12 @@
     flex: 1;
     position: relative;
     background: #000;
-    border-radius: var(--r);
+    border-radius: var(--r-lg);
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
+    min-height: 300px;
 }
 
 #scan-canvas {
@@ -123,17 +140,27 @@
     font-size: var(--text-sm);
     background: rgba(0,0,0,0.5);
     padding: var(--sp-4);
+    border: 2px dashed rgba(255,255,255,0.3);
+    border-radius: var(--r-lg);
+    margin: var(--sp-2);
+    transition: all var(--duration);
+}
+
+.drop-zone.drag-over {
+    background: rgba(16, 185, 129, 0.4);
+    border-color: #10b981;
 }
 
 /* --- Components --- */
 .pane-header {
-    padding: var(--sp-2) var(--sp-4);
-    background: var(--c-bg);
+    padding: var(--sp-3) var(--sp-4);
+    background: var(--c-surface-alt);
     border-bottom: 1px solid var(--c-border);
-    font-weight: 600;
+    font-weight: 700;
     font-size: var(--text-xs);
     color: var(--c-text-2);
     text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 textarea {
@@ -143,27 +170,38 @@ textarea {
     padding: var(--sp-4);
     border: none;
     outline: none;
-    font-family: var(--font);
+    font-family: var(--font-mono); /* Better for inputs */
     font-size: var(--text-sm);
-    line-height: 1.6;
+    line-height: var(--leading);
     background: transparent;
     color: var(--c-text);
 }
 
 .btn {
-    padding: var(--sp-2) var(--sp-4);
+    padding: var(--sp-3) var(--sp-5);
     font-family: var(--font);
     font-weight: 600;
     font-size: var(--text-sm);
     border-radius: var(--r);
     cursor: pointer;
     transition: all var(--duration) var(--ease-default);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--sp-2);
 }
 
 .btn-primary {
-    background: var(--c-app);
+    background: var(--c-accent);
     color: white;
     border: none;
+    box-shadow: 0 0 15px var(--c-accent-glow);
+}
+
+.btn-primary:hover {
+    background: var(--c-accent-hover);
+    transform: scale(1.02);
+    box-shadow: 0 0 20px var(--c-accent-glow);
 }
 
 .btn-secondary {
@@ -172,7 +210,15 @@ textarea {
     border: 1px solid var(--c-border);
 }
 
+.btn-secondary:hover {
+    background: var(--c-surface-hover);
+    border-color: var(--c-accent);
+}
+
 .toolbar-actions {
+    padding: var(--sp-4);
     display: flex;
     gap: var(--sp-2);
+    border-top: 1px solid var(--c-border);
+    background: var(--c-surface-alt);
 }
